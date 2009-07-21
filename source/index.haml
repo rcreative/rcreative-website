@@ -1,175 +1,132 @@
 ---
+layout: home
 title: "Designer and Developer for Hire - Recursive Creative"
 description: "We're a hard-working, two-man web application development shop with a zeal for simplicity and beauty. We have the talent and skill to help launch your online business."
 keywords: "John W. Long, Adam Williams, ruby on rails, ruby, rails, designer, developer, web applications"
 ---
-!!!
-%html{:xmlns=>"http://www.w3.org/1999/xhtml", "xml:lang"=>"en", :lang=>"en"}
-  %head
-    %meta{:content=>"text/html; charset=utf-8", "http-equiv"=>"Content-Type"}
-    %title= page.title
-    %meta{:name=>"description", :content=>page.description}/
-    %meta{:name=>"keywords", :content=>page.keywords}/
-    %link{:href=>"/stylesheets/screen.css", :rel=>"stylesheet", :media=>"screen, projection", :type=>"text/css"}
-    %script{:type=>"text/javascript", :src=>"/javascripts/jquery.js"}
-    %script{:type=>"text/javascript", :src=>"/javascripts/fancyzoom.js"}
-    :javascript
-      $(document).ready(function() {
-        $('a.zoom').fancyZoom();
-      });
-  %body
-    #container
-      #header
-        #logo
-          %img{:src=>"/images/logo.png", :width=>241, :height=>73, :alt=>"Recursive Creative", :title=>""}/
-      #main
-        #head
-          #intro
-            %h1#designer_and_developer_for_hire_header Designer &amp; Developer for Hire
-            %p
-              We&#8217;re a <strong>hard-working</strong>, two-man web application dev shop with a zeal for
-              <span class="highlight"><strong>simplicity</strong></span> and
-              <span class="highlight"><strong>beauty</strong></span>. We have the <strong>talent</strong> and
-              <strong>skill</strong> to help launch your online business.
-              -# %a{:href=>"/about/"} About Us &raquo;
-          #team
-            .member
-              %img.avatar{:src=>"/images/john_64x64.jpg", :width=>64, :height=>64, :alt=>""}/
-              .name John W. Long
-              .title Interface Designer
-            .member
-              %img.avatar{:src=>"/images/adam_64x64.jpg", :width=>64, :height=>64, :alt=>""}/
-              .name Adam Williams
-              .title Software Developer
-        #our_work
-          #featured_project.memberhub
-            %h2.minify#featured_project_header Featured Project
-            %h3#memberhub_logo MemberHub
-            %p
-              MemberHub.com helps member-driven organizations enhance communication and
-              connect with their members in secure online hubs.
-              %a{:href=>"http://memberhub.com/"} Visit Site &raquo;
-            .services
-              %span.title Services Rendered:
-              %span.rendered Analysis, Prototyping, Design, Development
-          #best_work
-            %h2.minify#some_of_our_work_header Some of Our Best Work
-            .screenshot
-              %a.zoom{:href=>"#ruby_website"}
-                %img{:src=>"/images/rubylang_screenshot.jpg", :width=>190, :height=>76, :alt=>""}/
-                %span.caption www.ruby-lang.org
-            %ul
-              %li
-                %a.zoom{:href=>"#pragmatic_programmers_website"} Pragmatic Programmers Website
-              %li
-                %a.zoom{:href=>"#local_eye_site_website"} Local Eye Site Website
-              %li
-                %a.zoom{:href=>"#noble_call_website"} Noble Call Website
-              %li
-                %a.zoom{:href=>"#radiant_cms"} Radiant CMS
-          #portfolio
-            #ruby_website{:style=>"display: none"}
-              .project
-                %a{:href=>"http://www.ruby-lang.org"}
-                  %img.collage{:src=>"/images/rubylang_collage.png", :width=>330, :height=>308, :alt=>""}/
-                %h3 Ruby Lang Website
-                .subtitle www.ruby-lang.org
-                %p
-                  In 2005, John <a href="http://redhanded.hobix.com/redesign2005/">began
-                  working</a> with the members of the Ruby Visual Identity team to redesign
-                  the main website for the Ruby programing language. John was responsible
-                  for the final design and created Radiant CMS to power the site.
-                  %a{:href=>"http://www.pragprog.com"} View Site &raquo;
-                .services
-                  %span.title Services Rendered:
-                  %span.rendered Design and Development
-            #pragmatic_programmers_website{:style=>"display: none"}
-              .project
-                %a{:href=>"http://www.pragprog.com"}
-                  %img.collage{:src=>"/images/pragmatic_programmers_collage.png", :width=>330, :height=>308, :alt=>""}/
-                %h3 Pragmatic Programmers
-                .subtitle www.pragprog.com
-                %p
-                  The Pragmatic Programmers provide books, resources, and
-                  training for programmers. In 2006, Dave and Andy hired John
-                  to help them redesign and brand their website. Over a period
-                  of a few weeks John helped them develop a template that is
-                  still in use today.
-                  %a{:href=>"http://www.pragprog.com"} View Site &raquo;
-                .services
-                  %span.title Services Rendered:
-                  %span.rendered Design
-            #local_eye_site_website{:style=>"display: none"}
-              .project
-                %a{:href=>"http://www.localeyesite.com"}
-                  %img.collage{:src=>"/images/local_eye_site_collage.png", :width=>330, :height=>308, :alt=>""}/
-                %h3 Local Eye Site Website
-                .subtitle www.localeyesite.com
-                %p
-                  A job posting and community site for Ophthalmologists, Optometrists,
-                  Opticians, Registered Nurses, Administrators, Technicians, and more.
-                  Adam did the original development on the site in Rails and integrated
-                  it with the Beast forum software.
-                  %a{:href=>"http://www.localeyesite.com"} View Site &raquo;
-                .services
-                  %span.title Services Rendered:
-                  %span.rendered Original Development
-            #noble_call_website{:style=>"display: none"}
-              .project
-                %a{:href=>"http://www.noblecall.org"}
-                  %img.collage{:src=>"/images/noble_call_collage.png", :width=>330, :height=>308, :alt=>""}/
-                %h3 Noble Call Website
-                .subtitle www.noblecall.org
-                %p
-                  Powered by <a href="http://radiantcms.org">Radiant CMS</a>, the Noble
-                  Call website is the online home for the ministry of Chris Hogan. John
-                  worked directly with Chris to brand the website, then customized Radiant
-                  CMS to better suit Chris&#8217;s needs, and finally integrated the site
-                  with Flickr for easy image management.
-                  %a{:href=>"http://www.noblecall.org"} View Site &raquo;
-                .services
-                  %span.title Services Rendered:
-                  %span.rendered Design, Development, Radiant CMS Integration
-            #radiant_cms{:style=>"display: none"}
-              .project
-                %a{:href=>"http://radiantcms.org"}
-                  %img.collage{:src=>"/images/radiant_cms_collage.png", :width=>330, :height=>308, :alt=>""}/
-                %h3 Radiant CMS
-                .subtitle Content Management Simplified
-                %p
-                  Radiant is an open source website content management system
-                  designed for small teams. One of the first Rails-based CMS&#8217;s,
-                  Radiant continues to lead the pack with its robust extension
-                  system and designer-friendly templating system. John built
-                  Radiant back in 2002 to power the website for the Ruby
-                  Programming language.
-                  %a{:href=>"http://www.radiantcms.org"} Learn More &raquo;
-                .services
-                  %span.title Services Rendered:
-                  %span.rendered Original Design and Development
-      #footer
-        .section#contact_us
-          %p
-            %strong.title We love talking with people about their ideas!
-            Contact us at
-            %br/
-            %strong.highlight 919-721-9522
-            or
-            %a.alt{:href=>"mailto:us@recursivecreative.com"} us@recursivecreative.com
-        .section#ruby_rails_and_twitter
-          #ruby_and_rails
-            %img.logo{:src=>"/images/ruby_logo.png", :width=>54, :height=>79, :alt=>"Ruby", :title=>""}/
-            %img.logo{:src=>"/images/rails_logo.png", :width=>54, :height=>79, :alt=>"Rails", :title=>""}/
-            We build
-            %a{:href=>"http://ruby-lang.org/"} Ruby
-            and
-            %a{:href=>"http://rubyonrails.org/"} Ruby on Rails
-            applications.
-          #twitter
-            %img.logo{:src=>"/images/twitter_bird.png", :width=>54, :height=>67, :alt=>"Twitter", :title=>""}/
-            %strong.highlight Follow us on Twitter:
-            .handles
-              = [link_to("@rcreative", "http://twitter.com/friendships/add/rcreative", :class=>"alt"), link_to("@johnwlong", "http://twitter.com/friendships/add/johnwlong", :class=>"alt"), link_to("@aiwilliams", "http://twitter.com/friendships/add/aiwilliams", :class=>"alt")].join(", ")
-        .section#fine_print
-          %p
-            Copyright &copy; 2009, Recursive Creative, LLC. All rights reserved. &nbsp; 613 Ashe Avenue &bull; Cary, NC 27518
+
+#head
+  #intro
+    %h1#designer_and_developer_for_hire_header Designer &amp; Developer for Hire
+    %p
+      We&#8217;re a <strong>hard-working</strong>, two-man web application dev shop with a zeal for
+      <span class="highlight"><strong>simplicity</strong></span> and
+      <span class="highlight"><strong>beauty</strong></span>. We have the <strong>talent</strong> and
+      <strong>skill</strong> to help launch your online business.
+      %a{:href=>"/about/"} About Us &raquo;
+  #team
+    .member
+      %img.avatar{:src=>"/images/john_64x64.jpg", :width=>64, :height=>64, :alt=>""}/
+      .name John W. Long
+      .title Interface Designer
+    .member
+      %img.avatar{:src=>"/images/adam_64x64.jpg", :width=>64, :height=>64, :alt=>""}/
+      .name Adam Williams
+      .title Software Developer
+
+#our_work
+  #featured_project.memberhub
+    %h2.minify#featured_project_header Featured Project
+    %h3#memberhub_logo MemberHub
+    %p
+      MemberHub.com helps member-driven organizations enhance communication and
+      connect with their members in secure online hubs.
+      %a{:href=>"http://memberhub.com/"} Visit Site &raquo;
+    .services
+      %span.title Services Rendered:
+      %span.rendered Analysis, Prototyping, Design, Development
+  #best_work
+    %h2.minify#some_of_our_work_header Some of Our Best Work
+    .screenshot
+      %a.zoom{:href=>"#ruby_website"}
+        %img{:src=>"/images/rubylang_screenshot.jpg", :width=>190, :height=>76, :alt=>""}/
+        %span.caption www.ruby-lang.org
+    %ul
+      %li
+        %a.zoom{:href=>"#pragmatic_programmers_website"} Pragmatic Programmers Website
+      %li
+        %a.zoom{:href=>"#local_eye_site_website"} Local Eye Site Website
+      %li
+        %a.zoom{:href=>"#noble_call_website"} Noble Call Website
+      %li
+        %a.zoom{:href=>"#radiant_cms"} Radiant CMS
+  #portfolio
+    #ruby_website{:style=>"display: none"}
+      .project
+        %a{:href=>"http://www.ruby-lang.org"}
+          %img.collage{:src=>"/images/rubylang_collage.png", :width=>330, :height=>308, :alt=>""}/
+        %h3 Ruby Lang Website
+        .subtitle www.ruby-lang.org
+        %p
+          In 2005, John <a href="http://redhanded.hobix.com/redesign2005/">began
+          working</a> with the members of the Ruby Visual Identity team to redesign
+          the main website for the Ruby programing language. John was responsible
+          for the final design and created Radiant CMS to power the site.
+          %a{:href=>"http://www.pragprog.com"} View Site &raquo;
+        .services
+          %span.title Services Rendered:
+          %span.rendered Design and Development
+    #pragmatic_programmers_website{:style=>"display: none"}
+      .project
+        %a{:href=>"http://www.pragprog.com"}
+          %img.collage{:src=>"/images/pragmatic_programmers_collage.png", :width=>330, :height=>308, :alt=>""}/
+        %h3 Pragmatic Programmers
+        .subtitle www.pragprog.com
+        %p
+          The Pragmatic Programmers provide books, resources, and
+          training for programmers. In 2006, Dave and Andy hired John
+          to help them redesign and brand their website. Over a period
+          of a few weeks John helped them develop a template that is
+          still in use today.
+          %a{:href=>"http://www.pragprog.com"} View Site &raquo;
+        .services
+          %span.title Services Rendered:
+          %span.rendered Design
+    #local_eye_site_website{:style=>"display: none"}
+      .project
+        %a{:href=>"http://www.localeyesite.com"}
+          %img.collage{:src=>"/images/local_eye_site_collage.png", :width=>330, :height=>308, :alt=>""}/
+        %h3 Local Eye Site Website
+        .subtitle www.localeyesite.com
+        %p
+          A job posting and community site for Ophthalmologists, Optometrists,
+          Opticians, Registered Nurses, Administrators, Technicians, and more.
+          Adam did the original development on the site in Rails and integrated
+          it with the Beast forum software.
+          %a{:href=>"http://www.localeyesite.com"} View Site &raquo;
+        .services
+          %span.title Services Rendered:
+          %span.rendered Original Development
+    #noble_call_website{:style=>"display: none"}
+      .project
+        %a{:href=>"http://www.noblecall.org"}
+          %img.collage{:src=>"/images/noble_call_collage.png", :width=>330, :height=>308, :alt=>""}/
+        %h3 Noble Call Website
+        .subtitle www.noblecall.org
+        %p
+          Powered by <a href="http://radiantcms.org">Radiant CMS</a>, the Noble
+          Call website is the online home for the ministry of Chris Hogan. John
+          worked directly with Chris to brand the website, then customized Radiant
+          CMS to better suit Chris&#8217;s needs, and finally integrated the site
+          with Flickr for easy image management.
+          %a{:href=>"http://www.noblecall.org"} View Site &raquo;
+        .services
+          %span.title Services Rendered:
+          %span.rendered Design, Development, Radiant CMS Integration
+    #radiant_cms{:style=>"display: none"}
+      .project
+        %a{:href=>"http://radiantcms.org"}
+          %img.collage{:src=>"/images/radiant_cms_collage.png", :width=>330, :height=>308, :alt=>""}/
+        %h3 Radiant CMS
+        .subtitle Content Management Simplified
+        %p
+          Radiant is an open source website content management system
+          designed for small teams. One of the first Rails-based CMS&#8217;s,
+          Radiant continues to lead the pack with its robust extension
+          system and designer-friendly templating system. John built
+          Radiant back in 2002 to power the website for the Ruby
+          Programming language.
+          %a{:href=>"http://www.radiantcms.org"} Learn More &raquo;
+        .services
+          %span.title Services Rendered:
+          %span.rendered Original Design and Development

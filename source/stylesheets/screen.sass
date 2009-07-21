@@ -1,3 +1,6 @@
+// Configuration
+@import partials/config.sass
+
 // Utility modules
 @import compass/utilities/_links.sass
 @import compass/utilities/_text.sass
@@ -5,18 +8,8 @@
 @import modules/_reset.sass
 @import modules/_rounded.sass
 
-// Reset styles
+// Reset
 +global-reset
-
-// Base configuration
-@import partials/base.sass
-
-// Additional grid mixins
-=pad-left(!n)
-  padding-left= ((!blueprint_grid_width + !blueprint_grid_margin) * !n) - !blueprint_grid_margin
-
-=pad-right(!n)
-  padding-right= ((!blueprint_grid_width + !blueprint_grid_margin) * !n) - !blueprint_grid_margin
 
 // Typography
 @import partials/typography.sass
@@ -34,7 +27,7 @@ body
 #header
   background: #232f34
   margin-top: -1em
-  padding= 2.5em !blueprint_grid_width 1.5em
+  padding= 2.5em !grid_width 1.5em
   +round-corners
 
 #logo
@@ -43,7 +36,59 @@ body
   margin-bottom: -1px
   +replace-text("/images/logo_screen.png")
 
-#main
+#content
+  padding= 1.5em !grid_width 0.5em
+  margin-bottom: -1.5em
+
+#footer
+  .section
+    border-top: 6px solid #e5e5e5
+    &#contact_us
+      padding: 1.5em 0 0
+      margin: 1.5em 0
+      +clearfix
+      p
+        font-size: 140%
+        margin: 0
+        text-align: center
+    &#ruby_rails_and_twitter
+      +clearfix
+      #ruby_and_rails
+        line-height: 94px
+        +column(13)
+        +pad-left(1)
+        img.logo
+          vertical-align: -34px
+      #twitter
+        padding-top: 24px
+        margin-left: 10px
+        +column(9, true)
+        +prepend(1)
+        img.logo
+          float: left
+          margin-top: -8px
+          margin-right: 16px
+        .handles
+          font-size: 90%
+    &#fine_print
+      text-align: center
+      padding: 1em 0 1em
+      p
+        color: #666
+        font-size: 80%
+
+body#single_column_layout
+  #head
+    text-shadow: 2px 2px 30px rgba(194,229,244,0.1)
+    background: #c2e5f4
+    padding= !grid_width/3 !grid_width/2
+    margin= 0 !grid_width/2 1.5em
+    +round-bottom-corners
+    h1
+      font-family: Georgia, Palatino, "Times New Roman", Times, Geneva, serif
+      font-size: 200%
+      margin: 0
+body#home_page_layout
   h2.minify
     font-size: 12px
     color: #666
@@ -62,161 +107,92 @@ body
       color: #999
       font-size: 12px
       font-style: italic
-
-#head
-  text-shadow: 2px 2px 30px rgba(194,229,244,0.1)
-  background: #c2e5f4
-  padding: 1.5em 0
-  margin: 1.5em 0
-  +round-corners
-  +clearfix
-  .highlight
-    background-color: #f3fa67
-  #intro
-    border-right: 1px dashed #5c8399
-    padding-left= !blueprint_grid_width
-    padding-right= !blueprint_grid_width - 1px
-    +column(14.72)
-    h1#designer_and_developer_for_hire_header
-      height: 34px
-      width: 546px
-      margin: 8px 0 12px
-      +replace-text("/images/designer_and_developer_for_hire_header.png")
-    p
-      font-size: 19px
-      line-height: 36px
-      margin-bottom: 4px
-  #team
-    padding-left= !blueprint_grid_width - !blueprint_grid_margin
-    +column(6.5)
-    .member
-      clear: left
-      padding-top: 8px
-      img.avatar
-        border-color: #869aa2
-        float: left
-        margin-right: 20px
-      .name
-        font-family: Georgia, Palatino, "Times New Roman", Times, Geneva, serif
-        font-size: 20px
-        padding-top: 16px
-        line-height: 1
-      .title
-        font-size: 12px
-        font-style: italic
-        color: #666
-
-#our_work
-  +clearfix
-  #featured_project
-    background: url(/images/memberhub_collage.png) right center no-repeat
-    border: 1px solid #d5d5d5
-    padding= 1.5em !blueprint_grid_width
-    +column(14.72)
-    +round-corners
-    h2#featured_project_header
-      height: 11px
-      width: 176px
-      margin: 0.5em 0 0.5em
-      +replace-text("/images/featured_project_header.png")
-    h3#memberhub_logo
-      width: 244px
-      height: 76px
-      margin-bottom: 8px
-      +replace-text("/images/memberhub_logo.png")
-    p
-      font-size: 14px
-      color: #666
-      line-height: 1.8
-    .services
-      color: #999
-      font-size: 12px
-      line-height: 1.8
-      margin-bottom: 0.5em
-      .title
-        display: block
-    &.memberhub
-      p
-        padding-right: 280px
-  #best_work
-    padding= 18px !blueprint_grid_width - !blueprint_grid_margin
-    +column(6.5, true)
-    h2#some_of_our_work_header
-      height: 11px
-      width: 173px
-      margin: 0.5em 0 1.5em
-      +replace-text("/images/some_of_our_work_header.png")
-    .screenshot
-      margin-bottom: 16px
-    ul
-      font-size: 13px
-      margin-right: 0
-      li
-        margin-top: 6px
-
-#zoom .project, #portfolio .project
-  width= (!blueprint_grid_width + !blueprint_grid_margin) * 17
-  min-height: 300px
-  padding= 15px
-  img.collage
-    float: right
-    margin-top: -15px
-    margin-right: -10px
-    margin-bottom: -15px
-  h3
-    font-weight: bold
-    font-size: 140%
-    margin-bottom: 0.5em
-  .subtitle
-    color: #999
-    font-size: 90%
-    font-style: italic
-    margin-top: -1em
-    margin-bottom: 0.75em
-  p
-    font-size: 14px
-    color: #666
-    line-height: 1.8
-    margin-bottom: 1em
-  .services
-    color: #999
-    font-size: 12px
-    line-height: 1.8
-    .title
-      display: block
-
-.section
-  border-top: 6px solid #e5e5e5
-  &#contact_us
-    padding: 1.5em 0 0
+  #head
+    text-shadow: 2px 2px 30px rgba(194,229,244,0.1)
+    background: #c2e5f4
+    padding: 1.5em 0
     margin: 1.5em 0
+    +round-corners
     +clearfix
-    p
-      font-size: 140%
-      margin: 0
-      text-align: center
-  &#ruby_rails_and_twitter
+    .highlight
+      background-color: #f3fa67
+    #intro
+      border-right: 1px dashed #5c8399
+      padding-left= !grid_width
+      padding-right= !grid_width - 1px
+      +column(14.72)
+      h1#designer_and_developer_for_hire_header
+        height: 34px
+        width: 546px
+        margin: 8px 0 12px
+        +replace-text("/images/designer_and_developer_for_hire_header.png")
+      p
+        font-size: 19px
+        line-height: 36px
+        margin-bottom: 4px
+    #team
+      padding-left= !grid_width - !grid_margin
+      +column(6.5)
+      .member
+        clear: left
+        padding-top: 8px
+        img.avatar
+          border-color: #869aa2
+          float: left
+          margin-right: 20px
+        .name
+          font-family: Georgia, Palatino, "Times New Roman", Times, Geneva, serif
+          font-size: 20px
+          padding-top: 16px
+          line-height: 1
+        .title
+          font-size: 12px
+          font-style: italic
+          color: #666
+  #our_work
     +clearfix
-    #ruby_and_rails
-      line-height: 94px
-      +column(13)
-      +pad-left(1)
-      img.logo
-        vertical-align: -34px
-    #twitter
-      padding-top: 24px
-      margin-left: 10px
-      +column(9, true)
-      +prepend(1)
-      img.logo
-        float: left
-        margin-top: -8px
-        margin-right: 16px
-      .handles
-        font-size: 90%
-  &#fine_print
-    text-align: center
-    padding: 1em 0 1em
-    p
-      color: #666
-      font-size: 80%
+    #featured_project
+      background: url(/images/memberhub_collage.png) right center no-repeat
+      border: 1px solid #d5d5d5
+      padding= 1.5em !grid_width
+      +column(14.72)
+      +round-corners
+      h2#featured_project_header
+        height: 11px
+        width: 176px
+        margin: 0.5em 0 0.5em
+        +replace-text("/images/featured_project_header.png")
+      h3#memberhub_logo
+        width: 244px
+        height: 76px
+        margin-bottom: 8px
+        +replace-text("/images/memberhub_logo.png")
+      p
+        font-size: 14px
+        color: #666
+        line-height: 1.8
+      .services
+        color: #999
+        font-size: 12px
+        line-height: 1.8
+        margin-bottom: 0.5em
+        .title
+          display: block
+      &.memberhub
+        p
+          padding-right: 280px
+    #best_work
+      padding= 18px !grid_width - !grid_margin
+      +column(6.5, true)
+      h2#some_of_our_work_header
+        height: 11px
+        width: 173px
+        margin: 0.5em 0 1.5em
+        +replace-text("/images/some_of_our_work_header.png")
+      .screenshot
+        margin-bottom: 16px
+      ul
+        font-size: 13px
+        margin-right: 0
+        li
+          margin-top: 6px

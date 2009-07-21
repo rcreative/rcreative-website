@@ -1,0 +1,47 @@
+!!!
+%html{:xmlns=>"http://www.w3.org/1999/xhtml", "xml:lang"=>"en", :lang=>"en"}
+  %head
+    %meta{:content=>"text/html; charset=utf-8", "http-equiv"=>"Content-Type"}
+    %title= page.title
+    %meta{:name=>"description", :content=>page.description}/
+    %meta{:name=>"keywords", :content=>page.keywords}/
+    %link{:href=>"/stylesheets/screen.css", :rel=>"stylesheet", :media=>"screen, projection", :type=>"text/css"}
+    %script{:type=>"text/javascript", :src=>"/javascripts/jquery.js"}
+    %script{:type=>"text/javascript", :src=>"/javascripts/fancyzoom.js"}
+    :javascript
+      $(document).ready(function() {
+        $('a.zoom').fancyZoom();
+      });
+  %body{:id=>"home_page_layout"}
+    #container
+      #header
+        #logo
+          %img{:src=>"/images/logo.png", :width=>241, :height=>73, :alt=>"Recursive Creative", :title=>""}/
+      #main
+        = content
+      #footer
+        .section#contact_us
+          %p
+            %strong.title We love talking with people about their ideas!
+            Contact us at
+            %br/
+            %strong.highlight 919-721-9522
+            or
+            %a.alt{:href=>"mailto:us@recursivecreative.com"} us@recursivecreative.com
+        .section#ruby_rails_and_twitter
+          #ruby_and_rails
+            %img.logo{:src=>"/images/ruby_logo.png", :width=>54, :height=>79, :alt=>"Ruby", :title=>""}/
+            %img.logo{:src=>"/images/rails_logo.png", :width=>54, :height=>79, :alt=>"Rails", :title=>""}/
+            We build
+            %a{:href=>"http://ruby-lang.org/"} Ruby
+            and
+            %a{:href=>"http://rubyonrails.org/"} Ruby on Rails
+            applications.
+          #twitter
+            %img.logo{:src=>"/images/twitter_bird.png", :width=>54, :height=>67, :alt=>"Twitter", :title=>""}/
+            %strong.highlight Follow us on Twitter:
+            .handles
+              = [link_to("@rcreative", "http://twitter.com/friendships/add/rcreative", :class=>"alt"), link_to("@johnwlong", "http://twitter.com/friendships/add/johnwlong", :class=>"alt"), link_to("@aiwilliams", "http://twitter.com/friendships/add/aiwilliams", :class=>"alt")].join(", ")
+        .section#fine_print
+          %p
+            Copyright &copy; 2009, Recursive Creative, LLC. All rights reserved. &nbsp; 613 Ashe Avenue &bull; Cary, NC 27518
