@@ -1,13 +1,11 @@
-Recursive Creative Website
---------------------------
+# Recursive Creative Website
 
-This website is can be built with the Henrik's version of Jekyll that adds
-support for HAML and SASS:
+This project generates the HTML source for [Recursive Creative's Website](http://recursivecreative.com).
 
-  http://github.com/henrik/jekyll/tree/master
+This website is can be built with the [Henrik's version of Jekyll](http://github.com/henrik/jekyll/tree/master)
+that adds support for HAML and SASS.
 
-I had to make a small change to the HAML gem in order to get the SASS to
-compile. In:
+We had to make a small change to the HAML gem in order to get the SASS to compile. In:
 
   lib/sass/tree/import_node.rb
 
@@ -19,8 +17,7 @@ To this:
 
   paths = (@options[:load_paths] || []).dup.to_a
 
-Hopefully this change won't be necessary in future versions of HAML, but as of
-2.2.2 it seems to be.
+Hopefully this change won't be necessary in future versions of HAML, but as of 2.2.2 it seems to be.
 
 To generate the website in the output directory, type:
 
@@ -29,3 +26,10 @@ To generate the website in the output directory, type:
 To generate and deploy, type:
 
   rake deploy
+
+
+## License
+
+Feel free to reuse any of the scripts and code found on this web site, but note that all content and
+images are copyright © 2009, Recursive Creative, LLC. and are not licensed for distribution. If you
+have questions about any of this, please get in touch.
