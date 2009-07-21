@@ -53,6 +53,7 @@ body { background: url(/images/dots_background.png) repeat-x top; color: #333; }
 #header { background: #232f34; margin-top: -1em; padding: 2.5em 30px 1.5em; border-radius: !amount; -moz-border-radius: 15px; -webkit-border-radius: 15px; }
 
 #logo { height: 73px; width: 241px; margin-bottom: -1px; text-indent: -9999em; overflow: hidden; background-image: url(/images/logo_screen.png); background-repeat: no-repeat; background-position: 50% 50%; }
+#logo a { display: block; width: 241px; height: 73px; background: none; }
 
 #content { padding: 1.5em 30px 0.5em; margin-bottom: -1.5em; }
 
@@ -72,7 +73,7 @@ body { background: url(/images/dots_background.png) repeat-x top; color: #333; }
 #footer .section#fine_print { text-align: center; padding: 1em 0 1em; }
 #footer .section#fine_print p { color: #666; font-size: 80%; }
 
-body#single_column_layout #head { text-shadow: 2px 2px 30px rgba(194,229,244,0.1); background: #c2e5f4; padding: 10px 15px; margin: 0 15px 1.5em; border-bottom-left-radius: 15px; -moz-border-bottom-left-radius: 15px; -webkit-border-bottom-left-radius: 15px; border-bottom-right-radius: 15px; -moz-border-bottom-right-radius: 15px; -webkit-border-bottom-right-radius: 15px; }
+body#single_column_layout #head { text-shadow: 2px 2px 30px rgba(194,229,244,0.1); background: #c2e5f4; padding: 10px 15px; margin: 0 15px 0; border-bottom-left-radius: 15px; -moz-border-bottom-left-radius: 15px; -webkit-border-bottom-left-radius: 15px; border-bottom-right-radius: 15px; -moz-border-bottom-right-radius: 15px; -webkit-border-bottom-right-radius: 15px; }
 body#single_column_layout #head h1 { font-family: Georgia, Palatino, "Times New Roman", Times, Geneva, serif; font-size: 200%; margin: 0; }
 
 body#home_page_layout h2.minify { font-size: 12px; color: #666; }
