@@ -1,0 +1,99 @@
+html, body { margin: 0; padding: 0; border: 0; font-weight: inherit; font-style: inherit; font-size: 100%; font-family: inherit; vertical-align: baseline; }
+
+div, span, object, iframe, h1, h2, h3, h4, h5, h6, p, pre, a, abbr, acronym, address, code, del, dfn, em, img, dl, dt, dd, ol, ul, li, fieldset, form, label, legend, caption, tbody, tfoot, thead, tr { margin: 0; padding: 0; border: 0; font-weight: inherit; font-style: inherit; font-size: 100%; font-family: inherit; vertical-align: baseline; }
+
+blockquote, q { margin: 0; padding: 0; border: 0; font-weight: inherit; font-style: inherit; font-size: 100%; font-family: inherit; vertical-align: baseline; quotes: "" ""; }
+blockquote:before, q:before, blockquote:after, q:after { content: ""; }
+
+th, td, caption { margin: 0; padding: 0; border: 0; font-weight: inherit; font-style: inherit; font-size: 100%; font-family: inherit; vertical-align: baseline; text-align: left; font-weight: normal; vertical-align: middle; }
+
+table { margin: 0; padding: 0; border: 0; font-weight: inherit; font-style: inherit; font-size: 100%; font-family: inherit; vertical-align: baseline; border-collapse: separate; border-spacing: 0; vertical-align: middle; }
+
+a img { border: none; }
+
+body { font-family: Lucida Grande, Helvetica Neue, Arial, Helvetica, sans-serif; font-size: 16px; line-height: 1.5; }
+
+a { padding: 2px; margin: 0 -2px; color: #e04840; border-radius: !amount; -moz-border-radius: 3px; -webkit-border-radius: 3px; }
+a:hover { background: #e04840; color: white; text-decoration: none; }
+a.alt { color: #0066aa; }
+a.alt:hover { background: #06a; color: white; }
+
+em { font-style: italic; }
+
+.highlight { background-color: #ff6; padding: 2px; margin: 0 -2px; border-radius: !amount; -moz-border-radius: 3px; -webkit-border-radius: 3px; }
+
+#main h3 { font-weight: bold; font-size: 140%; margin-bottom: 0.5em; }
+#main p { margin-bottom: 1.5em; }
+#main li ul, #main li ol { margin: 0 1.75em; }
+#main ul, #main ol { margin: 0 1.75em 1.75em 1.75em; }
+
+a#zoom_close { background: none; }
+
+body { background: url(/images/dots_background.png) repeat-x top; color: #333; }
+
+#container { width: 950px; margin: 0 auto; overflow: hidden; display: inline-block; }
+#container { display: block; }
+
+#header { background: #232f34; margin-top: -1em; padding: 2.5em 30px 1.5em; border-radius: !amount; -moz-border-radius: 15px; -webkit-border-radius: 15px; }
+
+#logo { height: 73px; width: 241px; margin-bottom: -1px; text-indent: -9999em; overflow: hidden; background-image: url(/images/logo_screen.png); background-repeat: no-repeat; background-position: 50% 50%; }
+
+#main h2.minify { font-size: 12px; color: #666; }
+#main img.avatar, #main .screenshot img { background: white; border: 1px solid #b7c3c8; padding: 3px; border-radius: !amount; -moz-border-radius: 3px; -webkit-border-radius: 3px; }
+#main .screenshot a { padding: 0; background: none; color: inherit; text-decoration: inherit; cursor: inherit; }
+#main .screenshot .caption { display: block; color: #999; font-size: 12px; font-style: italic; }
+
+#head { text-shadow: 2px 2px 30px rgba(194,229,244,0.1); background: #c2e5f4; padding: 1.5em 0; margin: 1.5em 0; border-radius: !amount; -moz-border-radius: 15px; -webkit-border-radius: 15px; overflow: hidden; display: inline-block; }
+#head { display: block; }
+#head .highlight { background-color: #f3fa67; }
+#head #intro { border-right: 1px dashed #5c8399; padding-left: 30px; padding-right: 29px; display: inline; float: left; margin-right: 10px; width: 578.8px; }
+* html #head #intro { overflow-x: hidden; }
+#head #intro h1#designer_and_developer_for_hire_header { height: 34px; width: 546px; margin: 8px 0 12px; text-indent: -9999em; overflow: hidden; background-image: url(/images/designer_and_developer_for_hire_header.png); background-repeat: no-repeat; background-position: 50% 50%; }
+#head #intro p { font-size: 19px; line-height: 36px; margin-bottom: 4px; }
+#head #team { padding-left: 20px; display: inline; float: left; margin-right: 10px; width: 250px; }
+* html #head #team { overflow-x: hidden; }
+#head #team .member { clear: left; padding-top: 8px; }
+#head #team .member img.avatar { border-color: #869aa2; float: left; margin-right: 20px; }
+#head #team .member .name { font-family: Georgia, Palatino, "Times New Roman", Times, Geneva, serif; font-size: 20px; padding-top: 16px; line-height: 1; }
+#head #team .member .title { font-size: 12px; font-style: italic; color: #666; }
+
+#our_work { overflow: hidden; display: inline-block; }
+#our_work { display: block; }
+#our_work #featured_project { background: url(/images/memberhub_collage.png) right center no-repeat; border: 1px solid #d5d5d5; padding: 1.5em 30px; display: inline; float: left; margin-right: 10px; width: 578.8px; border-radius: !amount; -moz-border-radius: 15px; -webkit-border-radius: 15px; }
+* html #our_work #featured_project { overflow-x: hidden; }
+#our_work #featured_project h2#featured_project_header { height: 11px; width: 176px; margin: 0.5em 0 0.5em; text-indent: -9999em; overflow: hidden; background-image: url(/images/featured_project_header.png); background-repeat: no-repeat; background-position: 50% 50%; }
+#our_work #featured_project h3#memberhub_logo { width: 244px; height: 76px; margin-bottom: 8px; text-indent: -9999em; overflow: hidden; background-image: url(/images/memberhub_logo.png); background-repeat: no-repeat; background-position: 50% 50%; }
+#our_work #featured_project p { font-size: 14px; color: #666; line-height: 1.8; }
+#our_work #featured_project .services { color: #999; font-size: 12px; line-height: 1.8; margin-bottom: 0.5em; }
+#our_work #featured_project .services .title { display: block; }
+#our_work #featured_project.memberhub p { padding-right: 280px; }
+#our_work #best_work { padding: 18px 20px; display: inline; float: left; margin-right: 0; width: 250px; }
+* html #our_work #best_work { overflow-x: hidden; }
+#our_work #best_work h2#some_of_our_work_header { height: 11px; width: 173px; margin: 0.5em 0 1.5em; text-indent: -9999em; overflow: hidden; background-image: url(/images/some_of_our_work_header.png); background-repeat: no-repeat; background-position: 50% 50%; }
+#our_work #best_work .screenshot { margin-bottom: 16px; }
+#our_work #best_work ul { font-size: 13px; margin-right: 0; }
+#our_work #best_work ul li { margin-top: 6px; }
+
+#zoom .project, #portfolio .project { width: 680px; min-height: 300px; padding: 15px; }
+#zoom .project img.collage, #portfolio .project img.collage { float: right; margin-top: -15px; margin-right: -10px; margin-bottom: -15px; }
+#zoom .project h3, #portfolio .project h3 { font-weight: bold; font-size: 140%; margin-bottom: 0.5em; }
+#zoom .project .subtitle, #portfolio .project .subtitle { color: #999; font-size: 90%; font-style: italic; margin-top: -1em; margin-bottom: 0.75em; }
+#zoom .project p, #portfolio .project p { font-size: 14px; color: #666; line-height: 1.8; margin-bottom: 1em; }
+#zoom .project .services, #portfolio .project .services { color: #999; font-size: 12px; line-height: 1.8; }
+#zoom .project .services .title, #portfolio .project .services .title { display: block; }
+
+.section { border-top: 6px solid #e5e5e5; }
+.section#contact_us { padding: 1.5em 0 0; margin: 1.5em 0; overflow: hidden; display: inline-block; }
+.section#contact_us { display: block; }
+.section#contact_us p { font-size: 140%; margin: 0; text-align: center; }
+.section#ruby_rails_and_twitter { overflow: hidden; display: inline-block; }
+.section#ruby_rails_and_twitter { display: block; }
+.section#ruby_rails_and_twitter #ruby_and_rails { line-height: 94px; display: inline; float: left; margin-right: 10px; width: 510px; padding-left: 30px; }
+* html .section#ruby_rails_and_twitter #ruby_and_rails { overflow-x: hidden; }
+.section#ruby_rails_and_twitter #ruby_and_rails img.logo { vertical-align: -34px; }
+.section#ruby_rails_and_twitter #twitter { padding-top: 24px; margin-left: 10px; display: inline; float: left; margin-right: 0; width: 350px; padding-left: 40px; }
+* html .section#ruby_rails_and_twitter #twitter { overflow-x: hidden; }
+.section#ruby_rails_and_twitter #twitter img.logo { float: left; margin-top: -8px; margin-right: 16px; }
+.section#ruby_rails_and_twitter #twitter .handles { font-size: 90%; }
+.section#fine_print { text-align: center; padding: 1em 0 1em; }
+.section#fine_print p { color: #666; font-size: 80%; }

@@ -1,0 +1,44 @@
+!base_font_family  ||= "Lucida Grande, Helvetica Neue, Arial, Helvetica, sans-serif"
+!base_font_size    ||= 16px
+
+body
+  font-family= !base_font_family
+  font-size=   !base_font_size
+  line-height: 1.5
+
+a
+  padding: 2px
+  margin: 0 -2px
+  +link-colors(#e04840)
+  +round-corners(3px)
+  &:hover
+    background: #e04840
+    color: white
+    text-decoration: none
+  &.alt
+    +link-colors(#06a)
+    &:hover
+      background: #06a
+      color: white
+
+em
+  font-style: italic
+
+.highlight
+  background-color: #ff6
+  padding: 2px
+  margin: 0 -2px
+  +round-corners(3px)
+
+#main
+  h3
+    font-weight: bold
+    font-size: 140%
+    margin-bottom: 0.5em
+  p
+    margin-bottom: 1.5em
+  li ul,  li ol
+    margin: 0 1.75em
+  ul, ol
+    margin: 0 1.75em 1.75em 1.75em
+  
