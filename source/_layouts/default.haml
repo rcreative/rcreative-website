@@ -14,7 +14,7 @@
       $(document).ready(function() {
         $('a.zoom').fancyZoom();
       });
-  %body{:id=>"single_column_layout"}
+  %body{:id=>(page.respond_to?(:body_id) ? page.body_id : nil)}
     #container
       #header
         #logo

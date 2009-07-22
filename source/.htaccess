@@ -1,3 +1,1 @@
-<Files ~ "(\.(haml|rb|sass|htaccess))|Rakefile$">
-   Deny from all
-</Files>
+Options +MultiViews
