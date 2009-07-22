@@ -1,0 +1,37 @@
+---
+title: "Serve: A Rapid Prototyping Framework For Designers"
+---
+
+!/images/serve.png!
+
+Since "Adam McCrea":https://twitter.com/adamlogic has introduced "his solution":http://blog.edgecase.com/2009/4/14/show-off-your-mockups for simplifying HTML mockups over on the EdgeCase blog, I thought I would take the time to reintroduce my own: Serve.
+
+I've been using Serve for almost a year now to prototype MemberHub and before that I used various forms of a "simple Ruby script":http://wiseheartdesign.com/2007/9/4/a-haml-server-for-web-designers/ to power my HTML mockups.
+
+Serve has become an indispensable part of my development methodology because it allows me to prototype the application using HTML in a DRY format independently of the work that is being done by developers. This independence is essential as we explore various facets of an application and prioritize the parts that should be developed first.
+
+To give you an idea of how it has worked on MemberHub. I sit down with the client beforehand and discuss a feature and the initial user stories that make up that feature. On a large feature I may spend some time during this phase drawing up a couple of paper prototypes so that we can get a general idea of the shape of the feature and how it will affect the application. We can then use the paper prototypes to give a client a fairly reliable estimate of how long it will take to do the initial development.
+
+Once the feature has been outlined in this way I can then begin work with the HTML prototype. I tend to start with the HTML prototype and not in a graphics program as it allows me to focus on the functionality without getting too caught up with how it looks initially. (I may drop back to a graphics program and "punt", so to speak, if I'm having trouble getting the layout just right for a particular screen.)
+
+Often while I'm working on a screen for a particular section, I will call the client over (yes, I *love* working onsite with my clients) and ask for their input on how it flows and feels. One of the chief advantages of developing an HTML prototype for your application is that it gives you the opportunity to explore the flow of your application before the backend development has begun. Hopefully, during the prototyping phase you will be able to iron out any problems in flow, with minimal expense because there is no backend to rework.
+
+The "Design First" approach is huge for us, because most, if not all, of the business decisions are ironed out in the design phase. Also at the point that a feature has passed completely through the design phase we can then estimate that feature with *extreme* accuracy. The client also knows exactly what they are going to get when the development is done.
+
+Once the client has signed off on a feature in the prototype, it can then be thrown over the wall to the development team. Because we use Serve, the views can be copied over from the HTML prototype to the application almost as is. This does take some effort on my part to construct the views in a way that is friendly to a Rails application, but in general this is not hard if you understand the RESTful approach that Rails encourages. This process is also eased because Serve has full support for partials and layouts with either ERB or HAML.
+
+Does the developer find it annoying to have to copy the views over from the prototype into the application instead of having the designer work with him in the application? In general, yes and no. Yes more work is involved in copying views over into the application (particularly when views change because a feature is revisited). But no, because he doesn't have to worry about a designer breaking tests or causing the application to fail in some way. It's also hugely beneficial to the developer because the guesswork is taken out of a feature when it is completely developed (and signed off on) in the prototype before the development begins.
+
+Also, I can't emphasize enough the freedom that the two project approach gives the designer. No longer is he caught up with views that are hooked into controllers, etc... He can explore new features and focus almost completely on the HTML, CSS, and creative part of his job. With designers often juggling the roles of business analyst, creative expert, HTML/CSS/Javascript guru, asking for the two project approach small price to pay for the increased productivity.
+
+I've put together a brief overview of Serve in screencast form below. Let me know what you think.
+
+<object classid="clsid:D27CDB6E-AE6D-11cf-96B8-444553540000" width="453" height="360" id="viddler_53bf6942"><param name="flashvars" value="disablebranding=t" /><param name="movie" value="http://www.viddler.com/simple/53bf6942/" /><param name="allowScriptAccess" value="always" /><param name="allowFullScreen" value="true" /><embed src="http://www.viddler.com/simple/53bf6942/" width="453" height="360" type="application/x-shockwave-flash" allowScriptAccess="always" flashvars="disablebranding=t" allowFullScreen="true" name="viddler_53bf6942"></embed></object>
+
+Mentioned in the screencast:
+
+* "Serve on Github":http://github.com/jlong/serve
+* "MemberHub":http://memberhub.com
+* "AnnounceIt":http://announceitapp.com
+* "Radiant CMS":http://radiantcms.org
+* "The Radiant CMS prototype on GitHub":http://github.com/radiant/radiant-prototype
