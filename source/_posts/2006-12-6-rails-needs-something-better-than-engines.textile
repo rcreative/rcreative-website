@@ -1,0 +1,90 @@
+---
+title: Rails Needs Something Better Than Engines
+---
+
+I need to apologize for exploiting a title like the above to introduce an article like this. The "Rails Engine":http://rails-engines.org/ guys have "taken a lot of flack":http://rails-engines.org/news/2006/08/30/apparently-engines-are-still-evil/ for the work that they have done to make it easy to share code between applications and I don't want to add to their misery. Instead, I'd like to use the issue to put the focus on something else.
+
+The traditional argument against Rails Engines (as I understand it) is that prepackaged components are a pipe-dream. Components, particularly the way Rails Engines implements them are just too big. Every application will require something custom, and Rails Engines are too generic. Sure, they work well for getting you up and running, but what about down the road when you need to tweak something that the engine author hasn't thought about yet? And after all, Rails is so easy to use why not take the agile approach and only develop what you need when you need it?
+
+I'm interested in the Rails Engine argument because I think it exposes something about the philosophy that is driving Rails which may not be extremely obvious to those of us on the sidelines who are just trying to use Rails to build better Web sites and applications. That is that *Rails is primarily designed for building completely custom green-field Web applications* and it shows. When it comes to sharing code between applications the best thing Rails has to offer is generators. So instead of offering a login engine Rails offers a login generator.
+
+Now don't get me wrong here, generators are great for getting people up and running quickly. At first glance they offer *exactly* what Rails engines offer in that they allow you to get up and running quickly with prepackaged code and the added bonus that you can *completely customize* the generated code. But where they fall down is that they encourage rampant code duplication.
+
+Take the login generator for example. How many of us use the generated login code nearly *unmodified* in application after application? Even if we customize the generated code is it not true that we often perform the same modifications again and again as we move from one application to another?
+
+Folks we need something better. In a nutshell we need standard way to share views, models, controllers, and URLs between applications.
+
+
+h3. Of Snakes and Rubies
+
+On December 3rd of last year I helped organize a debate between David Heinemeier Hansson and Adrian Holovaty (the creator of "Django":http://www.djangoproject.com/). We dubbed the event _Snakes and Rubies_ and the video and audio from it are available "here":http://www.djangoproject.com/snakesandrubies/.
+
+Even though I am an avid Rails user I was favorably impressed by Adrian's presentation on Django and I must say that I am sad to see that more of the ideas in Django have not gained greater traction in the Rails community.
+
+One of the things that Django does better than Rails at the moment is that it encourages you to subdivide your application according to components. In Django terms you don't just create an "application" you create a Django "project" which contains multiple "apps". An app is a full slice of the application and contains models, views, and controllers (actually in Django terms it contains "models", "templates", and "views", but it is essentially the same thing).
+
+Django's model is perfect for Web sites because you can have mini apps for the admin, blog, and forum, and maybe one for that extremely custom event registration system that you have. Of course the great thing about this is that you can share these little mini apps across applications.
+
+As I was working on this article I wrote Adrian Holovaty to ask him about this very point. He wrote back:
+
+<blockquote>This was a big design goal when we were first putting together Django, because at our Web operation, we managed several sites--all of which used bits and pieces of the same functionality, but always a different mix. Indeed, as you point out, Django has a "batteries included" philosophy and ships with some apps that you can choose to use in your own projects.</blockquote>
+
+And how easy is it to use another Django mini app in your own project? All you need to do is include it in the INSTALLED_APPS configuration variable. Here's a small configuration snippet from the "Django tutorial":http://www.djangoproject.com/documentation/tutorial1/:
+
+{% highlight python %}
+INSTALLED_APPS = (
+  'django.contrib.auth',
+  'django.contrib.contenttypes',
+  'django.contrib.sessions',
+  'django.contrib.sites',
+  'mysite.polls'
+)
+{% endhighlight %}
+
+There are four little mini apps there that are installed by default for the standard Django project: auth, contenttypes, sessions, and sites (I'll bet you can guess what they do). Django also provides a rather powerful admin mini app that automatically creates an admin interface for your models. This is extremely helpful in that it allows you to concentrate on the Web site part of your application while leaving the admin part to Django. To see all of this in action check out the "Django Screencast":http://www.throwingbeans.org/django_screencasts.html at throwingbeans.org.
+
+
+h3. Can Rails Take a Page from the Django Playbook?
+
+I'm interested in all of this because of my work on Radiant (the content management system I developed for the "Ruby Web site":http://ruby-lang.org). Over the past several months I have been working on an extension system for Radiant that will allow others to develop mini rails apps that plug straight into a Radiant application. A Radiant extension is like a Rails plugin except that it supports additional models, views, and controllers (much like Rails Engines do, but with added benefits). The directory structure for a Radiant extension looks like this:
+
+{% highlight text %}
+vendor/extensions/
+  my_extension/
+    app/
+      controllers/
+      helpers/
+      models/
+      views/
+    lib/
+    test/
+    my_extension.rb
+    Rakefile
+{% endhighlight %}
+
+The benefit that Radiant Extensions offer over something like Rails Engines is that they integrate into the Radiant administration system. Right now that integration is a little rough, but we hope to make it easier in the future. Even so, the progress that we have made is encouraging. Here's a snippet which demonstrates adding a custom tab to the Radiant administration system:
+
+{% highlight ruby %}
+class AssetManagerExtension < Radiant::Extension
+  version "1.0"
+  description "Provides asset management support for Radiant."
+  
+  define_routes do |map|
+    map.connect 'admin/assets/:action', :controller => 'admin/asset'
+  end
+  
+  def activate
+    admin.tabs.add "Assets", "/admin/assets", :after => "Layouts"
+  end
+  
+  def deactivate
+    admin.tabs.remove "Assets"
+  end 
+end
+{% endhighlight %}
+
+Now the work on the Radiant extension system has been difficult. Rails doesn't make it easy to allow views to reside in multiple places (there is only one template_root). Nor does it provide support for defining routes in multiple locations. Model reloading through the dependencies mechanism is also a difficult issue. Time and again I find myself twisting Rails' arm to let me do what I want to do. I've had to hook into the Rails internals on multiple occasions (just like the Rails Engines people did).
+
+I can't help looking beyond Radiant though to wonder if built in support for this kind of thing would not be a benefit to the Rails community at large? I know "Rick Olson":http://techno-weenie.net/ is working on something like the Radiant extension system for "Mephisto":http://mephistoblog.com and I can see that other apps could be benefited by something similar. We've already seen Rails Engines and now there is also "Appable Plugins":http://wiki.pluginaweek.org/Appable_plugins/. How many other approaches are necessary before the Rails community is able to settle on a standard?
+
+As the Rails-Core team is looking towards Rails 2.0, perhaps it's time to start thinking about restructuring Rails applications to take a more modular approach? Maybe there really is something to be learned from Django after all.

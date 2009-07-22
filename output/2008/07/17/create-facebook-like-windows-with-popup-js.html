@@ -1,0 +1,82 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html lang="en" xml:lang="en" xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta content="text/html; charset=utf-8" http-equiv="Content-Type" />
+    <title>Create Facebook-like Windows with Popup.js</title>
+    <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css" />
+    <script src="/javascripts/jquery.js" type="text/javascript"></script>
+    <script src="/javascripts/fancyzoom.js" type="text/javascript"></script>
+    <script type="text/javascript">
+      //<![CDATA[
+        $(document).ready(function() {
+          $('a.zoom').fancyZoom();
+        });
+      //]]>
+    </script>
+  </head>
+  <body id="single_column_layout">
+    <div id="container">
+      <div id="header">
+        <div id="logo">
+          <a href="/">
+            <img alt="Recursive Creative" height="73" src="/images/logo.png" title="" width="241" />
+          </a>
+        </div>
+      </div>
+      <div id="main">
+        <div id="head">
+          <h1>Create Facebook-like Windows with Popup.js</h1>
+        </div>
+        <div id="content">
+          <p><img src ="/images/popupjs.png" width="453" height="150" alt="popup.js" title="popup.js" /></p><p>Over the past couple of months I&#8217;ve been working on a little library for a client that allows us to create Facebook-like popup windows with ease. It&#8217;s called <a href="http://github.com/jlong/popupjs/tree/master">popup.js</a>. The library depends on Dan Webb&#8217;s excellent <a href="http://www.danwebb.net/2006/9/3/low-pro-unobtrusive-scripting-for-prototype">Low Pro</a> and comes complete with it&#8217;s own behavior for easy unobtrusive use.</p>
+          <p>So how does it work? Well, once you have the proper plumbing in place you can declare a simple popup window like this:</p>
+          <div class="highlight"><pre><span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">&quot;popup&quot;</span> <span class="na">id=</span><span class="s">&quot;test&quot;</span> <span class="na">style=</span><span class="s">&quot;display: none&quot;</span><span class="nt">&gt;</span><br />&#x000A;  <span class="nt">&lt;h3</span> <span class="na">class=</span><span class="s">&quot;title&quot;</span><span class="nt">&gt;</span>Popup Window<span class="nt">&lt;/h3&gt;</span><br />&#x000A;  <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">&quot;popup_content&quot;</span><span class="nt">&gt;</span><br />&#x000A;    <span class="nt">&lt;p&gt;</span>Hello world!<span class="nt">&lt;/p&gt;</span><br />&#x000A;    <span class="nt">&lt;p&gt;&lt;a</span> <span class="na">href=</span><span class="s">&quot;javascript: Element.closePopup(&#39;test&#39;)&quot;</span><span class="nt">&gt;</span>Close<span class="nt">&lt;/a&gt;</span><br />&#x000A;  <span class="nt">&lt;/div&gt;</span><br />&#x000A;<span class="nt">&lt;/div&gt;</span><br /></pre></div>
+          <p>This markup assumes that you are using the included <tt>facebook.css</tt> stylesheet, but the only thing that is necessary to have a functioning popup window is a div with an ID attribute. You should also set style=&#8220;display: none&#8221; to ensure that the div is not visible when the page loads.</p>
+          <p>Popping up the window is as simple as linking to it:</p>
+          <div class="highlight"><pre><span class="nt">&lt;a</span> <span class="na">href=</span><span class="s">&quot;#test&quot;</span> <span class="na">class=</span><span class="s">&quot;popup&quot;</span><span class="nt">&gt;</span>Popup<span class="nt">&lt;/a&gt;&lt;/code&gt;</span><br /></pre></div>
+          <p>Links with the class of &#8220;popup&#8221; get the <tt>Popup.TriggerBehavior</tt> which will trigger the popup when clicked. Note that the href should be set to the ID of the element to popup. If you prefer you can set the href to a <span class="caps">URL</span> that returns the <span class="caps">HTML</span> for the popup and an <span class="caps">AJAX</span> call will be made to that <span class="caps">URL</span>.</p>
+          <p>For more information about this little lib, see the <span class="caps">README</span> in the GitHub project:</p>
+          <p><a href="http://github.com/jlong/popupjs/tree/master/README">http://github.com/jlong/popupjs/tree/master/<span class="caps">README</span></a></p>
+          <p>And investigate the test project:</p>
+          <p><a href="http://github.com/jlong/popupjs/tree/master/test">http://github.com/jlong/popupjs/tree/master/test</a></p>
+          <p><em class="fine_print">Special thanks to Five Points Solutions for their help debugging this library. They have contributed several Internet Explorer bug fixes in addition to funding much of the initial development.</em></p>
+        </div>
+      </div>
+      <div id="footer">
+        <div class="section" id="contact_us">
+          <p>
+            <strong class="title">We love talking with people about their ideas!</strong>
+            Contact us at
+            <br />
+            <strong class="highlight">919-721-9522</strong>
+            or
+            <a class="alt" href="mailto:us@recursivecreative.com">us@recursivecreative.com</a>
+          </p>
+        </div>
+        <div class="section" id="ruby_rails_and_twitter">
+          <div id="ruby_and_rails">
+            <img alt="Ruby" class="logo" height="79" src="/images/ruby_logo.png" title="" width="54" />
+            <img alt="Rails" class="logo" height="79" src="/images/rails_logo.png" title="" width="54" />
+            We build
+            <a href="http://ruby-lang.org/">Ruby</a>
+            and
+            <a href="http://rubyonrails.org/">Ruby on Rails</a>
+            applications.
+          </div>
+          <div id="twitter">
+            <img alt="Twitter" class="logo" height="67" src="/images/twitter_bird.png" title="" width="54" />
+            <strong class="highlight">Follow us on Twitter:</strong>
+            <div class="handles">
+              <a class="alt" href="http://twitter.com/friendships/add/rcreative">@rcreative</a>, <a class="alt" href="http://twitter.com/friendships/add/johnwlong">@johnwlong</a>, <a class="alt" href="http://twitter.com/friendships/add/aiwilliams">@aiwilliams</a>
+            </div>
+          </div>
+        </div>
+        <div class="section" id="fine_print">
+          <p>
+            Copyright &copy; 2009, Recursive Creative, LLC. All rights reserved. &nbsp; 613 Ashe Avenue &bull; Cary, NC 27518
+          </p>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>

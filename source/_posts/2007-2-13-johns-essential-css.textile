@@ -1,0 +1,58 @@
+---
+title: John’s Essential Guide to CSS
+---
+
+I once taught a workshop on CSS(Cascading Style Sheets) and in the process compiled a list of essential reading for people interested learning CSS. I've revamped the list below, adding a few additional articles, and reorganizing it a bit. Most of the articles are from "_A List Apart_":http://alistapart.com, but the volume of articles at _A List Apart_ can can be overwhelming to people just to getting started. Consider this a pocket guide to the best of _A List Apart_ with a few additional links thrown in to spice it up a bit.
+
+h4. The Basics
+
+* "Fix Your Site with the Right DOCTYPE":http://www.alistapart.com/articles/doctype/
+* "CSS Design: Font Size Matters":http://www.alistapart.com/articles/sizematters/
+* "Practical CSS Layout Tips, Tricks, & Techniques":http://www.alistapart.com/articles/practicalcss/
+* "NYPL Online Style Guide":http://www.nypl.org/styleguide/
+* "Better Living Through XHTML":http://www.alistapart.com/articles/betterliving/
+
+h4. The Power of Floats and Backgrounds
+
+* "Faux Columns":http://www.alistapart.com/articles/fauxcolumns/
+* "Creating Liquid Layouts with Negative Margins":http://www.alistapart.com/articles/negativemargins/
+* "Two Column Tableless Layout (Fluid)":http://wellstyled.com/css-2col-fluid-layout.html
+* "CSS Design: Creating Custom Corners & Borders":http://www.alistapart.com/articles/customcorners/
+* "Mountain Top Corners":http://www.alistapart.com/articles/mountaintop/
+* CSS Drop Shadows ("1":http://www.alistapart.com/articles/cssdropshadows/, "2":http://www.alistapart.com/articles/cssdrop2/, and "3":http://www.alistapart.com/articles/onionskin/)
+
+h4. Print Stylesheets & Cross-Browser Compatibility
+
+* "CSS Design: Going to Print":http://www.alistapart.com/articles/goingtoprint/
+* "Print It Your Way":http://www.alistapart.com/articles/printyourway/
+* "Alternative Style: Working With Alternate Style Sheets":http://www.alistapart.com/articles/alternate/
+* "Flash of Unstyled Content (FOUC)":http://www.bluerobot.com/web/css/fouc.asp
+* "The IE Doubled Float-Margin Bug":http://www.positioniseverything.net/explorer/doubled-margin.html
+* "The Trouble With EM ’n EN (and Other Shady Characters)":http://www.alistapart.com/articles/emen/
+* "The Box Model Hack":http://www.tantek.com/CSS/Examples/boxmodelhack.html
+* "Position Is Everything":http://www.positioniseverything.net/ has fixes to bugs in "IE":http://www.positioniseverything.net/explorer.html, "Opera":http://www.positioniseverything.net/op-omnibus.html, and "Firefox":http://www.positioniseverything.net/gecko.html
+
+h4. Lists, Rollovers, & Image Replacement Techniques
+
+* "Taming Lists":http://alistapart.com/articles/taminglists/
+* "Icon Styled Headings":http://www.simplebits.com/notebook/2003/06/29/icon_styled_headings.html
+* "Spruced-Up Site Maps":http://alistapart.com/articles/sprucemaps/
+* "Suckerfish Dropdowns":http://www.alistapart.com/articles/dropdowns/
+* "Using Background-Image to Replace Text":http://www.stopdesign.com/articles/replace_text/
+* "Facts and Opinion About Fahrner Image Replacement":http://www.alistapart.com/articles/fir/
+* "In Defense of Fahrner Image Replacement":http://www.digital-web.com/articles/in_defense_of_fahrner_image_replacement/
+
+h4. Secrets of Absolute Positioning
+
+* "Making Absolute Relative":http://stopdesign.com/articles/absolute/
+* "Absolutely Relative":http://www.wpdfd.com/editorial/wpd0904news.htm#feature
+* "Flexible Layouts with CSS Positioning":http://www.alistapart.com/articles/flexiblelayouts/
+
+h4. Additional Resources
+
+* "CSS Cheat Sheet":http://www.ilovejackdaniels.com/css/css-cheat-sheet/
+* "CSS Zen Garden":http://www.csszengarden.com/
+* "Box Lessons":http://thenoodleincident.com/tutorials/box_lesson/boxes.html
+* "Retooling Slashdot with Web Standards":http://www.alistapart.com/articles/slashdot/
+* "Separation: The Web Designer’s Dilemma":http://www.alistapart.com/articles/separationdilemma/
+* "Separation Anxiety: The Myth of the Separation of Style from Content":http://www.alistapart.com/articles/separation/

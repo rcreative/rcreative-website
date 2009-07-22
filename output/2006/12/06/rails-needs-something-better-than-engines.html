@@ -1,0 +1,94 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html lang="en" xml:lang="en" xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta content="text/html; charset=utf-8" http-equiv="Content-Type" />
+    <title>Rails Needs Something Better Than Engines</title>
+    <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css" />
+    <script src="/javascripts/jquery.js" type="text/javascript"></script>
+    <script src="/javascripts/fancyzoom.js" type="text/javascript"></script>
+    <script type="text/javascript">
+      //<![CDATA[
+        $(document).ready(function() {
+          $('a.zoom').fancyZoom();
+        });
+      //]]>
+    </script>
+  </head>
+  <body id="single_column_layout">
+    <div id="container">
+      <div id="header">
+        <div id="logo">
+          <a href="/">
+            <img alt="Recursive Creative" height="73" src="/images/logo.png" title="" width="241" />
+          </a>
+        </div>
+      </div>
+      <div id="main">
+        <div id="head">
+          <h1>Rails Needs Something Better Than Engines</h1>
+        </div>
+        <div id="content">
+          <p>I need to apologize for exploiting a title like the above to introduce an article like this. The <a href="http://rails-engines.org/">Rails Engine</a> guys have <a href="http://rails-engines.org/news/2006/08/30/apparently-engines-are-still-evil/">taken a lot of flack</a> for the work that they have done to make it easy to share code between applications and I don&#8217;t want to add to their misery. Instead, I&#8217;d like to use the issue to put the focus on something else.</p>
+          <p>The traditional argument against Rails Engines (as I understand it) is that prepackaged components are a pipe-dream. Components, particularly the way Rails Engines implements them are just too big. Every application will require something custom, and Rails Engines are too generic. Sure, they work well for getting you up and running, but what about down the road when you need to tweak something that the engine author hasn&#8217;t thought about yet? And after all, Rails is so easy to use why not take the agile approach and only develop what you need when you need it?</p>
+          <p>I&#8217;m interested in the Rails Engine argument because I think it exposes something about the philosophy that is driving Rails which may not be extremely obvious to those of us on the sidelines who are just trying to use Rails to build better Web sites and applications. That is that <strong>Rails is primarily designed for building completely custom green-field Web applications</strong> and it shows. When it comes to sharing code between applications the best thing Rails has to offer is generators. So instead of offering a login engine Rails offers a login generator.</p>
+          <p>Now don&#8217;t get me wrong here, generators are great for getting people up and running quickly. At first glance they offer <strong>exactly</strong> what Rails engines offer in that they allow you to get up and running quickly with prepackaged code and the added bonus that you can <strong>completely customize</strong> the generated code. But where they fall down is that they encourage rampant code duplication.</p>
+          <p>Take the login generator for example. How many of us use the generated login code nearly <strong>unmodified</strong> in application after application? Even if we customize the generated code is it not true that we often perform the same modifications again and again as we move from one application to another?</p>
+          <p>Folks we need something better. In a nutshell we need standard way to share views, models, controllers, and URLs between applications.</p>
+          <h3>Of Snakes and Rubies</h3>
+          <p>On December 3rd of last year I helped organize a debate between David Heinemeier Hansson and Adrian Holovaty (the creator of <a href="http://www.djangoproject.com/">Django</a>). We dubbed the event <em>Snakes and Rubies</em> and the video and audio from it are available <a href="http://www.djangoproject.com/snakesandrubies/">here</a>.</p>
+          <p>Even though I am an avid Rails user I was favorably impressed by Adrian&#8217;s presentation on Django and I must say that I am sad to see that more of the ideas in Django have not gained greater traction in the Rails community.</p>
+          <p>One of the things that Django does better than Rails at the moment is that it encourages you to subdivide your application according to components. In Django terms you don&#8217;t just create an &#8220;application&#8221; you create a Django &#8220;project&#8221; which contains multiple &#8220;apps&#8221;. An app is a full slice of the application and contains models, views, and controllers (actually in Django terms it contains &#8220;models&#8221;, &#8220;templates&#8221;, and &#8220;views&#8221;, but it is essentially the same thing).</p>
+          <p>Django&#8217;s model is perfect for Web sites because you can have mini apps for the admin, blog, and forum, and maybe one for that extremely custom event registration system that you have. Of course the great thing about this is that you can share these little mini apps across applications.</p>
+          <p>As I was working on this article I wrote Adrian Holovaty to ask him about this very point. He wrote back:</p>
+          <blockquote>This was a big design goal when we were first putting together Django, because at our Web operation, we managed several sites&#8212;all of which used bits and pieces of the same functionality, but always a different mix. Indeed, as you point out, Django has a &#8220;batteries included&#8221; philosophy and ships with some apps that you can choose to use in your own projects.</blockquote>
+          <p>And how easy is it to use another Django mini app in your own project? All you need to do is include it in the INSTALLED_APPS configuration variable. Here&#8217;s a small configuration snippet from the <a href="http://www.djangoproject.com/documentation/tutorial1/">Django tutorial</a>:</p>
+          <div class="highlight"><pre><span class="n">INSTALLED_APPS</span> <span class="o">=</span> <span class="p">(</span><br />&#x000A;  <span class="s">&#39;django.contrib.auth&#39;</span><span class="p">,</span><br />&#x000A;  <span class="s">&#39;django.contrib.contenttypes&#39;</span><span class="p">,</span><br />&#x000A;  <span class="s">&#39;django.contrib.sessions&#39;</span><span class="p">,</span><br />&#x000A;  <span class="s">&#39;django.contrib.sites&#39;</span><span class="p">,</span><br />&#x000A;  <span class="s">&#39;mysite.polls&#39;</span><br />&#x000A;<span class="p">)</span><br /></pre></div>
+          <p>There are four little mini apps there that are installed by default for the standard Django project: auth, contenttypes, sessions, and sites (I&#8217;ll bet you can guess what they do). Django also provides a rather powerful admin mini app that automatically creates an admin interface for your models. This is extremely helpful in that it allows you to concentrate on the Web site part of your application while leaving the admin part to Django. To see all of this in action check out the <a href="http://www.throwingbeans.org/django_screencasts.html">Django Screencast</a> at throwingbeans.org.</p>
+          <h3>Can Rails Take a Page from the Django Playbook?</h3>
+          <p>I&#8217;m interested in all of this because of my work on Radiant (the content management system I developed for the <a href="http://ruby-lang.org">Ruby Web site</a>). Over the past several months I have been working on an extension system for Radiant that will allow others to develop mini rails apps that plug straight into a Radiant application. A Radiant extension is like a Rails plugin except that it supports additional models, views, and controllers (much like Rails Engines do, but with added benefits). The directory structure for a Radiant extension looks like this:</p>
+          <div class="highlight"><pre>vendor/extensions/<br />&#x000A;  my_extension/<br />&#x000A;    app/<br />&#x000A;      controllers/<br />&#x000A;      helpers/<br />&#x000A;      models/<br />&#x000A;      views/<br />&#x000A;    lib/<br />&#x000A;    test/<br />&#x000A;    my_extension.rb<br />&#x000A;    Rakefile<br /></pre></div>
+          <p>The benefit that Radiant Extensions offer over something like Rails Engines is that they integrate into the Radiant administration system. Right now that integration is a little rough, but we hope to make it easier in the future. Even so, the progress that we have made is encouraging. Here&#8217;s a snippet which demonstrates adding a custom tab to the Radiant administration system:</p>
+          <div class="highlight"><pre><span class="k">class</span> <span class="nc">AssetManagerExtension</span> <span class="o">&lt;</span> <span class="no">Radiant</span><span class="o">::</span><span class="no">Extension</span><br />&#x000A;  <span class="n">version</span> <span class="s2">&quot;1.0&quot;</span><br />&#x000A;  <span class="n">description</span> <span class="s2">&quot;Provides asset management support for Radiant.&quot;</span><br />&#x000A;  <br />&#x000A;  <span class="n">define_routes</span> <span class="k">do</span> <span class="o">|</span><span class="n">map</span><span class="o">|</span><br />&#x000A;    <span class="n">map</span><span class="o">.</span><span class="n">connect</span> <span class="s1">&#39;admin/assets/:action&#39;</span><span class="p">,</span> <span class="ss">:controller</span> <span class="o">=&gt;</span> <span class="s1">&#39;admin/asset&#39;</span><br />&#x000A;  <span class="k">end</span><br />&#x000A;  <br />&#x000A;  <span class="k">def</span> <span class="nf">activate</span><br />&#x000A;    <span class="n">admin</span><span class="o">.</span><span class="n">tabs</span><span class="o">.</span><span class="n">add</span> <span class="s2">&quot;Assets&quot;</span><span class="p">,</span> <span class="s2">&quot;/admin/assets&quot;</span><span class="p">,</span> <span class="ss">:after</span> <span class="o">=&gt;</span> <span class="s2">&quot;Layouts&quot;</span><br />&#x000A;  <span class="k">end</span><br />&#x000A;  <br />&#x000A;  <span class="k">def</span> <span class="nf">deactivate</span><br />&#x000A;    <span class="n">admin</span><span class="o">.</span><span class="n">tabs</span><span class="o">.</span><span class="n">remove</span> <span class="s2">&quot;Assets&quot;</span><br />&#x000A;  <span class="k">end</span> <br />&#x000A;<span class="k">end</span><br /></pre></div>
+          <p>Now the work on the Radiant extension system has been difficult. Rails doesn&#8217;t make it easy to allow views to reside in multiple places (there is only one template_root). Nor does it provide support for defining routes in multiple locations. Model reloading through the dependencies mechanism is also a difficult issue. Time and again I find myself twisting Rails&#8217; arm to let me do what I want to do. I&#8217;ve had to hook into the Rails internals on multiple occasions (just like the Rails Engines people did).</p>
+          <p>I can&#8217;t help looking beyond Radiant though to wonder if built in support for this kind of thing would not be a benefit to the Rails community at large? I know <a href="http://techno-weenie.net/">Rick Olson</a> is working on something like the Radiant extension system for <a href="http://mephistoblog.com">Mephisto</a> and I can see that other apps could be benefited by something similar. We&#8217;ve already seen Rails Engines and now there is also <a href="http://wiki.pluginaweek.org/Appable_plugins/">Appable Plugins</a>. How many other approaches are necessary before the Rails community is able to settle on a standard?</p>
+          <p>As the Rails-Core team is looking towards Rails 2.0, perhaps it&#8217;s time to start thinking about restructuring Rails applications to take a more modular approach? Maybe there really is something to be learned from Django after all.</p>
+        </div>
+      </div>
+      <div id="footer">
+        <div class="section" id="contact_us">
+          <p>
+            <strong class="title">We love talking with people about their ideas!</strong>
+            Contact us at
+            <br />
+            <strong class="highlight">919-721-9522</strong>
+            or
+            <a class="alt" href="mailto:us@recursivecreative.com">us@recursivecreative.com</a>
+          </p>
+        </div>
+        <div class="section" id="ruby_rails_and_twitter">
+          <div id="ruby_and_rails">
+            <img alt="Ruby" class="logo" height="79" src="/images/ruby_logo.png" title="" width="54" />
+            <img alt="Rails" class="logo" height="79" src="/images/rails_logo.png" title="" width="54" />
+            We build
+            <a href="http://ruby-lang.org/">Ruby</a>
+            and
+            <a href="http://rubyonrails.org/">Ruby on Rails</a>
+            applications.
+          </div>
+          <div id="twitter">
+            <img alt="Twitter" class="logo" height="67" src="/images/twitter_bird.png" title="" width="54" />
+            <strong class="highlight">Follow us on Twitter:</strong>
+            <div class="handles">
+              <a class="alt" href="http://twitter.com/friendships/add/rcreative">@rcreative</a>, <a class="alt" href="http://twitter.com/friendships/add/johnwlong">@johnwlong</a>, <a class="alt" href="http://twitter.com/friendships/add/aiwilliams">@aiwilliams</a>
+            </div>
+          </div>
+        </div>
+        <div class="section" id="fine_print">
+          <p>
+            Copyright &copy; 2009, Recursive Creative, LLC. All rights reserved. &nbsp; 613 Ashe Avenue &bull; Cary, NC 27518
+          </p>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>

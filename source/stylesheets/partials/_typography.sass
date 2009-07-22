@@ -1,4 +1,5 @@
 !base_font_family  ||= "Lucida Grande, Helvetica Neue, Arial, Helvetica, sans-serif"
+!fixed_font_family ||= "'Andale Mono', 'Lucida Console', monospace"
 !base_font_size    ||= 16px
 
 body
@@ -24,7 +25,7 @@ a
 em
   font-style: italic
 
-.highlight
+span.highlight, em.highlight, strong.highlight
   background-color: #ff6
   padding: 2px
   margin: 0 -2px
@@ -54,9 +55,48 @@ em
     font-weight: bold
     font-size: 140%
     margin-bottom: 0.5em
-  p
+  h4
+    font-weight: bold
+    font-size: 120%
+    margin-bottom: 0.5em
+  em.fine_print
+    color: #666
+  p, pre
     margin-bottom: 1.5em
+  pre, tt
+    font-size: 95%
+    font-family= !fixed_font_family
+  tt
+    background: #f0f0f0
+    border: 1px solid #ddd
+    padding: 4px
+    +round-corners(3px)
   li ul,  li ol
     margin: 0 1.75em
   ul, ol
     margin: 0 1.75em 1.75em 1.75em
+  img
+    border: 1px solid #e5e5e5
+    background: white
+    padding: 5px
+    &.float-left
+      float: left
+      margin-right: 1.5em
+      margin-bottom: 0.75em
+    &.float-right
+      float: right
+      margin-left: 1.5em
+      margin-bottom: 0.75em
+    &.no-border
+      padding: 0
+      background: none
+      border: none
+  div.highlight
+    background: #f0f0f0
+    border: 1px solid #ddd
+    padding: 1.5em
+    margin-bottom: 1.5em
+    +round-corners(10px)
+    pre
+      margin: 0
+      line-height: .85

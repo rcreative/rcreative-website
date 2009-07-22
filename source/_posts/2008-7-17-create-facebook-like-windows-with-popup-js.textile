@@ -1,0 +1,39 @@
+---
+title: Create Facebook-like Windows with Popup.js
+---
+
+<notextile><p><img src ="/images/popupjs.png" width="453" height="150" alt="popup.js" title="popup.js" /></p></notextile>
+
+Over the past couple of months I've been working on a little library for a client that allows us to create Facebook-like popup windows with ease. It's called "popup.js":http://github.com/jlong/popupjs/tree/master. The library depends on Dan Webb's excellent "Low Pro":http://www.danwebb.net/2006/9/3/low-pro-unobtrusive-scripting-for-prototype and comes complete with it's own behavior for easy unobtrusive use.
+
+So how does it work? Well, once you have the proper plumbing in place you can declare a simple popup window like this:
+
+{% highlight html %}
+<div class="popup" id="test" style="display: none">
+  <h3 class="title">Popup Window</h3>
+  <div class="popup_content">
+    <p>Hello world!</p>
+    <p><a href="javascript: Element.closePopup('test')">Close</a>
+  </div>
+</div>
+{% endhighlight %}
+
+This markup assumes that you are using the included <tt>facebook.css</tt> stylesheet, but the only thing that is necessary to have a functioning popup window is a div with an ID attribute. You should also set style="display: none" to ensure that the div is not visible when the page loads.
+
+Popping up the window is as simple as linking to it:
+
+{% highlight html %}
+<a href="#test" class="popup">Popup</a></code>
+{% endhighlight %}
+
+Links with the class of "popup" get the <tt>Popup.TriggerBehavior</tt> which will trigger the popup when clicked. Note that the href should be set to the ID of the element to popup. If you prefer you can set the href to a URL that returns the HTML for the popup and an AJAX call will be made to that URL.
+
+For more information about this little lib, see the README in the GitHub project:
+
+"http://github.com/jlong/popupjs/tree/master/README":http://github.com/jlong/popupjs/tree/master/README
+
+And investigate the test project:
+
+"http://github.com/jlong/popupjs/tree/master/test":http://github.com/jlong/popupjs/tree/master/test
+
+<em class="fine_print">Special thanks to Five Points Solutions for their help debugging this library. They have contributed several Internet Explorer bug fixes in addition to funding much of the initial development.</em>

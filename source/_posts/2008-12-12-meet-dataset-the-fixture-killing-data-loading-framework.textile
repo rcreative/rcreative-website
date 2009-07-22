@@ -1,0 +1,151 @@
+---
+title: "Meet Dataset: The Fixture-Killing, Data-Loading Framework"
+---
+
+!(float-right no-border)/images/dataset.png!:http://github.com/aiwilliams/dataset My good friend and partner "Adam Williams":http://github.com/aiwilliams/ has just finished bolting the doors on his new <em>YAML-fixture-killing</em> Rails plugin: <em>"Dataset":http://github.com/aiwilliams/dataset</em>. Dataset is the next generation of a plugin that Adam and I wrote last year called "Scenarios":http://github.com/aiwilliams/scenarios/tree/master.
+
+Why the need for a new plugin? The Scenarios plugin was originally built inside of a Rails application that we were working on. At the time we threw it together rather haphazardly. There were few tests (if any). The main thing was to prove that the idea was good. Scenarios worked so well for us that we soon extracted it and used it in our next application. A friend added support for Test::Unit. Pretty soon the implementation our "simple" fixture replacement plugin had grown quite complex. It was becoming hard to maintain.
+
+This year Adam and I have been working on a rather large Rails application. The run time for tests in our application had almost become unbearable. In an effort to speed up those tests and fix some of the outstanding issues in the Scenarios plugin, Adam decided to start from scratch and rewrite the plugin from the ground up using the test first approach.
+
+We have christened the rewrite "Dataset". It is virtually a drop-in replacement for the Scenarios plugin. Our initial tests suggest that it is significantly faster than its predecessor.
+
+Folks our experience with it over the last year leads me to believe that Dataset is <strong>the</strong> solution to the Rails fixture debacle. If you haven't tried it out yet give it a try!
+
+h4. Installation
+
+Like most other Rails plugins you can use the <tt>script/plugin install</tt> command to download the plugin into your current project:
+
+{% highlight bash %}
+./script/plugin install git://github.com/aiwilliams/dataset.git
+{% endhighlight %}
+
+Once the plugin is installed, you will need to add the following lines to <tt>test/test_helper.rb</tt>:
+
+{% highlight ruby %}
+require 'dataset'
+class Test::Unit::TestCase
+  include Dataset
+  datasets_directory "#{RAILS_ROOT}/test/datasets"
+end
+{% endhighlight %}
+
+h4. General Usage
+
+The basic idea behind Dataset is that creating and using fixture-like data for your application shouldn't be a chore. To this end Dataset encourages the use of Ruby code for generating your models. A set of Ruby models can be wrapped up for easy usage in a "dataset".
+
+For example, suppose I'm writing tests for the my application's authentication system. I could create a dataset with two users in it with the following code (assuming the User model is defined):
+
+{% highlight ruby %}
+# in test/datasets/users_dataset.rb
+class UsersDataset < Dataset::Base
+  def load
+    create_record :user, :john, :name => 'John', :password => 'doodaht'
+    create_record :user, :cindy, :name => 'Cindy', :password => 'whoot!'
+  end
+end
+{% endhighlight %}
+
+Above, I'm using the <tt>create_record</tt> method to insert records for two people into the Users table. The <tt>create_record</tt> method takes three parameters. The first is the singular name of the table to insert the record into, the second is the symbolic name of the record (for referencing the record in a test), and the third is a hash of the attributes of the record.
+
+Jumping over to my test case, I can now write:
+
+{% highlight ruby %}
+# in test/unit/user_test.rb
+class UserTest < Test::Unit::TestCase
+  dataset :users
+  
+  def test_do_something
+    user = users(:john)
+    assert_equal "doodaht", user.password
+  end
+end
+{% endhighlight %}
+
+In order to use a specific dataset in a given test, you must declare that the test depends on it with the <tt>dataset</tt> class method. In the example above I'm declaring that UserTest depends on just UserDataset, but I could easily declare dependancies on multiple datasets by passing multiple parameters to the <tt>dataset</tt> class method (similar to the way that the Rails <tt>fixture</tt> method works). Once the dataset is declared you can reference specific models using the appropriate reader method (almost exactly the same as with Rails fixtures). In the example above, I loaded "John" with the reader method <tt>users</tt> and the symbolic name <tt>:john</tt>. Remember that in <tt>UsersDataset</tt> I declared that "John" should be accessible through the symbolic name <tt>:john</tt>. The <tt>users</tt> reader method can also retrieve an array of models if you pass it multiple symbols: <code>users(:john, :cindy)</code>.
+
+h4. Create A Variety of Datasets for Each Model
+
+When you load a dataset with the <tt>dataset</tt> class method, only the data declared in the dataset will be available to tests that use it. This is by design. Part of the dataset philosophy is that datasets should be small containing only a fraction of the data needed for your entire test suite. Instead of creating one massive file with all of the data needed for a testing a certain model in different states (like you would with Rails fixtures), create multiple smaller datasets and load only the data you need for each test.
+
+h4. Composition
+
+As the complexity of your application grows there are times when it is useful to declare that a one dataset depends on another. The Dataset plugin allows you to do this through composition. You can declare that dataset C depends on dataset B. Then, when a test declares that it needs dataset C, dataset B will be loaded first and then C. If B depends on A, dataset A will be loaded first, then B, then C, and so forth.
+
+Here's a simple example using posts and comments:
+
+{% highlight ruby %}
+# in test/datasets/posts_dataset.rb
+class PostsDataset < Dataset::Base
+  def load
+    create_record :post, :first, :title => "First Post"
+    create_record :post, :second, :title => "Second Post"
+  end
+end
+{% endhighlight %}
+
+{% highlight ruby %}
+# in test/datasets/comments_dataset.rb
+class CommentsDataset < Dataset::Base
+  uses :posts
+  
+  def load
+    create_record :comment, :first, :body => "Nice post!", :post_id => post_id(:first)
+    create_record :comment, :second, :body => "I like it.", :post_id => post_id(:first)
+    create_record :comment, :third, :body => "I thoroughly disagree.", :post_id => post_id(:second)
+  end
+end
+{% endhighlight %}
+
+In the example above, <tt>CommentsDataset</tt> declares that it depends on  <tt>PostsDataset</tt> with the <tt>uses</tt> class method. This means that if a test declares that it needs <tt>CommentsDataset</tt>, <tt>PostsDataset</tt> will be loaded first and then <tt>CommentsDataset</tt>.
+
+(Note that inside the load method I'm using another form of reader method which simply yields the ID for a symbolic name. In this case: <tt>post_id</tt>. This is useful for making associations without needing to load the model, as done here with comments and posts.)
+
+
+h4. Helper Methods
+
+Another way of simplifying your datasets and tests is through helper methods. Helper methods are declared inside the <tt>helpers</tt> block of a dataset:
+
+<notextile>
+<div class="highlight"><pre>  <span class="c1"># in test/datasets/users_dataset.rb</span><br />
+  <span class="k">class</span> <span class="nc">UsersDataset</span> <span class="o">&lt;</span> <span class="no">Dataset</span><span class="o">::</span><span class="no">Base</span><br />
+    <span class="k">def</span> <span class="nf">load</span><br />
+      <span class="n">create_user</span> <span class="s2">&quot;John&quot;</span><span class="p">,</span> <span class="ss">:email</span> <span class="o">=&gt;</span> <span class="s2">&quot;john@example.com&quot;</span><br />
+    <span class="k">end</span><br />
+  <br />
+    <span class="n">helpers</span> <span class="k">do</span><br />
+      <span class="k">def</span> <span class="nf">create_user</span><span class="p">(</span><span class="nb">name</span><span class="p">,</span> <span class="n">attributes</span><span class="o">=</span><span class="p">{})</span><br />
+        <span class="n">defaults</span> <span class="o">=</span> <span class="p">{</span> <span class="ss">:email</span> <span class="o">=&gt;</span> <span class="nb">name</span><span class="o">.</span><span class="n">gsub</span><span class="p">(</span><span class="sr">/[,. ]+/</span><span class="p">,</span> <span class="s1">&#39;.&#39;</span><span class="p">)</span> <span class="o">+</span> <span class="s2">&quot;@example.com&quot;</span> <span class="p">}</span><br />
+        <span class="n">create_record</span> <span class="ss">:user</span><span class="p">,</span> <span class="nb">name</span><span class="o">.</span><span class="n">downcase</span><span class="o">.</span><span class="n">intern</span><span class="p">,</span> <span class="n">defaults</span><span class="o">.</span><span class="n">merge</span><span class="p">(</span><span class="n">attributes</span><span class="p">)</span><br />
+      <span class="k">end</span><br />
+      <span class="k">def</span> <span class="nf">login_as</span><span class="p">(</span><span class="n">user</span><span class="p">)</span><br />
+        <span class="vi">@request</span><span class="o">.</span><span class="n">session</span><span class="o">[</span><span class="ss">:user_id</span><span class="o">]</span> <span class="o">=</span> <span class="n">user</span><span class="o">.</span><span class="n">id</span><br />
+      <span class="k">end</span><br />
+    <span class="k">end</span><br />
+  <span class="k">end</span></pre> 
+</div>
+</notextile>
+
+Any of the methods declared inside a dataset's helper block are available to the dataset in addition to being mixed into datasets and tests that use it.
+
+In the helper block above I've defined two methods. The first, <tt>create_user</tt>, gives me an easy way to create new users with sensible defaults. (I would highly encourage using factory methods like this to remove duplication from your test data.) The second method, <tt>login_as</tt>, is a helper method for integration tests. You can see it in action below:
+
+{% highlight ruby %}
+# in test/integration/projects_test.rb
+class ProjectsTest < ActionController::IntegrationTest
+  dataset :users, :projects, :todos
+  
+  def test_should_show_active_projects
+    login_as users(:john)
+    get :projects
+    assert_tag '#active_projects'
+  end
+end
+{% endhighlight %}
+
+
+h4. What About Machinist, Factory Girl, and the Other Fixture Replacement Plugins?
+
+If you've taken the time to read everything above I hope you can see that Dataset is more than just a new way to construct models for testing. Dataset gives you an easy, declarative method for constructing sets of data to be used in testing. It is a data loading framework. This is in contrast to "Machinist":http://github.com/notahat/machinist/tree/master and "Factory Girl":http://github.com/thoughtbot/factory_girl/tree/master which focus only on making it easy to create new models for testing, but have no solution for loading sets of data. For the record you can use Dataset with Machinist or Factory Girl, though my personal preference is to create my own factory methods for each model.
+
+As to the other fixture replacement plugins? Frankly, I haven't seen anything that comes close to providing the power and flexibility of Dataset. But don't take my word for it! "Try it for yourself":http://github.com/aiwilliams/dataset and experience the difference.

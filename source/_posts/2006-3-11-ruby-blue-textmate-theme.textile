@@ -1,0 +1,16 @@
+---
+title: Ruby Blue Textmate Theme
+---
+
+!/images/rubyblue.jpg!:http://johnwlong.com/downloads/RubyBlue.tmTheme
+
+When did the initial design for the Ruby-Lang Web site a year ago I created a Vim theme that mirrored the colors used in the little code window of the design. Times have changed and I am now an avid Mac user. With the change in operating system I've also picked up another text editor called "Textmate":http://macromates.com. Today I decided to spend a little time on a theme for Textmate that mirrored the Ruby Lang design in the same way that my Vim theme did.
+
+To install:
+
+# Download the "Ruby Blue theme":http://johnwlong.com/downloads/RubyBlue.tmTheme file
+# Copy it into: <tt>/Applications/TextMate.app/Contents/SharedSupport/Themes/</tt>
+
+Enjoy!
+
+*Update!* Someone asked for the Vim theme so I "uploaded that":http://johnwlong.com/downloads/rubyblue.vim this evening.

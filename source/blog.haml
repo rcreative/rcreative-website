@@ -1,0 +1,17 @@
+---
+layout: default
+body_id: "single_column_layout"
+title: Recursive Creative Blog Archives
+---
+
+#head
+  %h1 Blog Archives
+
+#content
+  - posts_by_month_year = site.posts.inject(Hash.new {|h,k| h[k] = []}) { |h, p| h[p.date.strftime("%B %Y")] << p; h }
+  - posts_by_month_year.keys.sort.each do |month_year|
+    %h2= month_year
+    - posts = posts_by_month_year[month_year]
+    %ul
+      - posts.sort_by(&:date).each do |post|
+        %li= link_to(h(post.title), post.url)
