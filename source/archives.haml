@@ -8,10 +8,13 @@ title: Recursive Creative Blog Archives
   %h1 Blog Archives
 
 #content
-  - posts_by_month_year = site.posts.inject(Hash.new {|h,k| h[k] = []}) { |h, p| h[p.date.strftime("%B %Y")] << p; h }
-  - posts_by_month_year.keys.sort.each do |month_year|
-    %h2= month_year
-    - posts = posts_by_month_year[month_year]
-    %ul
-      - posts.sort_by(&:date).each do |post|
-        %li= link_to(h(post.title), post.url)
+  - posts_by_year = site.posts.inject(Hash.new {|h,k| h[k] = (Hash.new {|h,k| h[k] = []}) }) { |h, p| h[p.date.strftime("%Y")][p.date.strftime("%B")] << p; h }
+  - posts_by_year.keys.sort.reverse.each do |year|
+    - posts_for_year_by_month = posts_by_year[year]
+    - %w(January February March April May June July August September October November December).reverse.each do |month|
+      - posts = posts_for_year_by_month[month]
+      - unless posts.empty?
+        %h2= "#{month} #{year}"
+        %ul
+          - posts.sort_by(&:date).each do |post|
+            %li= link_to(h(post.title), post.url)

@@ -1,0 +1,92 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html lang="en" xml:lang="en" xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta content="text/html; charset=utf-8" http-equiv="Content-Type" />
+    <title>Testing Rails Validations</title>
+    <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css" />
+    <script src="/javascripts/jquery.js" type="text/javascript"></script>
+    <script src="/javascripts/fancyzoom.js" type="text/javascript"></script>
+    <script type="text/javascript">
+      //<![CDATA[
+        $(document).ready(function() {
+          $('a.zoom').fancyZoom();
+        });
+      //]]>
+    </script>
+  </head>
+  <body id="single_column_layout">
+    <div id="container">
+      <div id="header">
+        <div id="logo">
+          <a href="/">
+            <img alt="Recursive Creative" height="73" src="/images/logo.png" title="" width="241" />
+          </a>
+        </div>
+      </div>
+      <div id="main">
+        <div id="head">
+          <h1>Testing Rails Validations</h1>
+        </div>
+        <div id="content">
+          <p>Today, I extracted some code from an older <a href="https://secure.iblp.org/iblp/discipleship/dailysuccess/enroll/now/"><span class="caps">IBLP</span> project</a> and polished it up a bit for use on the Ruby Web site.  It makes it quite easy to test validations on model objects in <a href="http://rubyonrails.com">Rails</a>. I present:</p>
+          <p><a href="http://johnwlong.com/downloads/validation_helper.rb">validation_helper.rb</a></p>
+          <p>When you include <tt>ValidationTestHelper</tt> into your test case you can access to two additional assertions: <tt>assert_valid</tt> and <tt>assert_invalid</tt>. Use them to assert that a model object is valid or invalid when a field is set to a certain value.</p>
+          <p>For example, suppose you have a model object that looks like this:</p>
+          <div class="highlight"><pre><span class="k">class</span> <span class="nc">Page</span> <span class="o">&lt;</span> <span class="no">ActiveRecord</span><span class="o">::</span><span class="no">Base</span>&#x000A;  <span class="n">validates_presence_of</span> <span class="ss">:title</span><span class="p">,</span> <span class="ss">:slug</span><span class="p">,</span> <span class="ss">:breadcrumb</span><span class="p">,</span> <span class="ss">:status_id</span><span class="p">,</span> <span class="ss">:message</span> <span class="o">=&gt;</span> <span class="s1">&#39;required&#39;</span>&#x000A;  <span class="n">validates_format_of</span> <span class="ss">:title</span><span class="p">,</span> <span class="ss">:slug</span><span class="p">,</span> <span class="ss">:breadcrumb</span><span class="p">,</span> <span class="ss">:with</span> <span class="o">=&gt;</span> <span class="sr">/^.*?\S.*?$/</span><span class="p">,</span> <span class="ss">:message</span> <span class="o">=&gt;</span> <span class="s1">&#39;required&#39;</span>&#x000A;  <span class="n">validates_format_of</span> <span class="ss">:slug</span><span class="p">,</span> <span class="ss">:with</span> <span class="o">=&gt;</span> <span class="sr">/^[-_.A-Za-z]*$/</span><span class="p">,</span> <span class="ss">:message</span> <span class="o">=&gt;</span> <span class="s1">&#39;invalid format&#39;</span>&#x000A;<span class="k">end</span></pre>
+          </div>
+          <p>To test it, first set the <tt>@model</tt> instance variable to an object that will validate <em>without</em> errors:</p>
+          <div class="highlight"><pre><span class="vi">@model</span> <span class="o">=</span> <span class="no">Page</span><span class="o">.</span><span class="n">new</span><span class="p">(</span>&#x000A;  <span class="ss">:title</span> <span class="o">=&gt;</span> <span class="s1">&#39;New Page&#39;</span><span class="p">,</span>&#x000A;  <span class="ss">:slug</span> <span class="o">=&gt;</span> <span class="s1">&#39;new-page&#39;</span><span class="p">,</span>&#x000A;  <span class="ss">:breadcrumb</span> <span class="o">=&gt;</span> <span class="s1">&#39;New Page&#39;</span><span class="p">,</span>&#x000A;  <span class="ss">:status_id</span> <span class="o">=&gt;</span> <span class="s1">&#39;1&#39;</span>&#x000A;<span class="p">)</span></pre>
+          </div>
+          <p>Were you to call <tt>@model.valid?</tt> at this point, it would return <tt>true</tt>. But hold steady, you are ready to write your first assertion:</p>
+          <div class="highlight"><pre><span class="n">assert_invalid</span> <span class="ss">:title</span><span class="p">,</span> <span class="s1">&#39;required&#39;</span><span class="p">,</span> <span class="s1">&#39;&#39;</span><span class="p">,</span> <span class="s1">&#39; &#39;</span><span class="p">,</span> <span class="kp">nil</span></pre>
+          </div>
+          <p>This will assert that when the <code>title</code> field on your <tt>@model</tt> object is set to <tt>&quot;&quot;</tt>, <tt>&quot; &quot;</tt>, or <tt>nil</tt> that a validation error occurs and that the error message is set to &#8220;required&#8221;. Note that the first two parameters are for the field name and message, while the parameters at the end are all values to test.</p>
+          <p>The next assertion, <tt>assert_valid</tt>, is useful for testing that an object should be valid when when a field is set to a value or series of values. For example, to test the regular expression that is being used to validate the <tt>slug</tt> field we can do:</p>
+          <div class="highlight"><pre><span class="n">assert_valid</span> <span class="ss">:slug</span><span class="p">,</span> <span class="s1">&#39;abc&#39;</span><span class="p">,</span> <span class="s1">&#39;abcd-efg&#39;</span><span class="p">,</span> <span class="s1">&#39;abcd_efg&#39;</span><span class="p">,</span> <span class="s1">&#39;abc.html&#39;</span></pre>
+          </div>
+          <p>This will set the <tt>slug</tt> attribute on the <tt>@model</tt> object to <tt>&#8216;abc&#8217;</tt>, <tt>&#8216;abcd-efg&#8217;</tt>, <tt>&#8216;abcd-efg&#8217;</tt>, and <tt>&#8216;abc.html&#8217;</tt>. Each time it will check to see if the model is valid with the new value. If it is not for any one of the values, the assertion will fail.</p>
+          <p>Pretty nifty, eh?</p>
+          <p>Here&#8217;s an entire test method for all of the validations shown in the model above:</p>
+          <div class="highlight"><pre><span class="k">def</span> <span class="nf">test_validations</span>&#x000A;  <span class="vi">@model</span> <span class="o">=</span> <span class="no">Page</span><span class="o">.</span><span class="n">new</span><span class="p">(</span>&#x000A;    <span class="ss">:title</span> <span class="o">=&gt;</span> <span class="s1">&#39;New Page&#39;</span><span class="p">,</span>&#x000A;    <span class="ss">:slug</span> <span class="o">=&gt;</span> <span class="s1">&#39;new-page&#39;</span><span class="p">,</span>&#x000A;    <span class="ss">:breadcrumb</span> <span class="o">=&gt;</span> <span class="s1">&#39;New Page&#39;</span><span class="p">,</span>&#x000A;    <span class="ss">:status_id</span> <span class="o">=&gt;</span> <span class="s1">&#39;1&#39;</span>&#x000A;  <span class="p">)</span>&#x000A;  &#x000A;  <span class="o">[</span><span class="ss">:title</span><span class="p">,</span> <span class="ss">:breadcrumb</span><span class="p">,</span> <span class="ss">:slug</span><span class="o">].</span><span class="n">each</span> <span class="k">do</span> <span class="o">|</span><span class="n">field</span><span class="o">|</span>&#x000A;    <span class="n">assert_invalid</span> <span class="n">field</span><span class="p">,</span> <span class="s1">&#39;required&#39;</span><span class="p">,</span> <span class="s1">&#39;&#39;</span><span class="p">,</span> <span class="s1">&#39; &#39;</span><span class="p">,</span> <span class="kp">nil</span>&#x000A;  <span class="k">end</span> &#x000A;    &#x000A;  <span class="n">assert_valid</span> <span class="ss">:slug</span><span class="p">,</span> <span class="s1">&#39;abc&#39;</span><span class="p">,</span> <span class="s1">&#39;abcd-efg&#39;</span><span class="p">,</span> <span class="s1">&#39;abcd_efg&#39;</span><span class="p">,</span> <span class="s1">&#39;abc.html&#39;</span>&#x000A;  <span class="n">assert_invalid</span> <span class="ss">:slug</span><span class="p">,</span> <span class="s1">&#39;invalid format&#39;</span><span class="p">,</span> <span class="s1">&#39;abcd efg&#39;</span><span class="p">,</span> <span class="s1">&#39;abcd/efg&#39;</span>&#x000A;    &#x000A;  <span class="n">assert_invalid</span> <span class="ss">:status_id</span><span class="p">,</span> <span class="s1">&#39;required&#39;</span><span class="p">,</span> <span class="s1">&#39;&#39;</span><span class="p">,</span> <span class="kp">nil</span>&#x000A;<span class="k">end</span></pre>
+          </div>
+          <p>Special thanks to Ryan Platte for his part in conceiving and coding <tt>ValidationTestHelper</tt>.</p>
+        </div>
+      </div>
+      <div id="footer">
+        <div class="section" id="contact_us">
+          <p>
+            <strong class="title">We love talking with people about their ideas!</strong>
+            Contact us at
+            <br />
+            <strong class="highlight">919-721-9522</strong>
+            or
+            <a class="alt" href="mailto:us@recursivecreative.com">us@recursivecreative.com</a>
+          </p>
+        </div>
+        <div class="section" id="ruby_rails_and_twitter">
+          <div id="ruby_and_rails">
+            <img alt="Ruby" class="logo" height="79" src="/images/ruby_logo.png" title="" width="54" />
+            <img alt="Rails" class="logo" height="79" src="/images/rails_logo.png" title="" width="54" />
+            We build
+            <a href="http://ruby-lang.org/">Ruby</a>
+            and
+            <a href="http://rubyonrails.org/">Ruby on Rails</a>
+            applications.
+          </div>
+          <div id="twitter">
+            <img alt="Twitter" class="logo" height="67" src="/images/twitter_bird.png" title="" width="54" />
+            <strong class="highlight">Follow us on Twitter:</strong>
+            <div class="handles">
+              <a class="alt" href="http://twitter.com/friendships/add/rcreative">@rcreative</a>, <a class="alt" href="http://twitter.com/friendships/add/johnwlong">@johnwlong</a>, <a class="alt" href="http://twitter.com/friendships/add/aiwilliams">@aiwilliams</a>
+            </div>
+          </div>
+        </div>
+        <div class="section" id="fine_print">
+          <p>
+            Copyright &copy; 2009, Recursive Creative, LLC. All rights reserved. &nbsp; 613 Ashe Avenue &bull; Cary, NC 27518
+          </p>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>

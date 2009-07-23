@@ -8,6 +8,7 @@ Over the past couple of months I've been working on a little library for a clien
 
 So how does it work? Well, once you have the proper plumbing in place you can declare a simple popup window like this:
 
+<notextile>
 {% highlight html %}
 <div class="popup" id="test" style="display: none">
   <h3 class="title">Popup Window</h3>
@@ -17,14 +18,17 @@ So how does it work? Well, once you have the proper plumbing in place you can de
   </div>
 </div>
 {% endhighlight %}
+</notextile>
 
 This markup assumes that you are using the included <tt>facebook.css</tt> stylesheet, but the only thing that is necessary to have a functioning popup window is a div with an ID attribute. You should also set style="display: none" to ensure that the div is not visible when the page loads.
 
 Popping up the window is as simple as linking to it:
 
+<notextile>
 {% highlight html %}
 <a href="#test" class="popup">Popup</a></code>
 {% endhighlight %}
+</notextile>
 
 Links with the class of "popup" get the <tt>Popup.TriggerBehavior</tt> which will trigger the popup when clicked. Note that the href should be set to the ID of the element to popup. If you prefer you can set the href to a URL that returns the HTML for the popup and an AJAX call will be made to that URL.
 

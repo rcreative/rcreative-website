@@ -31,6 +31,7 @@ As I was working on this article I wrote Adrian Holovaty to ask him about this v
 
 And how easy is it to use another Django mini app in your own project? All you need to do is include it in the INSTALLED_APPS configuration variable. Here's a small configuration snippet from the "Django tutorial":http://www.djangoproject.com/documentation/tutorial1/:
 
+<notextile>
 {% highlight python %}
 INSTALLED_APPS = (
   'django.contrib.auth',
@@ -40,6 +41,7 @@ INSTALLED_APPS = (
   'mysite.polls'
 )
 {% endhighlight %}
+</notextile>
 
 There are four little mini apps there that are installed by default for the standard Django project: auth, contenttypes, sessions, and sites (I'll bet you can guess what they do). Django also provides a rather powerful admin mini app that automatically creates an admin interface for your models. This is extremely helpful in that it allows you to concentrate on the Web site part of your application while leaving the admin part to Django. To see all of this in action check out the "Django Screencast":http://www.throwingbeans.org/django_screencasts.html at throwingbeans.org.
 
@@ -48,6 +50,7 @@ h3. Can Rails Take a Page from the Django Playbook?
 
 I'm interested in all of this because of my work on Radiant (the content management system I developed for the "Ruby Web site":http://ruby-lang.org). Over the past several months I have been working on an extension system for Radiant that will allow others to develop mini rails apps that plug straight into a Radiant application. A Radiant extension is like a Rails plugin except that it supports additional models, views, and controllers (much like Rails Engines do, but with added benefits). The directory structure for a Radiant extension looks like this:
 
+<notextile>
 {% highlight text %}
 vendor/extensions/
   my_extension/
@@ -61,9 +64,11 @@ vendor/extensions/
     my_extension.rb
     Rakefile
 {% endhighlight %}
+</notextile>
 
 The benefit that Radiant Extensions offer over something like Rails Engines is that they integrate into the Radiant administration system. Right now that integration is a little rough, but we hope to make it easier in the future. Even so, the progress that we have made is encouraging. Here's a snippet which demonstrates adding a custom tab to the Radiant administration system:
 
+<notextile>
 {% highlight ruby %}
 class AssetManagerExtension < Radiant::Extension
   version "1.0"
@@ -82,6 +87,7 @@ class AssetManagerExtension < Radiant::Extension
   end 
 end
 {% endhighlight %}
+</notextile>
 
 Now the work on the Radiant extension system has been difficult. Rails doesn't make it easy to allow views to reside in multiple places (there is only one template_root). Nor does it provide support for defining routes in multiple locations. Model reloading through the dependencies mechanism is also a difficult issue. Time and again I find myself twisting Rails' arm to let me do what I want to do. I've had to hook into the Rails internals on multiple occasions (just like the Rails Engines people did).
 

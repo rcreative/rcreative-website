@@ -1,0 +1,13 @@
+---
+title: Now Using Mephisto!
+---
+
+!/images/mephisto-badge.png(Mephisto)!
+
+It may come a surprise to some of you that the author of "Radiant":http://radiantcms.org/ is now using "Mephisto":http://mephistoblog.com/ for his Weblog, but I've decided to give it a shot while Radiant is still under development. True blogging support is a couple of months away for Radiant so I figured it would be good to scope out the "competition" in the meantime.
+
+Rick and Justin have done a phenomenal job on Mephisto. It's simple, the interface is well designed (very professional), and the code underneath is beautiful. The closest thing I can compare it to is "Textpattern":http://textpattern.com from the PHP world--and it is much better. Asset management and theme support put it head and shoulders above Textpattern.
+
+As to the Radiant vs. Mephisto argument. I'd say that Mephisto is *__much better for blogging and probably always will be.__* Radiant will eventually add support for blogging, but it's focus will continue to be content management. I want Radiant to be a light-weight CMS, with a blogging engine feel, but blogging will always take second place to content management. This is good news for the Rails community because I think Mephisto's goal is to be a great blogging engine first and after that a light-weight content management system.
+
+My hat is off to Rick and Justin. Mephisto is definitely a "Typo":http://typosphere.org killer.

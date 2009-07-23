@@ -1,0 +1,73 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html lang="en" xml:lang="en" xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta content="text/html; charset=utf-8" http-equiv="Content-Type" />
+    <title>A HAML Server for Web Designers</title>
+    <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css" />
+    <script src="/javascripts/jquery.js" type="text/javascript"></script>
+    <script src="/javascripts/fancyzoom.js" type="text/javascript"></script>
+    <script type="text/javascript">
+      //<![CDATA[
+        $(document).ready(function() {
+          $('a.zoom').fancyZoom();
+        });
+      //]]>
+    </script>
+  </head>
+  <body id="single_column_layout">
+    <div id="container">
+      <div id="header">
+        <div id="logo">
+          <a href="/">
+            <img alt="Recursive Creative" height="73" src="/images/logo.png" title="" width="241" />
+          </a>
+        </div>
+      </div>
+      <div id="main">
+        <div id="head">
+          <h1>A HAML Server for Web Designers</h1>
+        </div>
+        <div id="content">
+          <p>I have a script named <tt>serve</tt> in my <tt>bin</tt> directory that let&#8217;s me quickly startup a Webrick server in any directory. This is handy for serving <span class="caps">HTML</span> mockups or other files. Today, updated it to work with <span class="caps">HAML</span>:</p>
+          <div class="highlight"><pre><span class="c1">#!/usr/bin/env ruby</span>&#x000A;<span class="nb">require</span> <span class="s1">&#39;webrick&#39;</span>&#x000A;<span class="nb">require</span> <span class="s1">&#39;rubygems&#39;</span>&#x000A;<span class="nb">require</span> <span class="s1">&#39;haml&#39;</span>&#x000A;&#x000A;<span class="k">class</span> <span class="nc">HamlHandler</span> <span class="o">&lt;</span> <span class="no">WEBrick</span><span class="o">::</span><span class="no">HTTPServlet</span><span class="o">::</span><span class="no">AbstractServlet</span>&#x000A;&#x000A;  <span class="k">def</span> <span class="nf">initialize</span><span class="p">(</span><span class="n">server</span><span class="p">,</span> <span class="nb">name</span><span class="p">)</span>&#x000A;    <span class="k">super</span>&#x000A;    <span class="vi">@script_filename</span> <span class="o">=</span> <span class="nb">name</span>&#x000A;  <span class="k">end</span>&#x000A;&#x000A;  <span class="k">def</span> <span class="nf">do_GET</span><span class="p">(</span><span class="n">req</span><span class="p">,</span> <span class="n">res</span><span class="p">)</span>&#x000A;    <span class="k">begin</span>&#x000A;      <span class="n">data</span> <span class="o">=</span> <span class="nb">open</span><span class="p">(</span><span class="vi">@script_filename</span><span class="p">){</span><span class="o">|</span><span class="n">io</span><span class="o">|</span> <span class="n">io</span><span class="o">.</span><span class="n">read</span> <span class="p">}</span>&#x000A;      <span class="n">res</span><span class="o">.</span><span class="n">body</span> <span class="o">=</span> <span class="n">parse_haml</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>&#x000A;      <span class="n">res</span><span class="o">[</span><span class="s1">&#39;content-type&#39;</span><span class="o">]</span> <span class="o">=</span> <span class="s1">&#39;text/html&#39;</span>&#x000A;    <span class="k">rescue</span> <span class="no">StandardError</span> <span class="o">=&gt;</span> <span class="n">ex</span>&#x000A;      <span class="k">raise</span>&#x000A;    <span class="k">rescue</span> <span class="no">Exception</span> <span class="o">=&gt;</span> <span class="n">ex</span>&#x000A;      <span class="vi">@logger</span><span class="o">.</span><span class="n">error</span><span class="p">(</span><span class="n">ex</span><span class="p">)</span>&#x000A;      <span class="k">raise</span> <span class="no">HTTPStatus</span><span class="o">::</span><span class="no">InternalServerError</span><span class="p">,</span> <span class="n">ex</span><span class="o">.</span><span class="n">message</span>&#x000A;    <span class="k">end</span>&#x000A;  <span class="k">end</span>&#x000A;&#x000A;  <span class="k">alias</span> <span class="n">do_POST</span> <span class="n">do_GET</span>&#x000A;&#x000A;  <span class="kp">private</span>&#x000A;    <span class="k">def</span> <span class="nf">parse_haml</span><span class="p">(</span><span class="n">string</span><span class="p">)</span>&#x000A;      <span class="n">engine</span> <span class="o">=</span> <span class="no">Haml</span><span class="o">::</span><span class="no">Engine</span><span class="o">.</span><span class="n">new</span><span class="p">(</span><span class="n">string</span><span class="p">,</span>&#x000A;        <span class="ss">:attr_wrapper</span> <span class="o">=&gt;</span> <span class="s1">&#39;&quot;&#39;</span><span class="p">,</span>&#x000A;        <span class="ss">:filename</span> <span class="o">=&gt;</span> <span class="vi">@script_filename</span>&#x000A;      <span class="p">)</span>&#x000A;      <span class="n">engine</span><span class="o">.</span><span class="n">render</span>&#x000A;    <span class="k">end</span>&#x000A;&#x000A;<span class="k">end</span>&#x000A;&#x000A;<span class="no">WEBrick</span><span class="o">::</span><span class="no">HTTPServlet</span><span class="o">::</span><span class="no">FileHandler</span><span class="o">.</span><span class="n">add_handler</span><span class="p">(</span><span class="s2">&quot;haml&quot;</span><span class="p">,</span> <span class="no">HamlHandler</span><span class="p">)</span>&#x000A;&#x000A;<span class="n">args</span> <span class="o">=</span> <span class="no">ARGV</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="s1">&#39; &#39;</span><span class="p">)</span>&#x000A;<span class="n">args</span><span class="o">.</span><span class="n">gsub!</span><span class="p">(</span><span class="sr">%r{^http://}</span><span class="p">,</span> <span class="s1">&#39;&#39;</span><span class="p">)</span>&#x000A;<span class="n">args</span> <span class="o">=</span> <span class="n">args</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="sr">/[ :]/</span><span class="p">)</span><span class="o">.</span><span class="n">compact</span>&#x000A;&#x000A;<span class="n">server</span> <span class="o">=</span> <span class="no">WEBrick</span><span class="o">::</span><span class="no">HTTPServer</span><span class="o">.</span><span class="n">new</span><span class="p">(</span>&#x000A;  <span class="ss">:Port</span> <span class="o">=&gt;</span> <span class="n">args</span><span class="o">.</span><span class="n">pop</span> <span class="o">||</span> <span class="mi">3000</span><span class="p">,</span>&#x000A;  <span class="ss">:BindAddress</span> <span class="o">=&gt;</span> <span class="n">args</span><span class="o">.</span><span class="n">pop</span> <span class="o">||</span> <span class="s1">&#39;0.0.0.0&#39;</span><span class="p">,</span>&#x000A;  <span class="ss">:DocumentRoot</span> <span class="o">=&gt;</span> <span class="no">Dir</span><span class="o">.</span><span class="n">pwd</span>&#x000A;<span class="p">)</span>&#x000A;&#x000A;<span class="nb">trap</span><span class="p">(</span><span class="s2">&quot;INT&quot;</span><span class="p">)</span> <span class="p">{</span> <span class="n">server</span><span class="o">.</span><span class="n">shutdown</span> <span class="p">}</span>&#x000A;&#x000A;<span class="n">server</span><span class="o">.</span><span class="n">start</span></pre>
+          </div>
+        </div>
+      </div>
+      <div id="footer">
+        <div class="section" id="contact_us">
+          <p>
+            <strong class="title">We love talking with people about their ideas!</strong>
+            Contact us at
+            <br />
+            <strong class="highlight">919-721-9522</strong>
+            or
+            <a class="alt" href="mailto:us@recursivecreative.com">us@recursivecreative.com</a>
+          </p>
+        </div>
+        <div class="section" id="ruby_rails_and_twitter">
+          <div id="ruby_and_rails">
+            <img alt="Ruby" class="logo" height="79" src="/images/ruby_logo.png" title="" width="54" />
+            <img alt="Rails" class="logo" height="79" src="/images/rails_logo.png" title="" width="54" />
+            We build
+            <a href="http://ruby-lang.org/">Ruby</a>
+            and
+            <a href="http://rubyonrails.org/">Ruby on Rails</a>
+            applications.
+          </div>
+          <div id="twitter">
+            <img alt="Twitter" class="logo" height="67" src="/images/twitter_bird.png" title="" width="54" />
+            <strong class="highlight">Follow us on Twitter:</strong>
+            <div class="handles">
+              <a class="alt" href="http://twitter.com/friendships/add/rcreative">@rcreative</a>, <a class="alt" href="http://twitter.com/friendships/add/johnwlong">@johnwlong</a>, <a class="alt" href="http://twitter.com/friendships/add/aiwilliams">@aiwilliams</a>
+            </div>
+          </div>
+        </div>
+        <div class="section" id="fine_print">
+          <p>
+            Copyright &copy; 2009, Recursive Creative, LLC. All rights reserved. &nbsp; 613 Ashe Avenue &bull; Cary, NC 27518
+          </p>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>

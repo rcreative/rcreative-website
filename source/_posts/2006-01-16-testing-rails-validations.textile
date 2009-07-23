@@ -1,0 +1,82 @@
+---
+title: Testing Rails Validations
+---
+
+Today, I extracted some code from an older "IBLP project":https://secure.iblp.org/iblp/discipleship/dailysuccess/enroll/now/ and polished it up a bit for use on the Ruby Web site.  It makes it quite easy to test validations on model objects in "Rails":http://rubyonrails.com. I present:
+
+"validation_helper.rb":http://johnwlong.com/downloads/validation_helper.rb
+
+When you include <tt>ValidationTestHelper</tt> into your test case you can access to two additional assertions: <tt>assert_valid</tt> and <tt>assert_invalid</tt>. Use them to assert that a model object is valid or invalid when a field is set to a certain value.
+
+For example, suppose you have a model object that looks like this:
+
+<notextile>
+{% highlight ruby %}
+class Page < ActiveRecord::Base
+  validates_presence_of :title, :slug, :breadcrumb, :status_id, :message => 'required'
+  validates_format_of :title, :slug, :breadcrumb, :with => /^.*?\S.*?$/, :message => 'required'
+  validates_format_of :slug, :with => /^[-_.A-Za-z]*$/, :message => 'invalid format'
+end
+{% endhighlight %}
+</notextile>
+
+To test it, first set the <tt>@model</tt> instance variable to an object that will validate _without_ errors:
+
+<notextile>
+{% highlight ruby %}
+@model = Page.new(
+  :title => 'New Page',
+  :slug => 'new-page',
+  :breadcrumb => 'New Page',
+  :status_id => '1'
+)
+{% endhighlight %}
+</notextile>
+
+Were you to call <tt>@model.valid?</tt> at this point, it would return <tt>true</tt>. But hold steady, you are ready to write your first assertion:
+
+<notextile>
+{% highlight ruby %}
+assert_invalid :title, 'required', '', ' ', nil
+{% endhighlight %}
+</notextile>
+
+This will assert that when the @title@ field on your <tt>@model</tt> object is set to <tt>""</tt>, <tt>" "</tt>, or <tt>nil</tt> that a validation error occurs and that the error message is set to "required". Note that the first two parameters are for the field name and message, while the parameters at the end are all values to test.
+
+The next assertion, <tt>assert_valid</tt>, is useful for testing that an object should be valid when when a field is set to a value or series of values. For example, to test the regular expression that is being used to validate the <tt>slug</tt> field we can do:
+
+<notextile>
+{% highlight ruby %}
+assert_valid :slug, 'abc', 'abcd-efg', 'abcd_efg', 'abc.html'
+{% endhighlight %}
+</notextile>
+
+This will set the <tt>slug</tt> attribute on the <tt>@model</tt> object to <tt>'abc'</tt>, <tt>'abcd-efg'</tt>, <tt>'abcd-efg'</tt>, and <tt>'abc.html'</tt>. Each time it will check to see if the model is valid with the new value. If it is not for any one of the values, the assertion will fail.
+
+Pretty nifty, eh?
+
+Here's an entire test method for all of the validations shown in the model above:
+
+<notextile>
+{% highlight ruby %}
+def test_validations
+  @model = Page.new(
+    :title => 'New Page',
+    :slug => 'new-page',
+    :breadcrumb => 'New Page',
+    :status_id => '1'
+  )
+  
+  [:title, :breadcrumb, :slug].each do |field|
+    assert_invalid field, 'required', '', ' ', nil
+  end 
+    
+  assert_valid :slug, 'abc', 'abcd-efg', 'abcd_efg', 'abc.html'
+  assert_invalid :slug, 'invalid format', 'abcd efg', 'abcd/efg'
+    
+  assert_invalid :status_id, 'required', '', nil
+end
+{% endhighlight %}
+</notextile>
+
+Special thanks to Ryan Platte for his part in conceiving and coding <tt>ValidationTestHelper</tt>.

@@ -1,0 +1,244 @@
+---
+title: Class-Level Instance Variables
+---
+
+I've been doing a lot of metaprograming of late with "Radiant":http://radiantcms.org and have gained a deep appreciation for class-level instance variables. If you haven't done a lot with class variables, you probably won't see much value class-level instance variables.
+
+Maybe you've been playing around with those neat little class methods on your "Rails":http://rubyonrails.org model objects:
+
+<notextile>
+{% highlight ruby %}
+class Person < ActiveRecord::Base
+  validates_presence_of :name
+  validates_numerically_of :age
+end
+{% endhighlight %}
+</notextile>
+
+Or perhaps you've been experimenting with "Dwemthy's Array":http://poignantguide.net/dwemthy/:
+
+<notextile>
+{% highlight ruby %}
+class Dragon < Creature
+  life 1340     # tough scales
+  strength 451  # bristling veins
+  charisma 1020 # toothy smile
+  weapon 939    # fire breath
+end
+{% endhighlight %}
+</notextile>
+
+Ruby makes creating this kind of "Domain Specific Language":http://weblog.jamisbuck.org/2006/4/20/writing-domain-specific-languages/ a snap, but it's not without it's
+pitfalls if you've never done it before.
+
+At first glance you might think that you could store this kind of meta information in a class
+variable. Let's take a simple example. You want to create the <code>Creature</code> class that
+<code>Dragon</code> inherits from. You might define your first attribute like this:
+
+<notextile>
+{% highlight ruby %}
+class Creature
+  def self.life(life = nil)
+    @@life = life || @@life
+  end
+end
+{% endhighlight %}
+</notextile>
+
+Class variables are a convenient method of storing information in the class object itself. Since class variables look much like instance variables (in that they are preceded with two @ signs) you might be tempted to think that they are just instance variables for classes, but don't be fooled! Class variables are shared variables. Every subclass of a superclass has access to the superclass's class variables between superclasses and subclasses. That is, instead of getting a new version of the class variable every time you inherit from the superclass, you get the same version of the variable (not a copy).
+
+In practice this means that class variables are a poor choice for storing meta data. In the
+example above if we inherit from Creature more than once we quickly see the problem:
+
+<notextile>
+{% highlight ruby %}
+class Dragon < Creature
+  life 1340
+end
+class Gwythaint < Creature
+  life 250
+end
+p Dragon.life  #=> 250 !!!!
+{% endhighlight %}
+</notextile>
+
+Instead of getting 1340 for the dragon's life, we get 250!! Again this is because class variables
+are shared between the superclass and every one of its subclasses. It has been suggested that
+an easy way to work around this problem is to use a hash and store class/value pairs for each
+of the subclasses:
+
+<notextile>
+{% highlight ruby %}
+class Creature
+  @@lives = Hash.new
+  def self.life(life = nil)
+    @@lives[self] = life || @@lives[self]
+  end
+end
+{% endhighlight %}
+</notextile>
+
+This works, but is somewhat verbose. Instead of using a class variable, you can use a class-level
+instance variable. What?! You thought instance variables were only for instances of the class?
+Look again:
+
+<notextile>
+{% highlight ruby %}
+class Creature
+  def self.life(life = nil)
+    @life = life || @life
+  end
+end
+{% endhighlight %}
+</notextile>
+
+The above works because within the context of the class method the instance variable refers to a
+class-level instance variable--not a normal instance variable. In fact, any time you reference an instance variable outside a method definition you are working with a class-level instance variable:
+
+<notextile>
+{% highlight ruby %}
+class MyObject
+  @class_level = "a class-level instance variable"
+  
+  def initialize
+    @normal = "a normal instance variable"
+  end
+end
+p MyObject.instance_variables #=> ["@class_level"]
+p MyObject.new.instance_variables #=> ["@normal"]
+{% endhighlight %}
+</notextile>
+
+Don't be confused. Classes in Ruby are also objects. Just like other objects they have their own
+instance variables. The trick with class-level instance variables is that they are defined
+after the class is created. With a normal object this would look like this:
+
+<notextile>
+{% highlight ruby %}
+o = MyObject.new
+p o.instance_variables #=> ["@normal"]
+o.instance_eval do
+  @new_var = "test"
+end
+p o.instance_variables #=> ["@normal", "@new_var"]
+{% endhighlight %}
+</notextile>
+
+Most of the time you probably setup instance variables for an object when you initialize it. However,
+with classes, since instance variables are created after the class is initialized (which happens as soon
+as you open the class to define methods), instance variables will always be <code>nil</code> when you
+create a subclass:
+
+<notextile>
+{% highlight ruby %}
+class LargeGwythaint < Gwythaint
+end
+p LargeGwythaint.life #=> nil !!!!
+{% endhighlight %}
+</notextile>
+
+Ruby gives us a nice way of working around this problem with a the <code>inherited</code> class method:
+
+<notextile>
+{% highlight ruby %}
+class Creature
+  def self.inherited(subclass)
+    subclass.instance_variable_set("@life", @life)
+  end
+end
+{% endhighlight %}
+</notextile>
+
+Which works as expected:
+
+<notextile>
+{% highlight ruby %}
+class LargeDragon < Dragon
+end
+p LargeDragon.life #=> 1340
+{% endhighlight %}
+</notextile>
+
+Of course, you can package all this logic up in its own module:
+
+<notextile>
+<notextile>
+{% highlight ruby %}
+module InheritableTraits
+
+  def self.included(base)
+    base.extend ClassMethods
+  end
+
+  module ClassMethods
+    def traits(*attrs)
+      @traits ||= []
+      @traits += attrs
+      attrs.each do |attr|
+        class_eval %{
+          def self.#{attr}(string = nil)
+            @#{attr} = string || @#{attr}
+          end
+          def self.#{attr}=(string = nil)
+            #{attr}(string)
+          end
+        }
+      end
+      @traits
+    end
+
+    def inherited(subclass)
+      (["traits"] + traits).each do |t|
+        ivar = "@#{t}"
+        subclass.instance_variable_set(
+          ivar,
+          instance_variable_get(ivar)
+        )
+      end
+    end
+  end
+
+end
+{% endhighlight %}
+</notextile>
+
+And make your life much easier:
+
+<notextile>
+{% highlight ruby %}
+class Creature
+  include InheritableTraits
+  traits :life, :strength, :charisma, :weapon
+end
+
+class Dragon < Creature
+  life 1340     # tough scales
+  strength 451  # bristling veins
+  charisma 1020 # toothy smile
+  weapon 939    # fire breath
+end
+
+class LargeDragon < Creature
+  life 2000     # even tougher
+  strength 821  # bulging veins
+  charisma 715  # much more vile
+  weapon 1213   # scorching flames
+end
+
+class Gwythaint < Creature
+  life 250      # a large bird
+  strength 340  # eats meat
+  charisma 191  # ugly
+  weapon 524    # beak & talons
+end
+
+class LargeGwythaint < Creature
+  life 612      # gigantic!
+  strength 429  # massive wings
+  charisma 95   # extremely ugly
+  weapon 842    # razor sharp talons
+end
+{% endhighlight %}
+</notextile>
+
+Now go read Why the Lucky Stiff's article "_Seeing Metaclasses Clearly_":http://whytheluckystiff.net/articles/seeingMetaclassesClearly.html for more metaprogramming madness.
