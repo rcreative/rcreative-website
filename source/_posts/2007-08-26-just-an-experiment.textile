@@ -1,0 +1,7 @@
+---
+title: Just an Experiment
+---
+
+!/images/game.png!
+
+OK, this has nothing to do with what I'm working on in "Adam's basement":http://basement.thewilliams.ws, but "here's a starfield simulation":http://johnwlong.com/game.html I've been working on for a small game in Javascript. It's an interesting example of what is possible in Javascript on a modern Web browser (tested on Safari 3 and Firefox 2). Be sure to check out the source. Prototype makes this type of thing extremely easy.

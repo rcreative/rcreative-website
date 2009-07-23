@@ -1,0 +1,21 @@
+---
+title: First Look at Radiant CMS
+---
+
+!(float-right)/images/pages_t.gif!:/images/pages.gif I've decided to follow "37signals' advice":http://37signals.com/svn/archives2/the_interface_as_a_spec_including_stories_inline.php and draw out "screens" for the admin system of the Ruby site before I do any major coding.
+
+I spent the afternoon drawing a few screens out on paper. This evening I took one of the screens and fleshed it out in Fireworks. Pictured left is the final result. It's a comp of the first page you will see after you login. It reveals the main contours of the way I picture the CMS working.
+
+The first three tabs across the top are for the three main model objects: Pages, Templates, and Snippets.
+
+*Pages* are the meat of the system. Each page will store the Textile formated data for a physical page on the Web site. Pages will be able to contain other pages using a simple template language. It will be easy to use the template language to create a blog index which lists the most recent articles.
+
+Each page will also be able to specify a *Template* with which it should be rendered. This should make it easy to repeat a look across several pages.
+
+Pages will also have the ability to include the content from *Snippets*--little bits of content that will be repeated accross several pages.
+
+I also spent some time today thinking about a name for my new CMS. I'd like to use a term from the gemstone world. Scanning through the terms in a "jewelry glossary":http://www.zulumoon.com/glossary/R-glossary.htm I ran accross a couple of words that would make really good names.
+
+The first one that I liked was "brilliant". Brilliant cut is the superman shaped gemstone. Brillaint CMS has a nice ring to it, but it does sound a little vain.
+
+The other option that I liked was "radiant". Radiant cut is a squarish shape. I don't like the shape as much a brilliant cut, but the name is rather nice. Unless someone has other suggestions I think I am going to call it Radiant CMS.

@@ -1,0 +1,11 @@
+---
+title: Radius 0.0.2 Released
+---
+
+I just released the next version of "Radius":http://radius.rubyforge.org. This is a minor update (mainly a little refactoring). From the change log:
+
+* Refactored Parser to use <tt>Context#render_tag</tt> instead of <tt>#send</tt> when rendering tags defined on a context.
+* <tt>UndefinedTagError</tt> is now thrown when <tt>Parser</tt> tries to render a tag which doesn't exist on a context.
+* Added <tt>Context#tag_missing</tt> which works like <tt>#method_method</tt> missing on <tt>Object</tt>, but is tag specific.
+
+*Update:* If you would like to help with the development of Radius, you can contribute to the project on GitHub: "http://github.com/jlong/radius":http://github.com/jlong/radius/.
