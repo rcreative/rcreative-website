@@ -4,6 +4,6 @@ title: Rails Badges
 
 Someone asked for "I wish this site were powered by Rails" badges on Ruby-Talk today so I thought I'd oblige them:
 
-!(no-border)http://wiseheartdesign.com/assets/2006/11/27/i-wish-rails.gif! &nbsp;&nbsp;&nbsp; !(no-border)http://wiseheartdesign.com/assets/2006/11/27/i-wish-rails-grayscale.gif!
+!(no-border)/images/i-wish-rails.gif! &nbsp;&nbsp;&nbsp; !(no-border)/images/i-wish-rails-grayscale.gif!
 
 Enjoy! :-)
