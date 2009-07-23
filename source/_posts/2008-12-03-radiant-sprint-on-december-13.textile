@@ -1,0 +1,11 @@
+---
+title: "Radiant Sprint on December 13"
+---
+
+!(no-border float-right)/images/radiant.png! Just in case you missed the news "we are planning":http://radiantcms.org/blog/archives/2008/11/25/radiant-mini-sprint---december-13/ another Radiant Sprint on Saturday, December 13. Several prestigious members of the "Raleigh Ruby Brigade":http://www.meetup.com/raleighrb/ plan to attend along with some of the more questionable characters (like me!).
+
+The plan is to continue working to implement the "next version of the Radiant UI":http://github.com/radiant/radiant-mockups/tree/master/blade and bring some of the internals up to snuff. Radiant has recently been upgraded to use the more modern RESTful approach, but there are still plenty of tests to write and other improvements to be made.
+
+This is the perfect opportunity to gain a little insight into the Radiant development process and get up to speed on some of the tools we have been working with ("RSpec":http://rspec.info/, "HAML":http://haml.hamptoncatlin.com/, "Serve":http://github.com/jlong/serve/, "Spec Integration":http://github.com/aiwilliams/spec_integration/, and "Dataset":http://github.com/aiwilliams/dataset/, to name a few).
+
+It will be hosted at Red Hat here in Raleigh. We'll get started around 9 am and continue until about 6 pm that evening. "RSVP if you want to come along for the fun.":http://www.meetup.com/raleighrb/calendar/9235561/ Everyone is welcome to attend, even if all you want to do is "heckle":http://www.youtube.com/watch?v=PUjgdFoALok.
