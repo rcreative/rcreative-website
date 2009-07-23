@@ -1,0 +1,117 @@
+---
+title: Better Modularization for Rails 2.0 (or What Rails Can Learn from Django)
+---
+
+In my previous post about "Rails and Engines":/2006/12/06/rails-needs-something-better-than-engines/, I talked about some of the issues I'd like to see resolved in Rails 2.0. Specifically, it seems that we need to rethink modularization in Rails and make it easier for people to share complete slices of applications.
+
+One of the primary hinderances of the present Rails architecture to modularization is the directory structure.
+
+Consider the typical rails <tt>app</tt> directory:
+
+<notextile>
+{% highlight text %}
+app/
+  controllers/
+    application.rb
+    account_controller.rb
+    blog_controller.rb
+    comments_controller.rb
+  helpers/
+    application_helper.rb
+    account_helper.rb
+    blog_helper.rb
+  models/
+    user.rb
+    blog.rb
+    post.rb
+    comment.rb
+  views/
+    account/
+      signup.rhtml
+      login.rhtml
+      edit.rhtml
+    blog/
+      index.rhtml
+      archive.rhtml
+      post.rhtml
+    comments/
+      view.rhtml
+      remove.rhtml
+    layouts/
+      application.rhtml
+{% endhighlight %}
+</notextile>
+
+Now at first glance, the Rails directory structure seems quite helpful. There is a place for everything and everything is in its place. Models go here, views here, controllers here... The entire MVC in 3 different directories. Wait a minute! Compare this to the "Django":http://djangoproject.com directory structure for the same application:
+
+<notextile>
+{% highlight text %}
+account/
+  __init__.py
+  urls.py
+  models.py
+  views.py
+  templates/
+    account/
+      account_login.html
+      account_signup.html
+      account_edit.html
+blog/
+  __init__.py
+  urls.py
+  models.py
+  views.py
+  templates/
+    blog/
+      blog_list.html
+      blog_archive.html
+      blog_detail.html
+    comment/
+      comment_view.html
+      comment_remove.html
+{% endhighlight %}
+</notextile>
+
+Wow! See the difference? Django divides the application up not according to file type, but according to __logical structure__. Related files are together. This makes it easy to share entire chunks of an application. All you have to do is create an svn:external to the appropriate directory of another app and instantly you have access to an entire slice of the other application.
+
+Imagine if Rails took the same approach. The new app directory could look something like this:
+
+<notextile>
+{% highlight text %}
+app/
+  application/
+    application_controller.rb
+    application_layout.rhtml
+  account/
+    _config.rb
+    _routes.rb
+    account_controller.rb
+    account_helper.rb
+    account_edit.rhtml
+    account_login.rhtml
+    account_signup.rhtml
+    user.rb
+    user_migrations.rb
+  blog/
+    _config.rb
+    _routes.rb
+    blog_controller.rb
+    blog_helper.rb
+    blog_index.rhtml
+    blog_archive.rhtml
+    blog_post.rhtml
+    comment.rb
+    comment_migrations.rb
+    comments_controller.rb
+    comments_helper.rb
+    comments_view.rhtml
+    post.rb
+    post_migrations.rb
+{% endhighlight %}
+</notextile>
+
+Now I've changed things around just a bit to accommodate the new directory structure and support better modularization. Views are now prefixed with the name of the controller that they are associated with (this allows us to avoid having to put them in a separate directory). I've also changed migrations around so that all the migrations for a particular model are in the same file (we would probably need a new domain language for this). Also note that the <tt>_config.rb</tt> and <tt>_routes.rb</tt> files give us a convenient place to store configuration for a particular slice of our application (the underscore prefix would sort them to the top of a directory listing).
+
+So that's my big idea for Rails 2.0. It would be a radical departure from the present directory structure. So radical that it would effectively make Rails 2.0 applications incompatible with Rails 1.0 apps. But we are already dropping support for deprecated features in Rails 2.0, so perhaps it's time to rethink the directory structure.
+
+*Update:* There is some "interesting discussion":http://groups.google.com/group/rubyonrails-core/browse_thread/thread/45685895778b1357/ going on about this on the Rails-Core mailing list.

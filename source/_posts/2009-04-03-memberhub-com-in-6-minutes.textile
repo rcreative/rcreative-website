@@ -1,0 +1,23 @@
+---
+title: "MemberHub.com in Six Minutes"
+---
+
+!/images/memberhub.png!:http://memberhub.com
+
+Since January of last year, I have been working with a small startup here in Raleigh building a web service called MemberHub. MemberHub has been a bit of a dream come true for me. It is the first time I've had the opportunity to build a subscription-based web service that has massive online appeal. If it takes off, I believe that MemberHub could be the next Facebook or LinkedIn.
+
+Now don't write me off just yet... Hear me out.
+
+People use Facebook for their personal lives to help manage the relationships they have with friends. LinkedIn is useful for keeping track of your business connections. MemberHub is designed to help organizations, such as churches and nonprofits connect with their members and manage the various groups that make up the organization.
+
+Using MemberHub, you can create online "hubs" for each of the groups that make up your organization. A hub is a simple online home for a group. It contains a home page, a calendar, a place for announcements, a discussion board/mailing list, and a place to upload files. A church, for example, could create hubs for each of its bible study  groups, a hub for the homeless ministry, a hub for the singles ministry, a hub for the worship team... You get the idea.
+
+Now the concept of a hub is nothing new. There are plenty of services online today that offer similar features. Many organizations are using services like Yahoo Groups or Google Calendar with great success. MemberHub's chief strength&#8212;and differentiator&#8212;is that it provides these features in a way that is friendly to organizations <strong>and</strong> members.
+
+For the organization, MemberHub makes it easy to setup and organize secure online homes for each of your groups. For the member, MemberHub makes it easy for you to keep up with multiple groups and even <strong>multiple organizations</strong> in one convenient location! One of the most incredible features of MemberHub is that it can take all of the events across all of the hubs you are affiliated with and display them on one convenient calendar. Imagine never having to enter events in for your organizational activities again!
+
+We've really worked hard to make MemberHub simple and intuitive. Below is a brief, 6-minute video that will give you a bit of the bigger picture of what MemberHub can do for you:
+
+<notextile><p><object classid="clsid:D27CDB6E-AE6D-11cf-96B8-444553540000" width="453" height="359" id="viddler_d1564606"><param name="flashvars" value="disablebranding=t" /><param name="movie" value="http://www.viddler.com/simple/d1564606/" /><param name="allowScriptAccess" value="always" /><param name="allowFullScreen" value="true" /><embed src="http://www.viddler.com/simple/d1564606/" width="453" height="359" type="application/x-shockwave-flash" allowScriptAccess="always" flashvars="disablebranding=t" allowFullScreen="true" name="viddler_d1564606"></embed></object></p></notextile>
+
+If you'd like to learn more about MemberHub, visit "http://memberhub.com":http://memberhub.com. And do let me know if you have questions or comments.

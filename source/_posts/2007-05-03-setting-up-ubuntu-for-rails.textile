@@ -1,0 +1,15 @@
+---
+title: Setting Up Ubuntu for Rails
+---
+
+!(float-right)http://farm1.static.flickr.com/198/482613727_d250389253_m.jpg!:http://showmedo.com/videos/video?name=rubyGrosenbachDeprec&fromSeriesID=48 I just found a wonderful little screencast by "Geoffrey Grosenbach":http://nubyonrails.com/ of "Peep Code Screencasts":http://peepcode.com/ on setting up the full Rails stack on Ubuntu. He's uploaded it so that "anyone can watch it over on the ShowMeDo website":http://showmedo.com/videos/video?name=rubyGrosenbachDeprec&fromSeriesID=48. 
+
+From the description:
+
+<blockquote>
+This 10 minute demo shows how easy it is to install Ruby, Rails, Apache, Mongrel, Subversion, and MySQL on an Ubuntu server. Capistrano and the deprec gem (deployment recipes) are used to automate the installation process with only a few commands. It finishes with a deployment of a Rails app to the newly built server!
+
+The demo is done with Parallels on a Mac, but would work with any machine that can boot from the Ubuntu 6.06 Live CD.
+</blockquote>
+
+Props to Geoffrey for his great work with helping Rails newbies (and even "old timers" like me) get their feet wet.

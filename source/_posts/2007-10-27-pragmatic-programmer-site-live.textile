@@ -1,0 +1,9 @@
+---
+title: Pragmatic Programmer Site Live!
+---
+
+<notextile><p><a href="http://pragprog.com/" title="The Pragmatic Programmers"><img src ="http://wiseheartdesign.com/assets/2007/10/27/pragprog-com-screenshot.png" width="453" height="150" alt="The Pragmatic Programmers" title="The Pragmatic Programmers" /></a></p></notextile>
+
+This may be old news for some of you, but the "Pragmatic Web Site":http://pragprog.com got a face lift a couple of weeks ago. I was thrilled to have the opportunity to work on the site with Mike, Dave, and Andy. Most of the design work was done this summer, while the finishing touches on programming and the data import pushed the launch date back to the beginning of October. (Site credits "here":http://pragprog.com/resources/credits/.)
+
+If you haven't seen it yet, I'd encourage you to head on over to the site and "buy a book or something":http://pragmaticprogrammer.com/titles/!

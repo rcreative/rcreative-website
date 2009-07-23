@@ -37,6 +37,7 @@ span.highlight, em.highlight, strong.highlight { background-color: #ff6; padding
 #content tt { background: #f0f0f0; border: 1px solid #ddd; padding: 4px; border-radius: !amount; -moz-border-radius: 3px; -webkit-border-radius: 3px; }
 #content li ul, #content li ol { margin: 0 1.75em; }
 #content ul, #content ol { margin: 0 1.75em 1.75em 1.75em; }
+#content blockquote { border-left: 8px solid #e5e5e5; color: #666; padding-left: 1em; }
 #content img { border: 1px solid #e5e5e5; background: white; padding: 5px; margin: -6px; }
 #content img.float-left { float: left; margin-right: 1.5em; margin-bottom: 0.75em; }
 #content img.float-right { float: right; margin-left: 1.5em; margin-bottom: 0.75em; }
