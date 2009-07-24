@@ -1,0 +1,7 @@
+---
+title: Ruby Web Site Goes Live!
+---
+
+<notextile><p><a href="http://ruby-lang.org/" title="Ruby Web Site"><img src ="http://wiseheartdesign.com/assets/2006/12/2/ruby-lang-org-screenshot.png" width="453" height="150" alt="Ruby Web Site" title="Ruby Web Site" /></a></p></notextile>
+
+At long last, "the Ruby site is live":http://ruby-lang.org! The site is the collective work of the "Ruby Visual Identity Team":http://rubyidentity.org and is powered by "Radiant":http://radiantcms.org. Kudos to everyone involved! "Full write up here.":http://www.ruby-lang.org/en/news/2006/09/12/site-launch-at-last/

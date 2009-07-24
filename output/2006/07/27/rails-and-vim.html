@@ -1,0 +1,91 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html lang="en" xml:lang="en" xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta content="text/html; charset=utf-8" http-equiv="Content-Type" />
+    <title>Rails and Vim</title>
+    <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css" />
+    <script src="/javascripts/jquery.js" type="text/javascript"></script>
+    <script src="/javascripts/fancyzoom.js" type="text/javascript"></script>
+    <script type="text/javascript">
+      //<![CDATA[
+        $(document).ready(function() {
+          $('a.zoom').fancyZoom();
+        });
+      //]]>
+    </script>
+  </head>
+  <body id="single_column_layout">
+    <div id="container">
+      <div id="header">
+        <div id="logo">
+          <a href="/">
+            <img alt="Recursive Creative" height="73" src="/images/logo.png" title="" width="241" />
+          </a>
+        </div>
+      </div>
+      <div id="main">
+        <div id="head">
+          <h1>Rails and Vim</h1>
+        </div>
+        <div id="content">
+          <p>This week I&#8217;ve been doing some work for a client where the most of the development needs to take place on Linux. It&#8217;s possible that I could have taken the time to stub out most of the code that depends on Linux, but instead I decided to do what I needed to do with with Vim over <span class="caps">SSH</span>. Vim is perfect for this kind of work. It&#8217;s not quite as friendly for Rails development as something like <a href="http://macromates.com">Textmate</a>, but once you get used to it it can be quite useful. The fact that it works well remotely is a huge plus.</p>
+          <p>One of the problems I have with Vim is that it&#8217;s hard to open a bunch of related files. Vim doesn&#8217;t know much about Rails so opening a model and an associated test case is difficult. I often have to type something like this:</p>
+          <div class="highlight"><pre><span class="nv">$ </span>vi -o app/models/user.rb <span class="nb">test</span>/unit/user_test.rb</pre>
+          </div>
+          <p>It&#8217;s even more verbose when I want to open all of the files associated with a controller. Imagine what I have to type when I want to open several controllers!</p>
+          <p>Today, I got tired of doing all that typing and created a small command to make this easier for me.  I put it in a file which I named <code>edit</code> and placed it in my home directory&#8217;s <code>bin</code> (which is in my environment&#8217;s path). Here&#8217;s the source:</p>
+          <div class="highlight"><pre><span class="c1">#!/usr/bin/env ruby</span>&#x000A;&#x000A;<span class="k">if</span> <span class="no">ARGV</span><span class="o">.</span><span class="n">empty?</span>&#x000A;  <span class="nb">puts</span> <span class="s2">&quot;usage: </span><span class="si">#{</span><span class="no">File</span><span class="o">.</span><span class="n">basename</span><span class="p">(</span><span class="vg">$0</span><span class="p">)</span><span class="si">}</span><span class="s2"> string&quot;</span>&#x000A;  <span class="nb">puts</span> <span class="s2">&quot;  Scans related Rails directories for &quot;</span> <span class="o">+</span> &#x000A;         <span class="s2">&quot;files begining with string &quot;</span>&#x000A;  <span class="nb">puts</span> <span class="s2">&quot;  and opens them in vi.&quot;</span>&#x000A;  <span class="nb">exit</span>&#x000A;<span class="k">end</span>&#x000A;&#x000A;<span class="n">files</span> <span class="o">=</span> <span class="o">[]</span>&#x000A;<span class="n">ignore</span> <span class="o">=</span> <span class="o">[/</span><span class="no">CVS</span><span class="vg">$/</span><span class="o">]</span>&#x000A;&#x000A;<span class="c1"># Find models or controllers that match args</span>&#x000A;<span class="no">ARGV</span><span class="o">.</span><span class="n">each</span> <span class="k">do</span> <span class="o">|</span><span class="n">arg</span><span class="o">|</span>&#x000A;  <span class="n">models</span> <span class="o">=</span> <span class="no">Dir</span><span class="o">[</span><span class="s2">&quot;app/models/</span><span class="si">#{</span><span class="n">arg</span><span class="si">}</span><span class="s2">*&quot;</span><span class="o">]</span>&#x000A;  <span class="n">controllers</span> <span class="o">=</span> <span class="no">Dir</span><span class="o">[</span><span class="s2">&quot;app/controllers/</span><span class="si">#{</span><span class="n">arg</span><span class="si">}</span><span class="s2">*&quot;</span><span class="o">]</span>&#x000A;  <span class="n">files</span> <span class="o">+=</span> <span class="n">models</span> <span class="o">+</span> <span class="n">controllers</span>&#x000A;<span class="k">end</span>&#x000A;&#x000A;<span class="c1"># Remove duplicates</span>&#x000A;<span class="n">files</span><span class="o">.</span><span class="n">sort!</span><span class="o">.</span><span class="n">uniq!</span>&#x000A;&#x000A;<span class="c1"># Add unit tests for models</span>&#x000A;<span class="n">files</span><span class="o">.</span><span class="n">grep</span><span class="p">(</span><span class="sr">%r{app/models/(.*?).rb}</span><span class="p">)</span> <span class="k">do</span>&#x000A;  <span class="n">tests</span> <span class="o">=</span> <span class="no">Dir</span><span class="o">[</span><span class="s2">&quot;test/unit/</span><span class="si">#{</span><span class="vg">$1</span><span class="si">}</span><span class="s2">_test.rb&quot;</span><span class="o">]</span>&#x000A;  <span class="n">files</span> <span class="o">+=</span> <span class="n">tests</span>&#x000A;<span class="k">end</span>&#x000A;&#x000A;<span class="c1"># Add views and functional tests for controllers</span>&#x000A;<span class="n">files</span><span class="o">.</span><span class="n">grep</span><span class="p">(</span><span class="sr">%r{app/controllers/(.*?)_controller.rb}</span><span class="p">)</span> <span class="k">do</span>&#x000A;  <span class="n">views</span> <span class="o">=</span> <span class="no">Dir</span><span class="o">[</span><span class="s2">&quot;app/views/</span><span class="si">#{</span><span class="vg">$1</span><span class="si">}</span><span class="s2">/*&quot;</span><span class="o">]</span>&#x000A;  <span class="n">tests</span> <span class="o">=</span> <span class="no">Dir</span><span class="o">[</span><span class="s2">&quot;test/functional/</span><span class="si">#{</span><span class="vg">$1</span><span class="si">}</span><span class="s2">_controller_test.rb&quot;</span><span class="o">]</span>&#x000A;  <span class="n">files</span> <span class="o">+=</span> <span class="n">views</span> <span class="o">+</span> <span class="n">tests</span>&#x000A;<span class="k">end</span>&#x000A;&#x000A;<span class="c1"># Add views and fixtures for mailers</span>&#x000A;<span class="n">files</span><span class="o">.</span><span class="n">grep</span><span class="p">(</span><span class="sr">%r{app/models/(.*?_mailer).rb}</span><span class="p">)</span> <span class="k">do</span>&#x000A;  <span class="n">views</span> <span class="o">=</span> <span class="no">Dir</span><span class="o">[</span><span class="s2">&quot;app/views/</span><span class="si">#{</span><span class="vg">$1</span><span class="si">}</span><span class="s2">/*&quot;</span><span class="o">]</span>&#x000A;  <span class="n">fixtures</span> <span class="o">=</span> <span class="no">Dir</span><span class="o">[</span><span class="s2">&quot;test/fixtures/</span><span class="si">#{</span><span class="vg">$1</span><span class="si">}</span><span class="s2">/*&quot;</span><span class="o">]</span>&#x000A;  <span class="n">files</span> <span class="o">+=</span> <span class="n">views</span> <span class="o">+</span> <span class="n">fixtures</span>&#x000A;<span class="k">end</span>&#x000A;&#x000A;<span class="c1"># Again remove duplicates</span>&#x000A;<span class="n">files</span><span class="o">.</span><span class="n">sort!</span><span class="o">.</span><span class="n">uniq!</span>&#x000A;&#x000A;<span class="c1"># Remove files that match ignore list</span>&#x000A;<span class="n">files</span><span class="o">.</span><span class="n">delete_if</span> <span class="k">do</span> <span class="o">|</span><span class="n">filename</span><span class="o">|</span>&#x000A;  <span class="n">result</span> <span class="o">=</span> <span class="kp">false</span>&#x000A;  <span class="n">ignore</span><span class="o">.</span><span class="n">each</span> <span class="k">do</span> <span class="o">|</span><span class="n">i</span><span class="o">|</span>&#x000A;    <span class="k">if</span> <span class="n">filename</span> <span class="o">=~</span> <span class="n">i</span>&#x000A;      <span class="n">result</span> <span class="o">=</span> <span class="kp">true</span>&#x000A;      <span class="k">break</span>&#x000A;    <span class="k">end</span>&#x000A;  <span class="k">end</span>&#x000A;  <span class="n">result</span>&#x000A;<span class="k">end</span>&#x000A;&#x000A;<span class="nb">system</span> <span class="s2">&quot;vi -o </span><span class="si">#{</span><span class="n">files</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="s1">&#39; &#39;</span><span class="p">)</span><span class="si">}</span><span class="s2">&quot;</span></pre>
+          </div>
+          <p>Now I can type:</p>
+          <div class="highlight"><pre><span class="nv">$ </span>edit account_c</pre>
+          </div>
+          <p>And it will open <code>account_controller.rb</code>, <code>account_controller_test.rb</code>, and all of its views. I can also type:</p>
+          <div class="highlight"><pre><span class="nv">$ </span>edit account_m</pre>
+          </div>
+          <p>And it will open <code>account_mailer.rb</code>, <code>account_mailer_test.rb</code>, all of its views, and all of its fixtures.</p>
+          <p>Much, much better.</p>
+        </div>
+      </div>
+      <div id="footer">
+        <div class="section" id="contact_us">
+          <p>
+            <strong class="title">We love talking with people about their ideas!</strong>
+            Contact us at
+            <br />
+            <strong class="highlight">919-721-9522</strong>
+            or
+            <a class="alt" href="mailto:us@recursivecreative.com">us@recursivecreative.com</a>
+          </p>
+        </div>
+        <div class="section" id="ruby_rails_and_twitter">
+          <div id="ruby_and_rails">
+            <img alt="Ruby" class="logo" height="79" src="/images/ruby_logo.png" title="" width="54" />
+            <img alt="Rails" class="logo" height="79" src="/images/rails_logo.png" title="" width="54" />
+            We build
+            <a href="http://ruby-lang.org/">Ruby</a>
+            and
+            <a href="http://rubyonrails.org/">Ruby on Rails</a>
+            applications.
+          </div>
+          <div id="twitter">
+            <img alt="Twitter" class="logo" height="67" src="/images/twitter_bird.png" title="" width="54" />
+            <strong class="highlight">Follow us on Twitter:</strong>
+            <div class="handles">
+              <a class="alt" href="http://twitter.com/friendships/add/rcreative">@rcreative</a>, <a class="alt" href="http://twitter.com/friendships/add/johnwlong">@johnwlong</a>, <a class="alt" href="http://twitter.com/friendships/add/aiwilliams">@aiwilliams</a>
+            </div>
+          </div>
+        </div>
+        <div class="section" id="fine_print">
+          <p>
+            Copyright &copy; 2009, Recursive Creative, LLC. All rights reserved. &nbsp; 613 Ashe Avenue &bull; Cary, NC 27518
+          </p>
+        </div>
+      </div>
+    </div>
+    <script type="text/javascript">
+      //<![CDATA[
+        var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www."); document.write(unescape("%3Cscript src='" + gaJsHost + "google-analytics.com/ga.js' type='text/javascript'%3E%3C/script%3E")); try { var pageTracker = _gat._getTracker("UA-9916341-1"); pageTracker._trackPageview(); } catch(err) {}
+      //]]>
+    </script>
+  </body>
+</html>

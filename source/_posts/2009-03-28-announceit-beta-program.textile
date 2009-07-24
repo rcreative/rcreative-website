@@ -1,0 +1,13 @@
+---
+title: AnnounceIt Beta Program
+---
+
+!/images/announceit.png!
+
+Adam Williams and I are working on a new project together. It's called "AnnounceIt":http://announceitapp.com/.
+
+AnnounceIt is a super easy way to put up a teaser page on a domain to start collecting e-mail addresses. It's great for an "Announcements Only" mailing list for an event, web site, or web application that is being developed. You can see an example of a "teaser page" for a Web application "here":http://missioncontrolapp.com/ and "here":http://www.announceitapp.com/ (yes we are using it to announce our own web application).
+
+If you'd like to be notified when we launch AnnounceIt, signup for our mailing list at "announceitapp.com":http://www.announceitapp.com/.
+
+If you'd like to be part of our beta program send us an email at "us@recursivecreative.com":mailto:us@recursivecreative.com or reply to the "@rcreative":http://twitter.com/rcreative user on Twitter.

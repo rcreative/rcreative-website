@@ -1,0 +1,13 @@
+---
+title: Snakes and Rubies Audio and Video
+---
+
+"!(float-right no-border)/images/snakes-and-rubies.gif!":http://snakesandrubies.com/ Jacob Kaplan-Moss just anounced that he has posted the audio and video from the "Snakes and Rubies":http://snakesandrubies.com/ event!
+
+If you didn't hear about it the first time, Snakes and Rubies was a mini-conference of sorts that I helped coordinate for peole interested in "Django":http://www.djangoproject.com/ and "Rails":http://rubyonrails.com/.
+
+We invited "Adrian Holovaty":http://holovaty.com (lead developer of the Django project) and "David Heinemeier Hansson":http://www.loudthinking.com/ (creator of Rails) to come and share with us about their work and the future of Web application development.
+
+The event was a blast and much was learned about the differences and similarities of Django and Rails. If you haven't already, I'd encourage you to head on over to the "Snakes and Rubies Web site":http://snakesandrubies.com/ and download the audio or video from the event.
+
+*Update:* The Snakes and Rubies website is no longer online. You can download the audio and the video from the event on the Django project's website "here":http://www.djangoproject.com/snakesandrubies/.

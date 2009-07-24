@@ -1,0 +1,24 @@
+---
+title: Speaking at Ruby Conf in October!
+---
+
+My "Ruby Conf":http://rubyconf.org talk proposal was accepted! This will give me a chance to show of "Radiant":http://radiantcms.org to the rest of the Ruby community in October. From the talk description:
+
+<blockquote>
+<p>Say the words "content management" in the ears of nearly any Web developer and they will likely frown and complain that most content management systems are too complicated, difficult to setup, or not very flexible. They have good reason to complain. Content management systems are notorious for containing every feature, except for the kitchen sink!</p>
+
+Enter Radiant--a light-weight content management system designed from the ground up to be simple to use, while remaining flexible and powerful. It's a content management system that has borrowed much from Textpattern and MovableType while seeking to be more than a simple a blogging engine.
+
+Radiant features:
+
+* The ability to arrange pages in a hierarchy
+* Layouts that can be used to apply a common look to a Web site
+* Snippets that are similar to partials or includes
+* Pages which are defined in multiple parts (body, extended, sidebar, etc...)
+* A custom tagging language ("radius":http://radius.rubyforge.org)
+* Special page-oriented plugins called behaviors
+* A simple user management/permissions system
+* Several domain specific languages which make it easy to write plugins
+
+<p>In his talk John will talk about the design and discovery process he went through while building Radiant and cover the guiding philosophies behind it. He will also demonstrate installation and setup from a Gem and talk about how Radiant can be extended. You will discover the joys of Radiant's robust domain languages and revel in the ease with which you can create new content. He will also discuss how Radiant is being used on the new version of the main Ruby web site ("http://ruby-lang.org":http://new.ruby-lang.org) and explain how others are using it.</p>
+</blockquote>

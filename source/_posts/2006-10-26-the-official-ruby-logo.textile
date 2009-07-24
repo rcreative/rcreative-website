@@ -1,0 +1,5 @@
+---
+title: The Official Ruby Logo
+---
+
+!(float-left)http://static.flickr.com/107/279947192_d298654227_o.png!:http://rubyidentity.org It's official! Matz now owns the copyright on the Ruby logo the identity team did for the "Ruby Web site":http://ruby-lang.org. You can now download the logo and use it on your own projects (T-shirts, Web sites, etc...)--free of charge. It's available under the "Creative Commons Attribution-ShareAlike 2.5 License":http://creativecommons.org/licenses/by-sa/2.5/. Get the complete logo kit at "rubyidentity.org":http://rubyidentity.org.

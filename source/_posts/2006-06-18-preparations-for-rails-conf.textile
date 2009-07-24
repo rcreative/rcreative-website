@@ -1,0 +1,15 @@
+---
+title: Preparations for Rails Conf 2006
+---
+
+!(float-right no-border)/images/card_t.gif!:/images/card.gif I had fun today working on something I figure I'll need at "Rails Conf":http://railsconf.org: *business cards!* Pictured right is the design I came up with. I especially like the tag-line: _Beautiful Code. Smart Design._
+
+I decided to go with a pure black and white design because I wanted to print them on my parent's laser printer. (We have a bubble jet, but the results are hard to predict as it's a Lexmark.)
+
+The nice thing about the constraint of having to design the business cards in black and white is that it forced me to concentrate on the shapes and balance of the design vs. the color.
+
+One thing I've been thinking about lately is how constraints can often push you to higher levels of achievement. I thought about this as I worked on a "default design for a Radiant blog":http://demo.radiantcms.org last week. The challenge there was to create a design that didn't rely on images. Since Radiant doesn't support storing images in the database yet, I didn't want to add extra clutter to the public directory for an example template that a user may or may not choose to use. Working to keep the style of the template limited to what I could do with borders and backgrounds certainly expanded my mind to some different techniques. Constraints can do that--if you let them.
+
+!(float-right no-border)/images/i-heart-ruby.jpg!:http://www.cafepress.com/pulchritude.61223201 "Something else":http://www.cafepress.com/pulchritude.61223201 arrived this week that I'm going to need at Rails Conf (pictured right). Just look at that beautiful ruby from the Ruby-Lang.org design! It makes me proud to be able to wear such a nice T-shirt.
+
+What are you bringing to Rails Conf?

@@ -1,0 +1,101 @@
+---
+title: Rails and Vim
+---
+
+This week I've been doing some work for a client where the most of the development needs to take place on Linux. It's possible that I could have taken the time to stub out most of the code that depends on Linux, but instead I decided to do what I needed to do with with Vim over SSH. Vim is perfect for this kind of work. It's not quite as friendly for Rails development as something like "Textmate":http://macromates.com, but once you get used to it it can be quite useful. The fact that it works well remotely is a huge plus.
+
+One of the problems I have with Vim is that it's hard to open a bunch of related files. Vim doesn't know much about Rails so opening a model and an associated test case is difficult. I often have to type something like this:
+
+<notextile>
+{% highlight bash %}
+$ vi -o app/models/user.rb test/unit/user_test.rb
+{% endhighlight %}
+</notextile>
+
+It's even more verbose when I want to open all of the files associated with a controller. Imagine what I have to type when I want to open several controllers!
+
+Today, I got tired of doing all that typing and created a small command to make this easier for me.  I put it in a file which I named @edit@ and placed it in my home directory's @bin@ (which is in my environment's path). Here's the source:
+
+<notextile>
+{% highlight ruby %}
+#!/usr/bin/env ruby
+
+if ARGV.empty?
+  puts "usage: #{File.basename($0)} string"
+  puts "  Scans related Rails directories for " + 
+         "files begining with string "
+  puts "  and opens them in vi."
+  exit
+end
+
+files = []
+ignore = [/CVS$/]
+
+# Find models or controllers that match args
+ARGV.each do |arg|
+  models = Dir["app/models/#{arg}*"]
+  controllers = Dir["app/controllers/#{arg}*"]
+  files += models + controllers
+end
+
+# Remove duplicates
+files.sort!.uniq!
+
+# Add unit tests for models
+files.grep(%r{app/models/(.*?).rb}) do
+  tests = Dir["test/unit/#{$1}_test.rb"]
+  files += tests
+end
+
+# Add views and functional tests for controllers
+files.grep(%r{app/controllers/(.*?)_controller.rb}) do
+  views = Dir["app/views/#{$1}/*"]
+  tests = Dir["test/functional/#{$1}_controller_test.rb"]
+  files += views + tests
+end
+
+# Add views and fixtures for mailers
+files.grep(%r{app/models/(.*?_mailer).rb}) do
+  views = Dir["app/views/#{$1}/*"]
+  fixtures = Dir["test/fixtures/#{$1}/*"]
+  files += views + fixtures
+end
+
+# Again remove duplicates
+files.sort!.uniq!
+
+# Remove files that match ignore list
+files.delete_if do |filename|
+  result = false
+  ignore.each do |i|
+    if filename =~ i
+      result = true
+      break
+    end
+  end
+  result
+end
+
+system "vi -o #{files.join(' ')}"
+{% endhighlight %}
+</notextile>
+
+Now I can type:
+
+<notextile>
+{% highlight bash %}
+$ edit account_c
+{% endhighlight %}
+</notextile>
+
+And it will open @account_controller.rb@, @account_controller_test.rb@, and all of its views. I can also type:
+
+<notextile>
+{% highlight bash %}
+$ edit account_m
+{% endhighlight %}
+</notextile>
+
+And it will open @account_mailer.rb@, @account_mailer_test.rb@, all of its views, and all of its fixtures.
+
+Much, much better.
