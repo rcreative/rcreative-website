@@ -31,9 +31,7 @@ end
 Ruby makes creating this kind of "Domain Specific Language":http://weblog.jamisbuck.org/2006/4/20/writing-domain-specific-languages/ a snap, but it's not without it's
 pitfalls if you've never done it before.
 
-At first glance you might think that you could store this kind of meta information in a class
-variable. Let's take a simple example. You want to create the <code>Creature</code> class that
-<code>Dragon</code> inherits from. You might define your first attribute like this:
+At first glance you might think that you could store this kind of meta information in a class variable. Let's take a simple example. You want to create the <code>Creature</code> class that <code>Dragon</code> inherits from. You might define your first attribute like this:
 
 <notextile>
 {% highlight ruby %}
@@ -47,8 +45,7 @@ end
 
 Class variables are a convenient method of storing information in the class object itself. Since class variables look much like instance variables (in that they are preceded with two @ signs) you might be tempted to think that they are just instance variables for classes, but don't be fooled! Class variables are shared variables. Every subclass of a superclass has access to the superclass's class variables between superclasses and subclasses. That is, instead of getting a new version of the class variable every time you inherit from the superclass, you get the same version of the variable (not a copy).
 
-In practice this means that class variables are a poor choice for storing meta data. In the
-example above if we inherit from Creature more than once we quickly see the problem:
+In practice this means that class variables are a poor choice for storing meta data. In the example above if we inherit from Creature more than once we quickly see the problem:
 
 <notextile>
 {% highlight ruby %}
@@ -62,10 +59,7 @@ p Dragon.life  #=> 250 !!!!
 {% endhighlight %}
 </notextile>
 
-Instead of getting 1340 for the dragon's life, we get 250!! Again this is because class variables
-are shared between the superclass and every one of its subclasses. It has been suggested that
-an easy way to work around this problem is to use a hash and store class/value pairs for each
-of the subclasses:
+Instead of getting 1340 for the dragon's life, we get 250!! Again this is because class variables are shared between the superclass and every one of its subclasses. It has been suggested that an easy way to work around this problem is to use a hash and store class/value pairs for each of the subclasses:
 
 <notextile>
 {% highlight ruby %}
@@ -78,9 +72,7 @@ end
 {% endhighlight %}
 </notextile>
 
-This works, but is somewhat verbose. Instead of using a class variable, you can use a class-level
-instance variable. What?! You thought instance variables were only for instances of the class?
-Look again:
+This works, but is somewhat verbose. Instead of using a class variable, you can use a class-level instance variable. What?! You thought instance variables were only for instances of the class? Look again:
 
 <notextile>
 {% highlight ruby %}
@@ -92,8 +84,7 @@ end
 {% endhighlight %}
 </notextile>
 
-The above works because within the context of the class method the instance variable refers to a
-class-level instance variable--not a normal instance variable. In fact, any time you reference an instance variable outside a method definition you are working with a class-level instance variable:
+The above works because within the context of the class method the instance variable refers to a class-level instance variable--not a normal instance variable. In fact, any time you reference an instance variable outside a method definition you are working with a class-level instance variable:
 
 <notextile>
 {% highlight ruby %}
@@ -109,9 +100,7 @@ p MyObject.new.instance_variables #=> ["@normal"]
 {% endhighlight %}
 </notextile>
 
-Don't be confused. Classes in Ruby are also objects. Just like other objects they have their own
-instance variables. The trick with class-level instance variables is that they are defined
-after the class is created. With a normal object this would look like this:
+Don't be confused. Classes in Ruby are also objects. Just like other objects they have their own instance variables. The trick with class-level instance variables is that they are defined after the class is created. With a normal object this would look like this:
 
 <notextile>
 {% highlight ruby %}
@@ -124,10 +113,7 @@ p o.instance_variables #=> ["@normal", "@new_var"]
 {% endhighlight %}
 </notextile>
 
-Most of the time you probably setup instance variables for an object when you initialize it. However,
-with classes, since instance variables are created after the class is initialized (which happens as soon
-as you open the class to define methods), instance variables will always be <code>nil</code> when you
-create a subclass:
+Most of the time you probably setup instance variables for an object when you initialize it. However, with classes, since instance variables are created after the class is initialized (which happens as soon as you open the class to define methods), instance variables will always be <code>nil</code> when you create a subclass:
 
 <notextile>
 {% highlight ruby %}
@@ -161,7 +147,6 @@ p LargeDragon.life #=> 1340
 
 Of course, you can package all this logic up in its own module:
 
-<notextile>
 <notextile>
 {% highlight ruby %}
 module InheritableTraits

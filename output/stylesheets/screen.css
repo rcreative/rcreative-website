@@ -129,6 +129,9 @@ body { background: url(/images/dots_background.png) repeat-x top; color: #333; }
 
 #content { padding: 1.5em 30px 0.5em; margin-bottom: -1.5em; }
 
+#comments { padding: 0 30px 0.5em; margin-bottom: -1.5em; }
+#comments h3 { margin-top: 0; }
+
 #footer .section { border-top: 6px solid #e5e5e5; }
 #footer .section#contact_us { padding: 1.5em 0 0; margin: 1.5em 0; overflow: hidden; display: inline-block; }
 #footer .section#contact_us { display: block; }

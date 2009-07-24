@@ -1,0 +1,20 @@
+---
+title: Two Rails Testing Plugins
+---
+
+I just released two Rails plugins that should make testing a little easier for some of you.
+
+* The "test_helpers":http://faithfulcode.rubyforge.org/svn/plugins/trunk/test_helpers/ plugin makes it easy to DRY up your test cases by moving shared code into modules. It includes the handy dandy  "test_helper" class method to make requiring and including a snap.
+* The "abstract_testcases":http://faithfulcode.rubyforge.org/svn/plugins/trunk/abstract_testcases/ plugin makes it easy to create abstract test cases that don't complain about tests not being defined. If you'd rather not go the module route, this is the plugin for you.
+
+Installation is just like any other Rails plugin:
+
+<notextile>
+{% highlight bash %}
+$ script/plugin source http://wiseheartdesign.com/svn/plugins/
+$ script/plugin install test_helpers
+$ script/plugin install abstract_testcases
+{% endhighlight %}
+</notextile>
+
+Comments and feedback are welcome.

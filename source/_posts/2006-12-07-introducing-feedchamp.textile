@@ -1,0 +1,11 @@
+---
+title: "Introducing FeedChamp: A Camping RSS Feed Aggregator"
+---
+
+I went "camping":http://code.whytheluckystiff.net/camping/ last night and decided to see how easy it would be to create an RSS feed aggregator. After just a short time I had a working app and with some additional tweaking it became FeedChamp:
+
+"http://github.com/jlong/feedchamp":http://github.com/jlong/feedchamp
+
+Have a look if you can. And if you want to help with its development I'll gladly give you commit rights.
+
+It's not much right now, but perhaps with a little love from a few others it will turn into a nice app. For more info see the "README":http://github.com/jlong/feedchamp/blob/2cfaa11df8169d4df4015a82832e8de71111097e/README.

@@ -1,0 +1,9 @@
+---
+title: Ruby Conf Facebook 2006
+---
+
+!(float-left)/images/ruby-conf-facebook.jpg!:http://wiki.rubygarden.org/Ruby/page/show/RubyConf2006Facebook Looking to meet up with an old friend at "Ruby Conf":http://rubyconf.org/? Interested in getting together with someone you've never met in the flesh, but know through electronic means? "James Edward Gray":http://blog.grayproductions.net/ has put together just the thing. If you are planning on attending Ruby Conf, head on over to the "Facebook page":http://wiki.rubygarden.org/Ruby/page/show/RubyConf2006Facebook on the Ruby wiki and add your photo.
+
+"Pop me an e-mail":/contact/ if you plan to be at the conference and want to get together. I'd love to talk about "Radiant":http://radiantcms.org/, Ruby, Rails, business, or any other topic that might interest you.
+
+BTW, if you missed it before, "the schedule for Ruby Conf":http://rubyconf.org/agenda.html is now up. Looks like I'm up to talk about Radiant on Friday afternoon.

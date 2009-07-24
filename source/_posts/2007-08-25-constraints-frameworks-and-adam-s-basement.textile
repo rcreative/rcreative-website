@@ -1,0 +1,13 @@
+---
+title: "Constraints, Frameworks, and Adam’s Basement"
+---
+
+It's official. Adam Williams and I are now working feverishly "in his basement":http://basement.thewilliams.ws on our little idea for a web app. We're both pushing off other obligations for the next 3 months so that we can concentrate on building a quality product.
+
+One of the fun things about building your own application is that you can truly make it whatever you want it to be. If you've been in an environment (like me) where you are constantly building things for other people, working on your own project can be liberating. As a creative person I love this! The sky is the limit. No idea is a bad one. Every idea is worth considering.
+
+But wait a minute! Even though we are now working on our own project we still have constraints. We don't have an unlimited amount of time or money that we can devote to this. We eventually need to ship a working product even if it isn't everything we initially visualized it would be. In fact, we have to be brutal about what we allow into the app and what we throw out. If we aren't brutal we'll end up with something sub-par. Either the app will lack the really useful features when it ships or it will never ship.
+
+This week we've worn our creative hat a lot. One of the mistakes I think that we have made is that we have focused a lot on system architecture issues and not enough on application features. I'm beginning to realize that on the front end of this process it is extremely important to focus on application features. We can always refactor the application in the future when we know more about what the system architecture issues are. The features will help clarify that.
+
+Extract a framework from your application. Resist the urge to invent a framework before working on features.

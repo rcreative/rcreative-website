@@ -1,0 +1,21 @@
+---
+title: So You Want to Write a Book?
+---
+
+Over on "Dave Thomas' Blog":http://pragdave.pragprog.com/ he's writing a unique series of articles entitled <em>So You Want To Write a Book</em>. If you've ever thought about writing a technical book, or even a non-technical book you will definitely enjoy the series. Here's an excerpt from his second article, "_The Hero's Journey_":http://pragdave.pragprog.com/pragdave/2007/03/sywtwab_2_the_h.html:
+
+<blockquote>
+Every Hero's Journey follows the same basic plan. We start by meeting the protagonist, an average person living a standard life. Suddenly, something bad happens to them, normally something unimaginable and outside their control. At this point, our character must make a decision. Do they cave, or do they commit to face the challenge—do the take a risk an embark on the journey?
+
+Once they join the path, they face a series of challenges, often getting harder or more complex as the story progresses. By overcoming each, the hero gradually masters the initial problem.
+
+But the story never ends there. Once the hero conquers all the problems, they face one last challenge. They must return to the real world, which often feels different to them. However, once back home, they get to apply what they learned on their journey. They are stronger.
+
+What does this have to do with technical books?
+
+Everything.
+
+Because a good technical book is also a hero's journey. The reader joins the book already faced with a major challenge—they need to learn some new technique or technology. Thy need to make a commitment to follow the path. Along the way, they need to learn stuff, try things, conquering increasingly difficult concepts and challenges. Eventually they graduate; they've learned what they came to learn. But they journey doesn't end there. Like the hero, they then have to come home, bringing back what they learned.
+</blockquote>
+
+Dave really has a talent for connecting with his readers. "Read More...":http://pragdave.pragprog.com/pragdave/writing_a_book/index.html

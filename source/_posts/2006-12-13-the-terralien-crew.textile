@@ -1,0 +1,13 @@
+---
+title: The Terralien Crew
+---
+
+!(float-right)/images/terralien-com.png!:http://terralien.com/ Nathaniel Talbott (of "Test::Unit":http://ruby-doc.org/stdlib/libdoc/test/unit/rdoc/index.html fame) has put together an unbelievable crew that may be just what you need for your next Ruby on Rails project. Crew members include such notables as:
+
+* *"Myself":http://wiseheartdesign.com/portfolio/*
+* *"Bruce Williams":http://codefluency.com/* (a popular blogger, programmer, and designer)
+* *"Matt McCray":http://mattmccray.com/* (the author of "Comatose CMS":http://comatose.rubyforge.org/ and the "Rails Theme Support Plugin":http://www.mattmccray.com/pivot/archive.php?c=Theme_Support)
+* *"Duff O'Melia":http://blog.codora.com/* (the creator of "Soapadoo":http://soapadoo.com)
+* "And others...":http://terralien.com/about/people/
+
+Terralien is a network of designers and programmers who specialize in developing Web applications with Ruby on Rails. We have a reputation for being able to deliver quality code on a deadline through rapid prototyping and incremental release cycles. Read more about the crew on the "Terralien  Web site":http://terralien.com/.
