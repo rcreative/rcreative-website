@@ -1,0 +1,21 @@
+Intense Debate
+--------------
+
+1. Copy and paste the following code into the area where you would like Intense Debate comments to appear:
+
+<script>
+var idcomments_acct = '76d4e751ddadd782a2ec9a8f8d981c4a';
+var idcomments_post_id;
+var idcomments_post_url;
+</script>
+<span id="IDCommentsPostTitle" style="display:none"></span>
+<script type='text/javascript' src='http://www.intensedebate.com/js/genericCommentWrapperV2.js'></script>
+
+2. To display a link with the current comment count, for example Comments (7), copy and paste the following code where you want the link to appear:
+
+<script>
+var idcomments_acct = '76d4e751ddadd782a2ec9a8f8d981c4a';
+var idcomments_post_id;
+var idcomments_post_url;
+</script>
+<script type="text/javascript" src="http://www.intensedebate.com/js/genericLinkWrapperV2.js"></script>
