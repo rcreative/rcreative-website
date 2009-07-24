@@ -25,6 +25,13 @@
           %h1= page.title
         #content
           ~ content
+        #comments
+          :javascript
+            var idcomments_acct = '76d4e751ddadd782a2ec9a8f8d981c4a';
+            var idcomments_post_id;
+            var idcomments_post_url;
+          %span#IDCommentsPostTitle{:style=>"display:none"}
+          %script{:type=>"text/javascript", :src=>"http://www.intensedebate.com/js/genericCommentWrapperV2.js"}
       #footer
         .section#contact_us
           %p
