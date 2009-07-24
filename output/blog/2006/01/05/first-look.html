@@ -2,7 +2,7 @@
 <html lang="en" xml:lang="en" xmlns="http://www.w3.org/1999/xhtml">
   <head>
     <meta content="text/html; charset=utf-8" http-equiv="Content-Type" />
-    <title>About Recursive Creative</title>
+    <title>First Look at Radiant CMS</title>
     <link href="/blog/atom.xml" rel="alternate" title="Recursive Creative" type="application/atom+xml" />
     <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css" />
     <script src="/javascripts/jquery.js" type="text/javascript"></script>
@@ -26,33 +26,29 @@
       </div>
       <div id="main">
         <div id="head">
-          <h1>About Us</h1>
+          <h1>First Look at Radiant CMS</h1>
         </div>
         <div id="content">
-          <h2>John W. Long</h2>
-          <p>
-            With a background in programming and design John is one of those rare people that has
-            the ability to to help you make wise decisions about the software that you are
-            building. He is known for his keen insight and versatility. John is passionate
-            about building beautiful and usable web sites and applications. You may already be
-            familiar with some of his work on <a href="http://ruby-lang.org">ruby-lang.org</a>,
-            <a href="http://pragprog.com/">pragprog.com</a>, or
-            <a href="http://terralien.com">terralien.com</a>. John is also the original developer
-            behind <a href="http://radiantcms.org">Radiant CMS</a>, the leading content management
-            solution for <a href="http://rubyonrails.org">Ruby on Rails</a>.
-          </p>
-          <h2>Adam Williams</h2>
-          <p>
-            Adam is an outstanding developer with a broad base of experience in both Ruby and Java.
-            He&#8217;s been using <a href="http://rubyonrails.org">Ruby on Rails</a> since it was
-            introduced in late 2004 and has a detailed knowledge of its internals. As a programmer,
-            Adam&#8217;s great strength is in systems architecture and design. He has the knowledge
-            and skill to break a problem into its various parts and come up with a solution
-            that is both robust and maintainable. Adam is an avid test-first developer and is well
-            versed in many of the modern Ruby testing frameworks including
-            <a href="http://rspec.info/">Rspec</a> and
-            <a href="http://ruby-doc.org/stdlib/libdoc/test/unit/rdoc/classes/Test/Unit.html">Test::Unit</a>.
-          </p>
+          <p><a href="/images/pages.gif"><img src="/images/pages_t.gif" class="float-right" alt="" /></a> I&#8217;ve decided to follow <a href="http://37signals.com/svn/archives2/the_interface_as_a_spec_including_stories_inline.php">37signals&#8217; advice</a> and draw out &#8220;screens&#8221; for the admin system of the Ruby site before I do any major coding.</p>
+          <p>I spent the afternoon drawing a few screens out on paper. This evening I took one of the screens and fleshed it out in Fireworks. Pictured left is the final result. It&#8217;s a comp of the first page you will see after you login. It reveals the main contours of the way I picture the <span class="caps">CMS</span> working.</p>
+          <p>The first three tabs across the top are for the three main model objects: Pages, Templates, and Snippets.</p>
+          <p><strong>Pages</strong> are the meat of the system. Each page will store the Textile formated data for a physical page on the Web site. Pages will be able to contain other pages using a simple template language. It will be easy to use the template language to create a blog index which lists the most recent articles.</p>
+          <p>Each page will also be able to specify a <strong>Template</strong> with which it should be rendered. This should make it easy to repeat a look across several pages.</p>
+          <p>Pages will also have the ability to include the content from <strong>Snippets</strong>&#8212;little bits of content that will be repeated accross several pages.</p>
+          <p>I also spent some time today thinking about a name for my new <span class="caps">CMS</span>. I&#8217;d like to use a term from the gemstone world. Scanning through the terms in a <a href="http://www.zulumoon.com/glossary/R-glossary.htm">jewelry glossary</a> I ran accross a couple of words that would make really good names.</p>
+          <p>The first one that I liked was &#8220;brilliant&#8221;. Brilliant cut is the superman shaped gemstone. Brillaint <span class="caps">CMS</span> has a nice ring to it, but it does sound a little vain.</p>
+          <p>The other option that I liked was &#8220;radiant&#8221;. Radiant cut is a squarish shape. I don&#8217;t like the shape as much a brilliant cut, but the name is rather nice. Unless someone has other suggestions I think I am going to call it Radiant <span class="caps">CMS</span>.</p>
+        </div>
+        <div id="comments">
+          <script type="text/javascript">
+            //<![CDATA[
+              var idcomments_acct = '76d4e751ddadd782a2ec9a8f8d981c4a';
+              var idcomments_post_id;
+              var idcomments_post_url;
+            //]]>
+          </script>
+          <span id="IDCommentsPostTitle" style="display:none"></span>
+          <script src="http://www.intensedebate.com/js/genericCommentWrapperV2.js" type="text/javascript"></script>
         </div>
       </div>
       <div id="footer">

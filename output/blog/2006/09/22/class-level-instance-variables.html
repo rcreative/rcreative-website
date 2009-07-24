@@ -1,0 +1,131 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html lang="en" xml:lang="en" xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta content="text/html; charset=utf-8" http-equiv="Content-Type" />
+    <title>Class-Level Instance Variables</title>
+    <link href="/blog/atom.xml" rel="alternate" title="Recursive Creative" type="application/atom+xml" />
+    <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css" />
+    <script src="/javascripts/jquery.js" type="text/javascript"></script>
+    <script src="/javascripts/fancyzoom.js" type="text/javascript"></script>
+    <script type="text/javascript">
+      //<![CDATA[
+        $(document).ready(function() {
+          $('a.zoom').fancyZoom();
+        });
+      //]]>
+    </script>
+  </head>
+  <body id="single_column_layout">
+    <div id="container">
+      <div id="header">
+        <div id="logo">
+          <a href="/">
+            <img alt="Recursive Creative" height="73" src="/images/logo.png" title="" width="241" />
+          </a>
+        </div>
+      </div>
+      <div id="main">
+        <div id="head">
+          <h1>Class-Level Instance Variables</h1>
+        </div>
+        <div id="content">
+          <p>I&#8217;ve been doing a lot of metaprograming of late with <a href="http://radiantcms.org">Radiant</a> and have gained a deep appreciation for class-level instance variables. If you haven&#8217;t done a lot with class variables, you probably won&#8217;t see much value class-level instance variables.</p>
+          <p>Maybe you&#8217;ve been playing around with those neat little class methods on your <a href="http://rubyonrails.org">Rails</a> model objects:</p>
+          <div class="highlight"><pre><span class="k">class</span> <span class="nc">Person</span> <span class="o">&lt;</span> <span class="no">ActiveRecord</span><span class="o">::</span><span class="no">Base</span>&#x000A;  <span class="n">validates_presence_of</span> <span class="ss">:name</span>&#x000A;  <span class="n">validates_numerically_of</span> <span class="ss">:age</span>&#x000A;<span class="k">end</span></pre>
+          </div>
+          <p>Or perhaps you&#8217;ve been experimenting with <a href="http://poignantguide.net/dwemthy/">Dwemthy&#8217;s Array</a>:</p>
+          <div class="highlight"><pre><span class="k">class</span> <span class="nc">Dragon</span> <span class="o">&lt;</span> <span class="no">Creature</span>&#x000A;  <span class="n">life</span> <span class="mi">1340</span>     <span class="c1"># tough scales</span>&#x000A;  <span class="n">strength</span> <span class="mi">451</span>  <span class="c1"># bristling veins</span>&#x000A;  <span class="n">charisma</span> <span class="mi">1020</span> <span class="c1"># toothy smile</span>&#x000A;  <span class="n">weapon</span> <span class="mi">939</span>    <span class="c1"># fire breath</span>&#x000A;<span class="k">end</span></pre>
+          </div>
+          <p>Ruby makes creating this kind of <a href="http://weblog.jamisbuck.org/2006/4/20/writing-domain-specific-languages/">Domain Specific Language</a> a snap, but it&#8217;s not without it&#8217;s<br />
+          pitfalls if you&#8217;ve never done it before.</p>
+          <p>At first glance you might think that you could store this kind of meta information in a class variable. Let&#8217;s take a simple example. You want to create the <code>Creature</code> class that <code>Dragon</code> inherits from. You might define your first attribute like this:</p>
+          <div class="highlight"><pre><span class="k">class</span> <span class="nc">Creature</span>&#x000A;  <span class="k">def</span> <span class="nc">self</span><span class="o">.</span><span class="nf">life</span><span class="p">(</span><span class="n">life</span> <span class="o">=</span> <span class="kp">nil</span><span class="p">)</span>&#x000A;    <span class="vc">@@life</span> <span class="o">=</span> <span class="n">life</span> <span class="o">||</span> <span class="vc">@@life</span>&#x000A;  <span class="k">end</span>&#x000A;<span class="k">end</span></pre>
+          </div>
+          <p>Class variables are a convenient method of storing information in the class object itself. Since class variables look much like instance variables (in that they are preceded with two @ signs) you might be tempted to think that they are just instance variables for classes, but don&#8217;t be fooled! Class variables are shared variables. Every subclass of a superclass has access to the superclass&#8217;s class variables between superclasses and subclasses. That is, instead of getting a new version of the class variable every time you inherit from the superclass, you get the same version of the variable (not a copy).</p>
+          <p>In practice this means that class variables are a poor choice for storing meta data. In the example above if we inherit from Creature more than once we quickly see the problem:</p>
+          <div class="highlight"><pre><span class="k">class</span> <span class="nc">Dragon</span> <span class="o">&lt;</span> <span class="no">Creature</span>&#x000A;  <span class="n">life</span> <span class="mi">1340</span>&#x000A;<span class="k">end</span>&#x000A;<span class="k">class</span> <span class="nc">Gwythaint</span> <span class="o">&lt;</span> <span class="no">Creature</span>&#x000A;  <span class="n">life</span> <span class="mi">250</span>&#x000A;<span class="k">end</span>&#x000A;<span class="nb">p</span> <span class="no">Dragon</span><span class="o">.</span><span class="n">life</span>  <span class="c1">#=&gt; 250 !!!!</span></pre>
+          </div>
+          <p>Instead of getting 1340 for the dragon&#8217;s life, we get 250!! Again this is because class variables are shared between the superclass and every one of its subclasses. It has been suggested that an easy way to work around this problem is to use a hash and store class/value pairs for each of the subclasses:</p>
+          <div class="highlight"><pre><span class="k">class</span> <span class="nc">Creature</span>&#x000A;  <span class="vc">@@lives</span> <span class="o">=</span> <span class="no">Hash</span><span class="o">.</span><span class="n">new</span>&#x000A;  <span class="k">def</span> <span class="nc">self</span><span class="o">.</span><span class="nf">life</span><span class="p">(</span><span class="n">life</span> <span class="o">=</span> <span class="kp">nil</span><span class="p">)</span>&#x000A;    <span class="vc">@@lives</span><span class="o">[</span><span class="nb">self</span><span class="o">]</span> <span class="o">=</span> <span class="n">life</span> <span class="o">||</span> <span class="vc">@@lives</span><span class="o">[</span><span class="nb">self</span><span class="o">]</span>&#x000A;  <span class="k">end</span>&#x000A;<span class="k">end</span></pre>
+          </div>
+          <p>This works, but is somewhat verbose. Instead of using a class variable, you can use a class-level instance variable. What?! You thought instance variables were only for instances of the class? Look again:</p>
+          <div class="highlight"><pre><span class="k">class</span> <span class="nc">Creature</span>&#x000A;  <span class="k">def</span> <span class="nc">self</span><span class="o">.</span><span class="nf">life</span><span class="p">(</span><span class="n">life</span> <span class="o">=</span> <span class="kp">nil</span><span class="p">)</span>&#x000A;    <span class="vi">@life</span> <span class="o">=</span> <span class="n">life</span> <span class="o">||</span> <span class="vi">@life</span>&#x000A;  <span class="k">end</span>&#x000A;<span class="k">end</span></pre>
+          </div>
+          <p>The above works because within the context of the class method the instance variable refers to a class-level instance variable&#8212;not a normal instance variable. In fact, any time you reference an instance variable outside a method definition you are working with a class-level instance variable:</p>
+          <div class="highlight"><pre><span class="k">class</span> <span class="nc">MyObject</span>&#x000A;  <span class="vi">@class_level</span> <span class="o">=</span> <span class="s2">&quot;a class-level instance variable&quot;</span>&#x000A;  &#x000A;  <span class="k">def</span> <span class="nf">initialize</span>&#x000A;    <span class="vi">@normal</span> <span class="o">=</span> <span class="s2">&quot;a normal instance variable&quot;</span>&#x000A;  <span class="k">end</span>&#x000A;<span class="k">end</span>&#x000A;<span class="nb">p</span> <span class="no">MyObject</span><span class="o">.</span><span class="n">instance_variables</span> <span class="c1">#=&gt; [&quot;@class_level&quot;]</span>&#x000A;<span class="nb">p</span> <span class="no">MyObject</span><span class="o">.</span><span class="n">new</span><span class="o">.</span><span class="n">instance_variables</span> <span class="c1">#=&gt; [&quot;@normal&quot;]</span></pre>
+          </div>
+          <p>Don&#8217;t be confused. Classes in Ruby are also objects. Just like other objects they have their own instance variables. The trick with class-level instance variables is that they are defined after the class is created. With a normal object this would look like this:</p>
+          <div class="highlight"><pre><span class="n">o</span> <span class="o">=</span> <span class="no">MyObject</span><span class="o">.</span><span class="n">new</span>&#x000A;<span class="nb">p</span> <span class="n">o</span><span class="o">.</span><span class="n">instance_variables</span> <span class="c1">#=&gt; [&quot;@normal&quot;]</span>&#x000A;<span class="n">o</span><span class="o">.</span><span class="n">instance_eval</span> <span class="k">do</span>&#x000A;  <span class="vi">@new_var</span> <span class="o">=</span> <span class="s2">&quot;test&quot;</span>&#x000A;<span class="k">end</span>&#x000A;<span class="nb">p</span> <span class="n">o</span><span class="o">.</span><span class="n">instance_variables</span> <span class="c1">#=&gt; [&quot;@normal&quot;, &quot;@new_var&quot;]</span></pre>
+          </div>
+          <p>Most of the time you probably setup instance variables for an object when you initialize it. However, with classes, since instance variables are created after the class is initialized (which happens as soon as you open the class to define methods), instance variables will always be <code>nil</code> when you create a subclass:</p>
+          <div class="highlight"><pre><span class="k">class</span> <span class="nc">LargeGwythaint</span> <span class="o">&lt;</span> <span class="no">Gwythaint</span>&#x000A;<span class="k">end</span>&#x000A;<span class="nb">p</span> <span class="no">LargeGwythaint</span><span class="o">.</span><span class="n">life</span> <span class="c1">#=&gt; nil !!!!</span></pre>
+          </div>
+          <p>Ruby gives us a nice way of working around this problem with a the <code>inherited</code> class method:</p>
+          <div class="highlight"><pre><span class="k">class</span> <span class="nc">Creature</span>&#x000A;  <span class="k">def</span> <span class="nc">self</span><span class="o">.</span><span class="nf">inherited</span><span class="p">(</span><span class="n">subclass</span><span class="p">)</span>&#x000A;    <span class="n">subclass</span><span class="o">.</span><span class="n">instance_variable_set</span><span class="p">(</span><span class="s2">&quot;@life&quot;</span><span class="p">,</span> <span class="vi">@life</span><span class="p">)</span>&#x000A;  <span class="k">end</span>&#x000A;<span class="k">end</span></pre>
+          </div>
+          <p>Which works as expected:</p>
+          <div class="highlight"><pre><span class="k">class</span> <span class="nc">LargeDragon</span> <span class="o">&lt;</span> <span class="no">Dragon</span>&#x000A;<span class="k">end</span>&#x000A;<span class="nb">p</span> <span class="no">LargeDragon</span><span class="o">.</span><span class="n">life</span> <span class="c1">#=&gt; 1340</span></pre>
+          </div>
+          <p>Of course, you can package all this logic up in its own module:</p>
+          <div class="highlight"><pre><span class="k">module</span> <span class="nn">InheritableTraits</span>&#x000A;&#x000A;  <span class="k">def</span> <span class="nc">self</span><span class="o">.</span><span class="nf">included</span><span class="p">(</span><span class="n">base</span><span class="p">)</span>&#x000A;    <span class="n">base</span><span class="o">.</span><span class="n">extend</span> <span class="no">ClassMethods</span>&#x000A;  <span class="k">end</span>&#x000A;&#x000A;  <span class="k">module</span> <span class="nn">ClassMethods</span>&#x000A;    <span class="k">def</span> <span class="nf">traits</span><span class="p">(</span><span class="o">*</span><span class="n">attrs</span><span class="p">)</span>&#x000A;      <span class="vi">@traits</span> <span class="o">||=</span> <span class="o">[]</span>&#x000A;      <span class="vi">@traits</span> <span class="o">+=</span> <span class="n">attrs</span>&#x000A;      <span class="n">attrs</span><span class="o">.</span><span class="n">each</span> <span class="k">do</span> <span class="o">|</span><span class="kp">attr</span><span class="o">|</span>&#x000A;        <span class="nb">class_eval</span> <span class="sx">%{</span>&#x000A;<span class="sx">          def self.</span><span class="si">#{</span><span class="kp">attr</span><span class="si">}</span><span class="sx">(string = nil)</span>&#x000A;<span class="sx">            @</span><span class="si">#{</span><span class="kp">attr</span><span class="si">}</span><span class="sx"> = string || @</span><span class="si">#{</span><span class="kp">attr</span><span class="si">}</span><span class="sx"></span>&#x000A;<span class="sx">          end</span>&#x000A;<span class="sx">          def self.</span><span class="si">#{</span><span class="kp">attr</span><span class="si">}</span><span class="sx">=(string = nil)</span>&#x000A;<span class="sx">            </span><span class="si">#{</span><span class="kp">attr</span><span class="si">}</span><span class="sx">(string)</span>&#x000A;<span class="sx">          end</span>&#x000A;<span class="sx">        }</span>&#x000A;      <span class="k">end</span>&#x000A;      <span class="vi">@traits</span>&#x000A;    <span class="k">end</span>&#x000A;&#x000A;    <span class="k">def</span> <span class="nf">inherited</span><span class="p">(</span><span class="n">subclass</span><span class="p">)</span>&#x000A;      <span class="p">(</span><span class="o">[</span><span class="s2">&quot;traits&quot;</span><span class="o">]</span> <span class="o">+</span> <span class="n">traits</span><span class="p">)</span><span class="o">.</span><span class="n">each</span> <span class="k">do</span> <span class="o">|</span><span class="n">t</span><span class="o">|</span>&#x000A;        <span class="n">ivar</span> <span class="o">=</span> <span class="s2">&quot;@</span><span class="si">#{</span><span class="n">t</span><span class="si">}</span><span class="s2">&quot;</span>&#x000A;        <span class="n">subclass</span><span class="o">.</span><span class="n">instance_variable_set</span><span class="p">(</span>&#x000A;          <span class="n">ivar</span><span class="p">,</span>&#x000A;          <span class="nb">instance_variable_get</span><span class="p">(</span><span class="n">ivar</span><span class="p">)</span>&#x000A;        <span class="p">)</span>&#x000A;      <span class="k">end</span>&#x000A;    <span class="k">end</span>&#x000A;  <span class="k">end</span>&#x000A;&#x000A;<span class="k">end</span></pre>
+          </div>
+          <p>And make your life much easier:</p>
+          <div class="highlight"><pre><span class="k">class</span> <span class="nc">Creature</span>&#x000A;  <span class="kp">include</span> <span class="no">InheritableTraits</span>&#x000A;  <span class="n">traits</span> <span class="ss">:life</span><span class="p">,</span> <span class="ss">:strength</span><span class="p">,</span> <span class="ss">:charisma</span><span class="p">,</span> <span class="ss">:weapon</span>&#x000A;<span class="k">end</span>&#x000A;&#x000A;<span class="k">class</span> <span class="nc">Dragon</span> <span class="o">&lt;</span> <span class="no">Creature</span>&#x000A;  <span class="n">life</span> <span class="mi">1340</span>     <span class="c1"># tough scales</span>&#x000A;  <span class="n">strength</span> <span class="mi">451</span>  <span class="c1"># bristling veins</span>&#x000A;  <span class="n">charisma</span> <span class="mi">1020</span> <span class="c1"># toothy smile</span>&#x000A;  <span class="n">weapon</span> <span class="mi">939</span>    <span class="c1"># fire breath</span>&#x000A;<span class="k">end</span>&#x000A;&#x000A;<span class="k">class</span> <span class="nc">LargeDragon</span> <span class="o">&lt;</span> <span class="no">Creature</span>&#x000A;  <span class="n">life</span> <span class="mi">2000</span>     <span class="c1"># even tougher</span>&#x000A;  <span class="n">strength</span> <span class="mi">821</span>  <span class="c1"># bulging veins</span>&#x000A;  <span class="n">charisma</span> <span class="mi">715</span>  <span class="c1"># much more vile</span>&#x000A;  <span class="n">weapon</span> <span class="mi">1213</span>   <span class="c1"># scorching flames</span>&#x000A;<span class="k">end</span>&#x000A;&#x000A;<span class="k">class</span> <span class="nc">Gwythaint</span> <span class="o">&lt;</span> <span class="no">Creature</span>&#x000A;  <span class="n">life</span> <span class="mi">250</span>      <span class="c1"># a large bird</span>&#x000A;  <span class="n">strength</span> <span class="mi">340</span>  <span class="c1"># eats meat</span>&#x000A;  <span class="n">charisma</span> <span class="mi">191</span>  <span class="c1"># ugly</span>&#x000A;  <span class="n">weapon</span> <span class="mi">524</span>    <span class="c1"># beak &amp; talons</span>&#x000A;<span class="k">end</span>&#x000A;&#x000A;<span class="k">class</span> <span class="nc">LargeGwythaint</span> <span class="o">&lt;</span> <span class="no">Creature</span>&#x000A;  <span class="n">life</span> <span class="mi">612</span>      <span class="c1"># gigantic!</span>&#x000A;  <span class="n">strength</span> <span class="mi">429</span>  <span class="c1"># massive wings</span>&#x000A;  <span class="n">charisma</span> <span class="mi">95</span>   <span class="c1"># extremely ugly</span>&#x000A;  <span class="n">weapon</span> <span class="mi">842</span>    <span class="c1"># razor sharp talons</span>&#x000A;<span class="k">end</span></pre>
+          </div>
+          <p>Now go read Why the Lucky Stiff&#8217;s article <a href="http://whytheluckystiff.net/articles/seeingMetaclassesClearly.html"><em>Seeing Metaclasses Clearly</em></a> for more metaprogramming madness.</p>
+        </div>
+        <div id="comments">
+          <script type="text/javascript">
+            //<![CDATA[
+              var idcomments_acct = '76d4e751ddadd782a2ec9a8f8d981c4a';
+              var idcomments_post_id;
+              var idcomments_post_url;
+            //]]>
+          </script>
+          <span id="IDCommentsPostTitle" style="display:none"></span>
+          <script src="http://www.intensedebate.com/js/genericCommentWrapperV2.js" type="text/javascript"></script>
+        </div>
+      </div>
+      <div id="footer">
+        <div class="section" id="contact_us">
+          <p>
+            <strong class="title">We love talking with people about their ideas!</strong>
+            Contact us at
+            <br />
+            <strong class="highlight">919-721-9522</strong>
+            or
+            <a class="alt" href="mailto:us@recursivecreative.com">us@recursivecreative.com</a>
+          </p>
+        </div>
+        <div class="section" id="ruby_rails_and_twitter">
+          <div id="ruby_and_rails">
+            <img alt="Ruby" class="logo" height="79" src="/images/ruby_logo.png" title="" width="54" />
+            <img alt="Rails" class="logo" height="79" src="/images/rails_logo.png" title="" width="54" />
+            We build
+            <a href="http://ruby-lang.org/">Ruby</a>
+            and
+            <a href="http://rubyonrails.org/">Ruby on Rails</a>
+            applications.
+          </div>
+          <div id="twitter">
+            <img alt="Twitter" class="logo" height="67" src="/images/twitter_bird.png" title="" width="54" />
+            <strong class="highlight">Follow us on Twitter:</strong>
+            <div class="handles">
+              <a class="alt" href="http://twitter.com/friendships/add/rcreative">@rcreative</a>, <a class="alt" href="http://twitter.com/friendships/add/johnwlong">@johnwlong</a>, <a class="alt" href="http://twitter.com/friendships/add/aiwilliams">@aiwilliams</a>
+            </div>
+          </div>
+        </div>
+        <div class="section" id="fine_print">
+          <p>
+            Copyright &copy; 2009, Recursive Creative, LLC. All rights reserved. &nbsp; 613 Ashe Avenue &bull; Cary, NC 27518
+          </p>
+        </div>
+      </div>
+    </div>
+    <script type="text/javascript">
+      //<![CDATA[
+        var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www."); document.write(unescape("%3Cscript src='" + gaJsHost + "google-analytics.com/ga.js' type='text/javascript'%3E%3C/script%3E")); try { var pageTracker = _gat._getTracker("UA-9916341-1"); pageTracker._trackPageview(); } catch(err) {}
+      //]]>
+    </script>
+  </body>
+</html>

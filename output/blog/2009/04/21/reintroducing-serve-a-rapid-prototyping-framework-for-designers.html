@@ -1,0 +1,108 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html lang="en" xml:lang="en" xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta content="text/html; charset=utf-8" http-equiv="Content-Type" />
+    <title>Serve: A Rapid Prototyping Framework For Designers</title>
+    <link href="/blog/atom.xml" rel="alternate" title="Recursive Creative" type="application/atom+xml" />
+    <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css" />
+    <script src="/javascripts/jquery.js" type="text/javascript"></script>
+    <script src="/javascripts/fancyzoom.js" type="text/javascript"></script>
+    <script type="text/javascript">
+      //<![CDATA[
+        $(document).ready(function() {
+          $('a.zoom').fancyZoom();
+        });
+      //]]>
+    </script>
+  </head>
+  <body id="single_column_layout">
+    <div id="container">
+      <div id="header">
+        <div id="logo">
+          <a href="/">
+            <img alt="Recursive Creative" height="73" src="/images/logo.png" title="" width="241" />
+          </a>
+        </div>
+      </div>
+      <div id="main">
+        <div id="head">
+          <h1>Serve: A Rapid Prototyping Framework For Designers</h1>
+        </div>
+        <div id="content">
+          <p><img src="/images/serve.png" alt="" /></p>
+          <p>Since <a href="https://twitter.com/adamlogic">Adam McCrea</a> has introduced <a href="http://blog.edgecase.com/2009/4/14/show-off-your-mockups">his solution</a> for simplifying <span class="caps">HTML</span> mockups over on the EdgeCase blog, I thought I would take the time to reintroduce my own: Serve.</p>
+          <p>I&#8217;ve been using Serve for almost a year now to prototype MemberHub and before that I used various forms of a <a href="http://wiseheartdesign.com/2007/9/4/a-haml-server-for-web-designers/">simple Ruby script</a> to power my <span class="caps">HTML</span> mockups.</p>
+          <p>Serve has become an indispensable part of my development methodology because it allows me to prototype the application using <span class="caps">HTML</span> in a <span class="caps">DRY</span> format independently of the work that is being done by developers. This independence is essential as we explore various facets of an application and prioritize the parts that should be developed first.</p>
+          <p>To give you an idea of how it has worked on MemberHub. I sit down with the client beforehand and discuss a feature and the initial user stories that make up that feature. On a large feature I may spend some time during this phase drawing up a couple of paper prototypes so that we can get a general idea of the shape of the feature and how it will affect the application. We can then use the paper prototypes to give a client a fairly reliable estimate of how long it will take to do the initial development.</p>
+          <p>Once the feature has been outlined in this way I can then begin work with the <span class="caps">HTML</span> prototype. I tend to start with the <span class="caps">HTML</span> prototype and not in a graphics program as it allows me to focus on the functionality without getting too caught up with how it looks initially. (I may drop back to a graphics program and &#8220;punt&#8221;, so to speak, if I&#8217;m having trouble getting the layout just right for a particular screen.)</p>
+          <p>Often while I&#8217;m working on a screen for a particular section, I will call the client over (yes, I <strong>love</strong> working onsite with my clients) and ask for their input on how it flows and feels. One of the chief advantages of developing an <span class="caps">HTML</span> prototype for your application is that it gives you the opportunity to explore the flow of your application before the backend development has begun. Hopefully, during the prototyping phase you will be able to iron out any problems in flow, with minimal expense because there is no backend to rework.</p>
+          <p>The &#8220;Design First&#8221; approach is huge for us, because most, if not all, of the business decisions are ironed out in the design phase. Also at the point that a feature has passed completely through the design phase we can then estimate that feature with <strong>extreme</strong> accuracy. The client also knows exactly what they are going to get when the development is done.</p>
+          <p>Once the client has signed off on a feature in the prototype, it can then be thrown over the wall to the development team. Because we use Serve, the views can be copied over from the <span class="caps">HTML</span> prototype to the application almost as is. This does take some effort on my part to construct the views in a way that is friendly to a Rails application, but in general this is not hard if you understand the RESTful approach that Rails encourages. This process is also eased because Serve has full support for partials and layouts with either <span class="caps">ERB</span> or <span class="caps">HAML</span>.</p>
+          <p>Does the developer find it annoying to have to copy the views over from the prototype into the application instead of having the designer work with him in the application? In general, yes and no. Yes more work is involved in copying views over into the application (particularly when views change because a feature is revisited). But no, because he doesn&#8217;t have to worry about a designer breaking tests or causing the application to fail in some way. It&#8217;s also hugely beneficial to the developer because the guesswork is taken out of a feature when it is completely developed (and signed off on) in the prototype before the development begins.</p>
+          <p>Also, I can&#8217;t emphasize enough the freedom that the two project approach gives the designer. No longer is he caught up with views that are hooked into controllers, etc&#8230; He can explore new features and focus almost completely on the <span class="caps">HTML</span>, <span class="caps">CSS</span>, and creative part of his job. With designers often juggling the roles of business analyst, creative expert, <span class="caps">HTML</span>/<span class="caps">CSS</span>/Javascript guru, asking for the two project approach small price to pay for the increased productivity.</p>
+          <p>I&#8217;ve put together a brief overview of Serve in screencast form below. Let me know what you think.</p>
+          <p><object classid="clsid:D27CDB6E-AE6D-11cf-96B8-444553540000" width="453" height="360" id="viddler_53bf6942"><param name="flashvars" value="disablebranding=t" /><param name="movie" value="http://www.viddler.com/simple/53bf6942/" /><param name="allowScriptAccess" value="always" /><param name="allowFullScreen" value="true" /><embed src="http://www.viddler.com/simple/53bf6942/" width="453" height="360" type="application/x-shockwave-flash" allowScriptAccess="always" flashvars="disablebranding=t" allowFullScreen="true" name="viddler_53bf6942"></embed></object></p>
+          <p>Mentioned in the screencast:</p>
+          <ul>
+          	<li><a href="http://github.com/jlong/serve">Serve on Github</a></li>
+          	<li><a href="http://memberhub.com">MemberHub</a></li>
+          	<li><a href="http://announceitapp.com">AnnounceIt</a></li>
+          	<li><a href="http://radiantcms.org">Radiant <span class="caps">CMS</span></a></li>
+          	<li><a href="http://github.com/radiant/radiant-prototype">The Radiant <span class="caps">CMS</span> prototype on GitHub</a></li>
+          </ul>
+        </div>
+        <div id="comments">
+          <script type="text/javascript">
+            //<![CDATA[
+              var idcomments_acct = '76d4e751ddadd782a2ec9a8f8d981c4a';
+              var idcomments_post_id;
+              var idcomments_post_url;
+            //]]>
+          </script>
+          <span id="IDCommentsPostTitle" style="display:none"></span>
+          <script src="http://www.intensedebate.com/js/genericCommentWrapperV2.js" type="text/javascript"></script>
+        </div>
+      </div>
+      <div id="footer">
+        <div class="section" id="contact_us">
+          <p>
+            <strong class="title">We love talking with people about their ideas!</strong>
+            Contact us at
+            <br />
+            <strong class="highlight">919-721-9522</strong>
+            or
+            <a class="alt" href="mailto:us@recursivecreative.com">us@recursivecreative.com</a>
+          </p>
+        </div>
+        <div class="section" id="ruby_rails_and_twitter">
+          <div id="ruby_and_rails">
+            <img alt="Ruby" class="logo" height="79" src="/images/ruby_logo.png" title="" width="54" />
+            <img alt="Rails" class="logo" height="79" src="/images/rails_logo.png" title="" width="54" />
+            We build
+            <a href="http://ruby-lang.org/">Ruby</a>
+            and
+            <a href="http://rubyonrails.org/">Ruby on Rails</a>
+            applications.
+          </div>
+          <div id="twitter">
+            <img alt="Twitter" class="logo" height="67" src="/images/twitter_bird.png" title="" width="54" />
+            <strong class="highlight">Follow us on Twitter:</strong>
+            <div class="handles">
+              <a class="alt" href="http://twitter.com/friendships/add/rcreative">@rcreative</a>, <a class="alt" href="http://twitter.com/friendships/add/johnwlong">@johnwlong</a>, <a class="alt" href="http://twitter.com/friendships/add/aiwilliams">@aiwilliams</a>
+            </div>
+          </div>
+        </div>
+        <div class="section" id="fine_print">
+          <p>
+            Copyright &copy; 2009, Recursive Creative, LLC. All rights reserved. &nbsp; 613 Ashe Avenue &bull; Cary, NC 27518
+          </p>
+        </div>
+      </div>
+    </div>
+    <script type="text/javascript">
+      //<![CDATA[
+        var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www."); document.write(unescape("%3Cscript src='" + gaJsHost + "google-analytics.com/ga.js' type='text/javascript'%3E%3C/script%3E")); try { var pageTracker = _gat._getTracker("UA-9916341-1"); pageTracker._trackPageview(); } catch(err) {}
+      //]]>
+    </script>
+  </body>
+</html>

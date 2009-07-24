@@ -61,7 +61,7 @@ span.highlight, em.highlight, strong.highlight
     margin-bottom: 0.5em
   em.fine_print
     color: #666
-  p, pre
+  p, pre, blockquote
     margin-bottom: 1.5em
   pre, tt
     font-size: 90%
@@ -84,6 +84,11 @@ span.highlight, em.highlight, strong.highlight
     background: white
     padding: 5px
     margin: -6px
+    &.no-border
+      padding: 0
+      background: none
+      border: none
+      margin: 0
     &.float-left
       float: left
       margin-right: 1.5em
@@ -92,10 +97,6 @@ span.highlight, em.highlight, strong.highlight
       float: right
       margin-left: 1.5em
       margin-bottom: 0.75em
-    &.no-border
-      padding: 0
-      background: none
-      border: none
   div.highlight
     background: #f0f0f0
     border: 1px solid #ddd

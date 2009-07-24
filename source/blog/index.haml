@@ -1,0 +1,14 @@
+---
+layout: default
+body_id: "single_column_layout"
+title: Recursive Creative Blog
+---
+
+#head
+  %h1 Blog
+
+#content
+  - site.posts.sort_by(&:date).reverse[1..10].each do |post|
+    .post
+      %h2= link_to(h(post.title), post.url)
+      ~ post.content

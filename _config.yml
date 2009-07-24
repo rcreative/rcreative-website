@@ -2,7 +2,7 @@ source: source
 destination: output
 markdown: rdiscount
 pygments: true
-permalink: /:year/:month/:day/:title.html
+permalink: /blog/:year/:month/:day/:title.html
 multiviews: true
 sass: true
 haml: true
