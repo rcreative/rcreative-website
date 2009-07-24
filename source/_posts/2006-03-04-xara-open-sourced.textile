@@ -1,0 +1,11 @@
+---
+title: Xara Open Sourced!
+---
+
+Wow. This is good news! "Xara":http://xara.com, my favorite vector graphics program, "has been open sourced":http://www.xaraxtreme.org/news/11-10-05.html. This means that there will one day be a Mac version of Xara!
+
+My major regret about moving to Mac last fall was having to leave Xara behind. I figured I would have to get used to Adobe Illustrator or another such program. Now it looks like I won't have to. Xara, Ltd. has announced plans to open source the product. I'm not sure what this will mean for Xara (the company), but it sounds like Linux will finally have a decent vector graphics program. They have already started work on the Mac version of the product as well.
+
+Simply put, Xara is the best graphics program on the market today (in my opinion). It's speed and ease of use is unrivaled by any other graphics program (including Illustrator). I haven't been able to figure it out, but for some reason Xara has not been able to gain much market share among users in relation to Adobe Illustrator and Freehand. Perhaps it has something to do with the fact that Xara, Ltd.'s only major program is a vector graphics program. They don't have the ability to offer a suite of applications as Adobe and Macromedia have had.
+
+Hopefully, the move to open source will be good for the program. It will certainly be good for the users.

@@ -1,0 +1,27 @@
+---
+title: "Poor Man’s Site Stats"
+---
+
+One of the strange things about the normal TextDrive plan is that they don't provide any site statistics. Fooling around on the command line recently I came up with this:
+
+<notextile>
+{% highlight bash %}
+$ cat logs/access_log | awk '{print $1}' | sort | uniq | wc -l
+     538
+{% endhighlight %}
+</notextile>
+
+Which tells me the number of unique IP addresses that have hit my site in the last day. Without getting too complicated I can also get the total number of unique visitors ever (or at least as far back as my logs go).
+
+Here's the code:
+
+<notextile>
+{% highlight bash %}
+$ (cat logs/access_log && gzip -dc logs/access_log*.gz) | awk '{ print $1 }' | sort | uniq | wc -l
+    3887
+{% endhighlight %}
+</notextile>
+
+And this shows me the total number of unique visitors to "RadiantCMS.org":http://radiantcms.org/.
+
+What are you doing on "TextDrive":http://textdrive.com?

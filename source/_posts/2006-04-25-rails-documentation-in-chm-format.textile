@@ -1,0 +1,17 @@
+---
+title: Rails Documentation in CHM Format
+---
+
+Delynn Berry just released another version of the Rails Documentation in CHM format:
+
+"http://delynnberry.com/pages/rails-chm-documentation":http://delynnberry.com/pages/rails-chm-documentation
+
+CHM format is Microsoft's proprietary help format for Windows. It allows them to package up an entire Web site of information in a searchable package.
+
+Unfortunately--er--fortunately, I'm on a Mac now. This makes viewing files in CHM format a little tricky. After a quick google search I was able to locate a couple of programs:
+
+* "xCHM":http://xchm.sourceforge.net/ is nice, but doesn't display documents using their original stylesheets.
+* "Chmox":http://chmox.sourceforge.net/ allows documents to be displayed with their original stylesheets, yet allows only the viewing of CHM documents, not searching.
+* "Chamonix":http://sourceforge.net/projects/chamonix/ happens to handle both search and display admirably, though the UI isn't as spiffy as Chmox's.
+
+Are there other options?

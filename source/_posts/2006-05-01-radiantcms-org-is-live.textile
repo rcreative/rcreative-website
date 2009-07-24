@@ -1,0 +1,14 @@
+---
+title: "RadiantCMS.org is Live!"
+---
+
+<a href="http://radiantcms.org"><img class="float-left" src="http://static.flickr.com/47/138653223_e8eef6e3fb_m.jpg" width="240" height="228" alt="radiantcms.org" /></a> After many months of hard work it's wonderful to have something to show you. Today, I released Radiant into the wild with "its own Web site":http://radiantcms.org. It's actually been around since last week, but only a small group of people have known of its existence.
+
+p{clear:left; padding-top: 1em;}. The site sports a couple of sections that might be of interest to you:
+
+* "A public demo":http://radiantcms.org/demo/
+* "A Trac powered dev site":http://dev.radiantcms.org/
+* "A mailing list":http://radiantcms.org/mailing-list/
+* "A weblog":http://radiantcms.org/
+
+Oh, and did I mention that the main site is actually powered by Radiant? I've taken a few "screen shots":http://www.flickr.com/photos/86701100@N00/sets/72057594122572739/ of Radiant and the Web site and have posted them on Flickr.

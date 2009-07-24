@@ -1,0 +1,11 @@
+---
+title: Jim Weirich on Continuations
+---
+
+I attended a "Chicago Area Ruby Group":http://ruby.meetup.com/55/ meetup this evening. Joe O'brien was able to lure "Jim Weirich":http://onestepback.org up for the meeting to teach some deep Ruby magic. His topic was "_Demystifying Continuations_":http://onestepback.org/articles/callcc/. I throughly enjoyed his presentation style. He had a great mix of entertaining illustrations coupled with hands-on coding exercises.
+
+He started off with a demonstration of the "Amb library":http://blade.nagaokaut.ac.jp/cgi-bin/scat.rb/ruby/ruby-talk/91023 (Amb is an abbreviation of "ambiguous"), followed by a couple of other examples, and then gave us a half hour to pair up and write our own version of @catch@ and @throw@ using continuations (which was really invigorating--none of us finished, but a few people got pretty close). After that he had a lucid explanation of continuations based on "one of the Zelda games":http://zelda.com/universe/game/ocarinatime/ where the game was completed by going back and forth in time (continuations are a sort of programming "time-machine"). He then finished the talk with a nice example of a console application and a similar web application (which used continuations to mimic the feel that you got in the console).
+
+All in all a very good talk. I have a much better understanding of what continuations are (though I'm still not sure that I'm smart enough to know when to use one).
+
+I had to ask Jim at the end of the talk if he'd implemented the "@one_step_back@":http://onestepback.org function using continuations or not! He just laughed.

@@ -1,0 +1,9 @@
+---
+title: Radiant CMS Behaviors
+---
+
+!(float-left)/images/radiant-multi-lingual.gif! One of the features I'm really excited about in the CMS I'm building for "ruby-lang.org":http://ruby-lang.org is support for what I am calling "behaviors". A behavior is a Ruby mixin of sorts that alters the way a page behaves on the site. It can do everything from changing the way content is rendered to setting headers on the response. Think of a behavior as a special plugin for pages.
+
+This morning I finished coding a behavior for the Ruby site that will redirect you to a sub-folder of the site based on your prefered language (a browser configurable setting).
+
+Above you can see that I've already started testing it. The CMS seems to be handling Japanese rather well.
