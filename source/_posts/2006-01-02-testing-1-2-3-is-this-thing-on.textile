@@ -1,0 +1,13 @@
+---
+title: "Testing 1-2-3… Is This Thing On?"
+---
+
+Testing 1-2-3... Is This Thing On?
+
+Pardon the dust! I'm in the midst of revamping this very Web site. If you see something out of place this is probably why. (Don't let that stop you from letting me know though.)
+
+You may have noticed that I've added a "Typo":http://typo.leetsoft.com powered blog and some "additional":/passion/ "information":/contact/. The old "portfolio":/portfolio/ is still pretty much intact. I'd like expand it with more information, but that will have to wait.
+
+The main reason for this update is the blog. Over the next month or two I'm going to be working on the backend for the "new Ruby Web site":http://redhanded.hobix.com/redesign2005/. I wanted a place to chronicle my progress.
+
+Stay tuned for more.

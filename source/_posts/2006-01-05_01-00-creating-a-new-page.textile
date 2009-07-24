@@ -1,0 +1,9 @@
+---
+title: Creating a New Page in Radiant CMS
+---
+
+!(float-left)/images/radiant-new-page.gif! Here's another comp for the Ruby Web site administration system.
+
+One of the aspects of a page that I hope to really leverage is this concept of sections. Each page will have multiple sections which contain appropriate content. You can see this on the tabs: "Body", "Expanded", "Summary", and "Sidebar". You will be able to add custom sections or use one of the predefined sections.
+
+When a page is rendered using a Template, the Template can render the sections however it chooses. Or, when a page's content is included in another page, the page will be able to choose to render specific sections and exclude others. For example a blog index could choose to render only the "Summary" section for each article.
