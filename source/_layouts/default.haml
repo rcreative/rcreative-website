@@ -7,6 +7,7 @@
       %meta{:name=>"description", :content=>page.description}/
     - if page.respond_to? :keywords
       %meta{:name=>"keywords", :content=>page.keywords}/
+    %link{:href=>"/atom.xml", :rel=>"alternate", :title=>"Recursive Creative", :type=>"application/atom+xml"}
     %link{:href=>"/stylesheets/screen.css", :rel=>"stylesheet", :media=>"screen, projection", :type=>"text/css"}
     %script{:type=>"text/javascript", :src=>"/javascripts/jquery.js"}
     %script{:type=>"text/javascript", :src=>"/javascripts/fancyzoom.js"}

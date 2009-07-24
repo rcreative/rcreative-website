@@ -4,7 +4,7 @@
  <title>Recursive Creative Blog</title>
  <link href="http://recursivecreative.com/atom.xml" rel="self" />
  <link href="http://recursivecreative.com/" />
- <updated>2009-07-24T12:00:46-04:00</updated>
+ <updated>2009-07-24T12:26:08-04:00</updated>
  <id>http://recursivecreative.com/blog/</id>
  <author>
    <name>Recursive Creative</name>
@@ -17,7 +17,7 @@
    <link href="http://recursivecreative.com/2009/04/21/reintroducing-serve-a-rapid-prototyping-framework-for-designers"/>
    <updated>2009-04-21T00:00:00-04:00</updated>
    <id>http://recursivecreative.com/2009/04/21/reintroducing-serve-a-rapid-prototyping-framework-for-designers</id>
-   <content type="html">&lt;p&gt;&lt;img src="http://recursivecreative.com/images/serve.png" alt="" /&gt;&lt;/p&gt;
+   <content type="html">&lt;p&gt;&lt;img src="/images/serve.png" alt="" /&gt;&lt;/p&gt;
 &lt;p&gt;Since &lt;a href="https://twitter.com/adamlogic"&gt;Adam McCrea&lt;/a&gt; has introduced &lt;a href="http://blog.edgecase.com/2009/4/14/show-off-your-mockups"&gt;his solution&lt;/a&gt; for simplifying &lt;span class="caps"&gt;HTML&lt;/span&gt; mockups over on the EdgeCase blog, I thought I would take the time to reintroduce my own: Serve.&lt;/p&gt;
 &lt;p&gt;I&amp;#8217;ve been using Serve for almost a year now to prototype MemberHub and before that I used various forms of a &lt;a href="http://wiseheartdesign.com/2007/9/4/a-haml-server-for-web-designers/"&gt;simple Ruby script&lt;/a&gt; to power my &lt;span class="caps"&gt;HTML&lt;/span&gt; mockups.&lt;/p&gt;
 &lt;p&gt;Serve has become an indispensable part of my development methodology because it allows me to prototype the application using &lt;span class="caps"&gt;HTML&lt;/span&gt; in a &lt;span class="caps"&gt;DRY&lt;/span&gt; format independently of the work that is being done by developers. This independence is essential as we explore various facets of an application and prioritize the parts that should be developed first.&lt;/p&gt;
@@ -45,7 +45,7 @@
    <link href="http://recursivecreative.com/2009/04/03/memberhub-com-in-6-minutes"/>
    <updated>2009-04-03T00:00:00-04:00</updated>
    <id>http://recursivecreative.com/2009/04/03/memberhub-com-in-6-minutes</id>
-   <content type="html">&lt;p&gt;&lt;a href="http://memberhub.com"&gt;&lt;img src="http://recursivecreative.com/images/memberhub.png" alt="" /&gt;&lt;/a&gt;&lt;/p&gt;
+   <content type="html">&lt;p&gt;&lt;a href="http://memberhub.com"&gt;&lt;img src="/images/memberhub.png" alt="" /&gt;&lt;/a&gt;&lt;/p&gt;
 &lt;p&gt;Since January of last year, I have been working with a small startup here in Raleigh building a web service called MemberHub. MemberHub has been a bit of a dream come true for me. It is the first time I&amp;#8217;ve had the opportunity to build a subscription-based web service that has massive online appeal. If it takes off, I believe that MemberHub could be the next Facebook or LinkedIn.&lt;/p&gt;
 &lt;p&gt;Now don&amp;#8217;t write me off just yet&amp;#8230; Hear me out.&lt;/p&gt;
 &lt;p&gt;People use Facebook for their personal lives to help manage the relationships they have with friends. LinkedIn is useful for keeping track of your business connections. MemberHub is designed to help organizations, such as churches and nonprofits connect with their members and manage the various groups that make up the organization.&lt;/p&gt;
@@ -61,7 +61,7 @@
    <link href="http://recursivecreative.com/2009/03/28/announceit-beta-program"/>
    <updated>2009-03-28T00:00:00-04:00</updated>
    <id>http://recursivecreative.com/2009/03/28/announceit-beta-program</id>
-   <content type="html">&lt;p&gt;&lt;img src="http://recursivecreative.com/images/announceit.png" alt="" /&gt;&lt;/p&gt;
+   <content type="html">&lt;p&gt;&lt;img src="/images/announceit.png" alt="" /&gt;&lt;/p&gt;
 &lt;p&gt;Adam Williams and I are working on a new project together. It&amp;#8217;s called &lt;a href="http://announceitapp.com/"&gt;AnnounceIt&lt;/a&gt;.&lt;/p&gt;
 &lt;p&gt;AnnounceIt is a super easy way to put up a teaser page on a domain to start collecting e-mail addresses. It&amp;#8217;s great for an &amp;#8220;Announcements Only&amp;#8221; mailing list for an event, web site, or web application that is being developed. You can see an example of a &amp;#8220;teaser page&amp;#8221; for a Web application &lt;a href="http://missioncontrolapp.com/"&gt;here&lt;/a&gt; and &lt;a href="http://www.announceitapp.com/"&gt;here&lt;/a&gt; (yes we are using it to announce our own web application).&lt;/p&gt;
 &lt;p&gt;If you&amp;#8217;d like to be notified when we launch AnnounceIt, signup for our mailing list at &lt;a href="http://www.announceitapp.com/"&gt;announceitapp.com&lt;/a&gt;.&lt;/p&gt;
@@ -81,7 +81,7 @@
    <link href="http://recursivecreative.com/2008/12/12/meet-dataset-the-fixture-killing-data-loading-framework"/>
    <updated>2008-12-12T00:00:00-05:00</updated>
    <id>http://recursivecreative.com/2008/12/12/meet-dataset-the-fixture-killing-data-loading-framework</id>
-   <content type="html">&lt;p&gt;&lt;a href="http://github.com/aiwilliams/dataset"&gt;&lt;img src="http://recursivecreative.com/images/dataset.png" class="float-right no-border" alt="" /&gt;&lt;/a&gt; My good friend and partner &lt;a href="http://github.com/aiwilliams/"&gt;Adam Williams&lt;/a&gt; has just finished bolting the doors on his new &lt;em&gt;&lt;span class="caps"&gt;YAML&lt;/span&gt;-fixture-killing&lt;/em&gt; Rails plugin: &lt;em&gt;&lt;a href="http://github.com/aiwilliams/dataset"&gt;Dataset&lt;/a&gt;&lt;/em&gt;. Dataset is the next generation of a plugin that Adam and I wrote last year called &lt;a href="http://github.com/aiwilliams/scenarios/tree/master"&gt;Scenarios&lt;/a&gt;.&lt;/p&gt;
+   <content type="html">&lt;p&gt;&lt;a href="http://github.com/aiwilliams/dataset"&gt;&lt;img src="/images/dataset.png" class="float-right no-border" alt="" /&gt;&lt;/a&gt; My good friend and partner &lt;a href="http://github.com/aiwilliams/"&gt;Adam Williams&lt;/a&gt; has just finished bolting the doors on his new &lt;em&gt;&lt;span class="caps"&gt;YAML&lt;/span&gt;-fixture-killing&lt;/em&gt; Rails plugin: &lt;em&gt;&lt;a href="http://github.com/aiwilliams/dataset"&gt;Dataset&lt;/a&gt;&lt;/em&gt;. Dataset is the next generation of a plugin that Adam and I wrote last year called &lt;a href="http://github.com/aiwilliams/scenarios/tree/master"&gt;Scenarios&lt;/a&gt;.&lt;/p&gt;
 &lt;p&gt;Why the need for a new plugin? The Scenarios plugin was originally built inside of a Rails application that we were working on. At the time we threw it together rather haphazardly. There were few tests (if any). The main thing was to prove that the idea was good. Scenarios worked so well for us that we soon extracted it and used it in our next application. A friend added support for Test::Unit. Pretty soon the implementation our &amp;#8220;simple&amp;#8221; fixture replacement plugin had grown quite complex. It was becoming hard to maintain.&lt;/p&gt;
 &lt;p&gt;This year Adam and I have been working on a rather large Rails application. The run time for tests in our application had almost become unbearable. In an effort to speed up those tests and fix some of the outstanding issues in the Scenarios plugin, Adam decided to start from scratch and rewrite the plugin from the ground up using the test first approach.&lt;/p&gt;
 &lt;p&gt;We have christened the rewrite &amp;#8220;Dataset&amp;#8221;. It is virtually a drop-in replacement for the Scenarios plugin. Our initial tests suggest that it is significantly faster than its predecessor.&lt;/p&gt;
@@ -197,7 +197,7 @@
    <link href="http://recursivecreative.com/2008/12/03/radiant-sprint-on-december-13"/>
    <updated>2008-12-03T00:00:00-05:00</updated>
    <id>http://recursivecreative.com/2008/12/03/radiant-sprint-on-december-13</id>
-   <content type="html">&lt;p&gt;&lt;img src="http://recursivecreative.com/images/radiant.png" class="no-border float-right" alt="" /&gt; Just in case you missed the news &lt;a href="http://radiantcms.org/blog/archives/2008/11/25/radiant-mini-sprint---december-13/"&gt;we are planning&lt;/a&gt; another Radiant Sprint on Saturday, December 13. Several prestigious members of the &lt;a href="http://www.meetup.com/raleighrb/"&gt;Raleigh Ruby Brigade&lt;/a&gt; plan to attend along with some of the more questionable characters (like me!).&lt;/p&gt;
+   <content type="html">&lt;p&gt;&lt;img src="/images/radiant.png" class="no-border float-right" alt="" /&gt; Just in case you missed the news &lt;a href="http://radiantcms.org/blog/archives/2008/11/25/radiant-mini-sprint---december-13/"&gt;we are planning&lt;/a&gt; another Radiant Sprint on Saturday, December 13. Several prestigious members of the &lt;a href="http://www.meetup.com/raleighrb/"&gt;Raleigh Ruby Brigade&lt;/a&gt; plan to attend along with some of the more questionable characters (like me!).&lt;/p&gt;
 &lt;p&gt;The plan is to continue working to implement the &lt;a href="http://github.com/radiant/radiant-mockups/tree/master/blade"&gt;next version of the Radiant UI&lt;/a&gt; and bring some of the internals up to snuff. Radiant has recently been upgraded to use the more modern RESTful approach, but there are still plenty of tests to write and other improvements to be made.&lt;/p&gt;
 &lt;p&gt;This is the perfect opportunity to gain a little insight into the Radiant development process and get up to speed on some of the tools we have been working with (&lt;a href="http://rspec.info/"&gt;RSpec&lt;/a&gt;, &lt;a href="http://haml.hamptoncatlin.com/"&gt;&lt;span class="caps"&gt;HAML&lt;/span&gt;&lt;/a&gt;, &lt;a href="http://github.com/jlong/serve/"&gt;Serve&lt;/a&gt;, &lt;a href="http://github.com/aiwilliams/spec_integration/"&gt;Spec Integration&lt;/a&gt;, and &lt;a href="http://github.com/aiwilliams/dataset/"&gt;Dataset&lt;/a&gt;, to name a few).&lt;/p&gt;
 &lt;p&gt;It will be hosted at Red Hat here in Raleigh. We&amp;#8217;ll get started around 9 am and continue until about 6 pm that evening. &lt;a href="http://www.meetup.com/raleighrb/calendar/9235561/"&gt;&lt;span class="caps"&gt;RSVP&lt;/span&gt; if you want to come along for the fun.&lt;/a&gt; Everyone is welcome to attend, even if all you want to do is &lt;a href="http://www.youtube.com/watch?v=PUjgdFoALok"&gt;heckle&lt;/a&gt;.&lt;/p&gt;</content>
@@ -208,7 +208,7 @@
    <link href="http://recursivecreative.com/2008/07/17/create-facebook-like-windows-with-popup-js"/>
    <updated>2008-07-17T00:00:00-04:00</updated>
    <id>http://recursivecreative.com/2008/07/17/create-facebook-like-windows-with-popup-js</id>
-   <content type="html">&lt;p&gt;&lt;img src ="http://recursivecreative.com/images/popupjs.png" width="453" height="150" alt="popup.js" title="popup.js" /&gt;&lt;/p&gt;&lt;p&gt;Over the past couple of months I&amp;#8217;ve been working on a little library for a client that allows us to create Facebook-like popup windows with ease. It&amp;#8217;s called &lt;a href="http://github.com/jlong/popupjs/tree/master"&gt;popup.js&lt;/a&gt;. The library depends on Dan Webb&amp;#8217;s excellent &lt;a href="http://www.danwebb.net/2006/9/3/low-pro-unobtrusive-scripting-for-prototype"&gt;Low Pro&lt;/a&gt; and comes complete with it&amp;#8217;s own behavior for easy unobtrusive use.&lt;/p&gt;
+   <content type="html">&lt;p&gt;&lt;img src ="/images/popupjs.png" width="453" height="150" alt="popup.js" title="popup.js" /&gt;&lt;/p&gt;&lt;p&gt;Over the past couple of months I&amp;#8217;ve been working on a little library for a client that allows us to create Facebook-like popup windows with ease. It&amp;#8217;s called &lt;a href="http://github.com/jlong/popupjs/tree/master"&gt;popup.js&lt;/a&gt;. The library depends on Dan Webb&amp;#8217;s excellent &lt;a href="http://www.danwebb.net/2006/9/3/low-pro-unobtrusive-scripting-for-prototype"&gt;Low Pro&lt;/a&gt; and comes complete with it&amp;#8217;s own behavior for easy unobtrusive use.&lt;/p&gt;
 &lt;p&gt;So how does it work? Well, once you have the proper plumbing in place you can declare a simple popup window like this:&lt;/p&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="nt"&gt;&amp;lt;div&lt;/span&gt; &lt;span class="na"&gt;class=&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;popup&amp;quot;&lt;/span&gt; &lt;span class="na"&gt;id=&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;test&amp;quot;&lt;/span&gt; &lt;span class="na"&gt;style=&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;display: none&amp;quot;&lt;/span&gt;&lt;span class="nt"&gt;&amp;gt;&lt;/span&gt;
   &lt;span class="nt"&gt;&amp;lt;h3&lt;/span&gt; &lt;span class="na"&gt;class=&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;title&amp;quot;&lt;/span&gt;&lt;span class="nt"&gt;&amp;gt;&lt;/span&gt;Popup Window&lt;span class="nt"&gt;&amp;lt;/h3&amp;gt;&lt;/span&gt;
@@ -237,7 +237,7 @@
    <link href="http://recursivecreative.com/2007/10/27/pragmatic-programmer-site-live"/>
    <updated>2007-10-27T00:00:00-04:00</updated>
    <id>http://recursivecreative.com/2007/10/27/pragmatic-programmer-site-live</id>
-   <content type="html">&lt;p&gt;&lt;a href="http://pragprog.com/" title="The Pragmatic Programmers"&gt;&lt;img src ="http://recursivecreative.com/images/pragprog-com-screenshot.png" width="453" height="150" alt="The Pragmatic Programmers" title="The Pragmatic Programmers" /&gt;&lt;/a&gt;&lt;/p&gt;&lt;p&gt;This may be old news for some of you, but the &lt;a href="http://pragprog.com"&gt;Pragmatic Web Site&lt;/a&gt; got a face lift a couple of weeks ago. I was thrilled to have the opportunity to work on the site with Mike, Dave, and Andy. Most of the design work was done this summer, while the finishing touches on programming and the data import pushed the launch date back to the beginning of October. (Site credits &lt;a href="http://pragprog.com/resources/credits/"&gt;here&lt;/a&gt;.)&lt;/p&gt;
+   <content type="html">&lt;p&gt;&lt;a href="http://pragprog.com/" title="The Pragmatic Programmers"&gt;&lt;img src ="/images/pragprog-com-screenshot.png" width="453" height="150" alt="The Pragmatic Programmers" title="The Pragmatic Programmers" /&gt;&lt;/a&gt;&lt;/p&gt;&lt;p&gt;This may be old news for some of you, but the &lt;a href="http://pragprog.com"&gt;Pragmatic Web Site&lt;/a&gt; got a face lift a couple of weeks ago. I was thrilled to have the opportunity to work on the site with Mike, Dave, and Andy. Most of the design work was done this summer, while the finishing touches on programming and the data import pushed the launch date back to the beginning of October. (Site credits &lt;a href="http://pragprog.com/resources/credits/"&gt;here&lt;/a&gt;.)&lt;/p&gt;
 &lt;p&gt;If you haven&amp;#8217;t seen it yet, I&amp;#8217;d encourage you to head on over to the site and &lt;a href="http://pragmaticprogrammer.com/titles/"&gt;buy a book or something&lt;/a&gt;!&lt;/p&gt;</content>
  </entry>
  
@@ -347,7 +347,7 @@ application.sass        dialogs.sass
    <link href="http://recursivecreative.com/2007/08/26/just-an-experiment"/>
    <updated>2007-08-26T00:00:00-04:00</updated>
    <id>http://recursivecreative.com/2007/08/26/just-an-experiment</id>
-   <content type="html">&lt;p&gt;&lt;img src="http://recursivecreative.com/images/game.png" alt="" /&gt;&lt;/p&gt;
+   <content type="html">&lt;p&gt;&lt;img src="/images/game.png" alt="" /&gt;&lt;/p&gt;
 &lt;p&gt;OK, this has nothing to do with what I&amp;#8217;m working on in &lt;a href="http://basement.thewilliams.ws"&gt;Adam&amp;#8217;s basement&lt;/a&gt;, but &lt;a href="http://johnwlong.com/game.html"&gt;here&amp;#8217;s a starfield simulation&lt;/a&gt; I&amp;#8217;ve been working on for a small game in Javascript. It&amp;#8217;s an interesting example of what is possible in Javascript on a modern Web browser (tested on Safari 3 and Firefox 2). Be sure to check out the source. Prototype makes this type of thing extremely easy.&lt;/p&gt;</content>
  </entry>
  
@@ -368,7 +368,7 @@ application.sass        dialogs.sass
    <link href="http://recursivecreative.com/2007/06/15/better-modularization-for-rails-2-0"/>
    <updated>2007-06-15T00:00:00-04:00</updated>
    <id>http://recursivecreative.com/2007/06/15/better-modularization-for-rails-2-0</id>
-   <content type="html">&lt;p&gt;In my previous post about &lt;a href="http://recursivecreative.com/2006/12/06/rails-needs-something-better-than-engines/"&gt;Rails and Engines&lt;/a&gt;, I talked about some of the issues I&amp;#8217;d like to see resolved in Rails 2.0. Specifically, it seems that we need to rethink modularization in Rails and make it easier for people to share complete slices of applications.&lt;/p&gt;
+   <content type="html">&lt;p&gt;In my previous post about &lt;a href="/2006/12/06/rails-needs-something-better-than-engines/"&gt;Rails and Engines&lt;/a&gt;, I talked about some of the issues I&amp;#8217;d like to see resolved in Rails 2.0. Specifically, it seems that we need to rethink modularization in Rails and make it easier for people to share complete slices of applications.&lt;/p&gt;
 &lt;p&gt;One of the primary hinderances of the present Rails architecture to modularization is the directory structure.&lt;/p&gt;
 &lt;p&gt;Consider the typical rails &lt;tt&gt;app&lt;/tt&gt; directory:&lt;/p&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;app/
