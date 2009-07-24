@@ -1,0 +1,101 @@
+---
+title: Test Helpers for Rails
+---
+
+In Rails, I occasionally find myself needing to share some specific functionality between tests. I usually take advantage of Ruby's remarkable modules and make a module which defines the functionality that I need. I then use the <tt>include</tt> class method to import the functionality into the test case where I need it. When I create a module like this I call it a test helper.
+
+For example, in my current project I have a <tt>Page</tt> model object for which I created the following test helper (abbreviated):
+
+<notextile>
+{% highlight ruby %}
+module PageTestHelper
+  VALID_PAGE_PARAMS = {
+    :title => 'New Page',
+    :slug => 'page',
+    :breadcrumb => 'New Page',
+    :status_id => '1',
+    :parent_id => nil
+  }
+  
+  def page_params(options = {})
+    params = VALID_PAGE_PARAMS.dup
+    params.merge!(:title => @page_title) if @page_title
+    params.merge!(:status_id => '5')
+    params.merge!(options)
+  end
+end
+{% endhighlight %}
+</notextile>
+
+In a test case, when I need access to the methods on the <tt>PageTestHelper</tt> module I just include it:
+
+<notextile>
+{% highlight ruby %}
+require 'test/helpers/page_test_helper'
+
+class PageTest < Test::Unit::TestCase
+  include PageTestHelper
+
+  def setup
+    @page = Page.new page_params
+  end
+
+  # etc...
+end
+{% endhighlight %}
+</notextile>
+
+My naming convention for test helpers is that they always include <tt>TestHelper</tt> in their module name. Sometimes I forget to include <tt>Test</tt> in the name when I include it in a test case which causes an error. Sometimes I forget to require the file which the test helper is stored in which also causes an error. This happens quite frequently.
+
+Recently, I decided to make things easier on myself. In <tt>test_helper.rb</tt> (found in the <tt>test</tt> directory of every rails project) I inserted the following code:
+
+<notextile>
+{% highlight ruby %}
+require 'pathname'
+TEST_ROOT = Pathname.new(
+  File.expand_path(File.dirname(__FILE__))
+).cleanpath(true).to_s
+
+# Auto require test helpers
+Dir[TEST_ROOT + '/helpers/**/*_helper.rb'].each do |helper|
+  require helper
+end
+{% endhighlight %}
+</notextile>
+
+Also, amongst the other code that modifies <tt>Test::Unit::TestCase</tt> in <tt>test_helper.rb</tt> I added a <tt>test_helper</tt> class method:
+
+<notextile>
+{% highlight ruby %}
+# Class method for test helpers
+def self.test_helper(name)
+  name = name.to_s
+  name = $1 if name =~ /^(.*?)_test_helper$/i
+  constant = Inflector.constantize(Inflector.camelize(
+    Inflector.singularize(name.to_s) + '_test_helper'))
+  self.class_eval { include constant }
+end
+{% endhighlight %}
+</notextile>
+
+This was my first chance to use the marvelous <tt>Inflector</tt> class that Rails provides. It certainly makes it much easier to write class methods that work with symbols.
+
+Now, when I need to use a test helper in a test case I do something like this:
+
+<notextile>
+{% highlight ruby %}
+class PageTest < Test::Unit::TestCase
+  test_helper :pages
+
+  def setup
+    @page = Page.new page_params
+  end
+
+  # etc...
+end
+{% endhighlight %}
+</notextile>
+
+Meta-programming is marvelous. I no longer need to remember to require my test helpers and the <tt>test_helper</tt> class method removes the verbosity from the <tt>include</tt>. Much, much better.
+
+How are you making testing easier for yourself in Rails?

@@ -1,0 +1,21 @@
+---
+title: Introducing Radius
+---
+
+I'm pleased to announce the first release of Radius--a small, but powerful template language for Ruby similar to the ones used in "MovableType":http://www.movabletype.org and "TextPattern":http://www.textpattern.com. It uses tags similar to HTML, but can be used to generate any form of plain text (XML, e-mail, etc...).
+
+Check out the documentation at:
+
+"http://radius.rubyforge.org":http://radius.rubyforge.org
+
+Or get started with the gem right away:
+
+<notextile>
+{% highlight bash %}
+$ gem install radius
+{% endhighlight %}
+</notextile>
+
+Radius was conceived and coded by the 3 founding members of the Chicago Area Ruby Group (myself, Brian Young, and Ryan Platte).
+
+*Update:* Radius has moved to Github: "http://github.com/jlong/radius":http://github.com/jlong/radius.

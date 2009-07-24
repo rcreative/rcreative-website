@@ -1,0 +1,13 @@
+---
+title: Javascript Bliss—Well, Not Exactly!
+---
+
+!(float-left)/images/radiant-tabcontrol.gif! After a couple of days hard work I've finally got a tab control built that I like. It has been interesting, but mostly frustrating.
+
+I haven't worked enough with Javascript to be really comfortable with it yet. Each time I do something with it I find it frustrating. My brief brushes with it have been too short for me to attain a good level of proficiency with it.
+
+The first couple of days with a new language can be very frustrating as you are learning the ins and outs. Much of the frustration comes because of the cryptic error messages that are being thrown your way every time you do something creative. Your frustration lessons substantially as you actually learn what the error messages mean, but alas, that doesn't help the beginner.
+
+One of the blessings for me this time has been delving into "Sam Stephenson's":http://conio.net/ amazing Prototype library. With a little sytatic sugar He almost makes Javascript feel like "Ruby":http://ruby-lang.org. He makes clever use of hashes to give you the impression that you are doing Object-Oriented programming and even turns anonymous functions into Ruby-like blocks. Javascript with Prototype is still very verbose compared to Ruby, but it is much, much nicer.
+
+One of the hard things about Prototype is that it doesn't come with any documentation. A "couple":http://www.sergiopereira.com/articles/prototype.js.html "of":http://particletree.com/features/quick-guide-to-prototype/ "people":http://encytemedia.com/blog/articles/2005/12/07/prototype-meets-ruby-a-look-at-enumerable-array-and-hash have taken it upon themselves to document the library and there are even some nifty "unit tests":http://dev.conio.net/repos/prototype/test/, but the best knowledge still comes from "reading the source":http://dev.conio.net/repos/prototype/dist/. If you are anxious for more "this site":http://www.prototypedoc.com/ may be able to help, or, you can stay on the cutting edge by following the feed on "del.icio.us":http://del.icio.us/search/?all=prototype+javascript.
